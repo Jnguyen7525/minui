@@ -22,9 +22,18 @@ import Avatar from "./components/avatar";
 import firstAvatar from "./assets/scared-cartoon-people-scared-face-clip-art-black-and-white--m2i8H7b1d3d3A0Z5.jpg";
 import secondAvatar from "./assets/batman_hero_avatar_comics-512.webp";
 import thirdAvatar from "./assets/avatar-icon-512x512-nktgi1ew.png";
+
+import cardImg from "./assets/images.jpeg";
 import Badge from "./components/badge";
 import Breadcrumbs from "./components/breadcrumb";
 import Calendar from "./components/calendar";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "./components/card";
 
 /* Header Component */
 function Header() {
@@ -50,6 +59,7 @@ function Sidebar() {
         "Badge",
         "Breadcrumb",
         "Calendar",
+        "Card",
       ].map((component) => (
         <button
           key={component}
@@ -521,6 +531,67 @@ function App() {
                   Selected Date: {selectedDate.toDateString()}
                 </p>
               )}
+            </div>
+          </div>
+
+          {/* calendar */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-[600px] border-t-[1px] m-5 underline-offset-2">
+            <h2 className="text-xl font-bold mb-5">Card</h2>
+            <div className="flex  h-full w-full  items-center justify-center ">
+              <Card
+                shadow="lg"
+                radius="md"
+                isHoverable
+                isPressable
+                classNames={{
+                  base: "w-96 bg-gray-50 border border-gray-300 shadow-md",
+                  header: "text-blue-600 text-center",
+                  body: "text-gray-800",
+                  footer: "text-gray-500 text-center",
+                }}
+                onPress={() => console.log("Login Card Pressed")}
+              >
+                <CardHeader>Login</CardHeader>
+                <CardContent>
+                  <form className="flex flex-col gap-4">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="border p-2 rounded-md"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="border p-2 rounded-md"
+                    />
+                  </form>
+                </CardContent>
+                <CardFooter>Forgot your password?</CardFooter>
+                <CardAction>
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Login
+                  </button>
+                </CardAction>
+              </Card>
+
+              <Card
+                shadow="md"
+                radius="lg"
+                isHoverable
+                classNames={{
+                  base: "w-80 bg-gray-50 border border-gray-200 shadow-md",
+                  header: "text-gray-700 text-center",
+                  footer: "text-gray-500 text-center",
+                }}
+              >
+                <CardHeader>Beautiful Scenery</CardHeader>
+                <CardContent className="flex justify-center">
+                  <img src={cardImg} alt="Scenery" className="rounded-md" />
+                </CardContent>
+                <CardFooter>
+                  A stunning view of nature, perfect for relaxation.
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </div>
