@@ -7,6 +7,11 @@ import {
   XCircle,
   Info,
   ShoppingBag,
+  Heart,
+  SkipBack,
+  SkipForward,
+  Play,
+  ShoppingCart,
 } from "lucide-react";
 import Button from "./components/button";
 import { useEffect, useState } from "react";
@@ -23,7 +28,9 @@ import firstAvatar from "./assets/scared-cartoon-people-scared-face-clip-art-bla
 import secondAvatar from "./assets/batman_hero_avatar_comics-512.webp";
 import thirdAvatar from "./assets/avatar-icon-512x512-nktgi1ew.png";
 
-import cardImg from "./assets/images.jpeg";
+import cardImgOne from "./assets/musical-notes-frame-with-text-space_1017-32857.avif";
+import cardImgTwo from "./assets/photo-1559181567-c3190ca9959b.jpeg";
+
 import Badge from "./components/badge";
 import Breadcrumbs from "./components/breadcrumb";
 import Calendar from "./components/calendar";
@@ -34,6 +41,13 @@ import {
   CardFooter,
   CardHeader,
 } from "./components/card";
+import Checkbox from "./components/checkbox";
+import { CheckboxGroup } from "./components/checkboxgroup";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./components/collapsible";
 
 /* Header Component */
 function Header() {
@@ -47,7 +61,7 @@ function Header() {
 /* Sidebar Component */
 function Sidebar() {
   return (
-    <aside className="w-60 bg-black p-4 flex flex-col space-y-1 items-start">
+    <aside className="w-fit  p-4 flex flex-col space-y-1 items-start">
       <h2 className="font-semibold">Components</h2>
       {[
         "Accordion",
@@ -60,10 +74,13 @@ function Sidebar() {
         "Breadcrumb",
         "Calendar",
         "Card",
+        "Checkbox",
+        "Checkbox Group",
+        "Collapsible",
       ].map((component) => (
         <button
           key={component}
-          className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer"
+          className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex"
         >
           {component}
         </button>
@@ -77,6 +94,8 @@ function App() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState("Shoes");
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
 
   // make the alert that appear for alertDialog disappear after 3 secs.
   useEffect(() => {
@@ -90,14 +109,16 @@ function App() {
   }, [showSuccessAlert]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide">
+    <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col ">
       {/* // <div className="min-h-screen bg-black text-white flex items-center justify-center p-8 relative"> */}
       {/* Header */}
       <Header />
 
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full ">
         {/* Sidebar */}
-        <Sidebar />
+        <div className="flex w-full">
+          <Sidebar />
+        </div>
 
         {/* <div className="grid gap-10 grid-cols-1 md:grid-cols-2 pr-10"> */}
         <div
@@ -534,64 +555,213 @@ function App() {
             </div>
           </div>
 
-          {/* calendar */}
-          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-[600px] border-t-[1px] m-5 underline-offset-2">
+          {/* card */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px]">
             <h2 className="text-xl font-bold mb-5">Card</h2>
-            <div className="flex  h-full w-full  items-center justify-center ">
+            <div className="flex h-full w-full items-center justify-center space-x-4">
+              {/* Login Card */}
               <Card
                 shadow="lg"
                 radius="md"
-                isHoverable
-                isPressable
-                classNames={{
-                  base: "w-96 bg-gray-50 border border-gray-300 shadow-md",
-                  header: "text-blue-600 text-center",
-                  body: "text-gray-800",
-                  footer: "text-gray-500 text-center",
-                }}
-                onPress={() => console.log("Login Card Pressed")}
+                className="bg-gray-900 text-white flex flex-col space-y-3 items-center justify-center w-[300px] h-full border-[1px] p-4"
               >
-                <CardHeader>Login</CardHeader>
-                <CardContent>
-                  <form className="flex flex-col gap-4">
+                <CardHeader className="bg-gray-900 text-center flex w-full justify-start">
+                  <p>Login to your account</p>
+                </CardHeader>
+                <CardContent className="bg-gray-900 items-center justify-start flex w-full">
+                  <form className="flex flex-col space-y-2 w-full">
                     <input
                       type="email"
                       placeholder="Email"
-                      className="border p-2 rounded-md"
+                      className="p-2 text-white border-b border-gray-600"
                     />
                     <input
                       type="password"
                       placeholder="Password"
-                      className="border p-2 rounded-md"
+                      className="p-2 text-white border-b border-gray-600"
                     />
                   </form>
                 </CardContent>
-                <CardFooter>Forgot your password?</CardFooter>
-                <CardAction>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                <CardFooter className="bg-gray-900 text-white text-xs flex w-full justify-start -my-2 py-2 hover:cursor-pointer hover:text-blue-500">
+                  Forgot password?
+                </CardFooter>
+                <CardAction className="bg-gray-900 p-2 w-full flex flex-col space-y-2 mt-2">
+                  <button className="bg-blue-700 text-white px-2 py-1 rounded-sm hover:cursor-pointer hover:bg-blue-600">
                     Login
                   </button>
+                  <p className="bg-gray-900 text-white text-xs flex w-full justify-center -my-2 py-2 hover:cursor-pointer hover:text-blue-500">
+                    Create account
+                  </p>
                 </CardAction>
               </Card>
 
+              {/* Spotify Card */}
               <Card
                 shadow="md"
                 radius="lg"
-                isHoverable
-                classNames={{
-                  base: "w-80 bg-gray-50 border border-gray-200 shadow-md",
-                  header: "text-gray-700 text-center",
-                  footer: "text-gray-500 text-center",
-                }}
+                className="relative [300px] h-[200px] p-4 text-white overflow-hidden bg-gray-900"
               >
-                <CardHeader>Beautiful Scenery</CardHeader>
-                <CardContent className="flex justify-center">
-                  <img src={cardImg} alt="Scenery" className="rounded-md" />
-                </CardContent>
-                <CardFooter>
-                  A stunning view of nature, perfect for relaxation.
-                </CardFooter>
+                <img
+                  src={cardImgOne}
+                  alt="Album Art"
+                  className="absolute inset-0 w-full h-full object-cover opacity-50"
+                />
+                <button className="absolute top-4 right-4 text-white hover:text-red-500 hover:cursor-pointer z-50">
+                  <Heart size={24} />
+                </button>
+                <div className="relative z-10 flex flex-col items-center p-4">
+                  <CardHeader className="flex items-center gap-3 w-full justify-center">
+                    <div className="text-center">
+                      <p className="font-bold text-lg">DailyMix</p>
+                      <p className="text-gray-300 text-sm">Radio</p>
+                    </div>
+                  </CardHeader>
+                  <CardAction className="flex items-center justify-between mt-4 w-full px-4">
+                    <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
+                      <SkipBack size={24} />
+                    </button>
+                    <button className="text-white px-4 py-2 rounded-full hover:opacity-50 hover:cursor-pointer">
+                      <Play size={24} />
+                    </button>
+                    <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
+                      <SkipForward size={24} />
+                    </button>
+                  </CardAction>
+                </div>
               </Card>
+
+              {/* E-commerce Card */}
+              <Card
+                shadow="lg"
+                radius="md"
+                className="bg-gray-900 p-4 w-[300px] h-[300px] flex flex-col"
+                onClick={() => console.log("Cherry Card Pressed")}
+              >
+                <CardContent className="flex flex-col items-center">
+                  <img
+                    src={cardImgTwo}
+                    alt="Nike Shoes"
+                    className="rounded-md w-[200px] h-[200px]"
+                  />
+                  <div className="flex w-full justify-between items-center mt-2">
+                    <p className="text-gray-300 font-semibold">Cherry</p>
+                    <p className="text-gray-600 font-bold">$9.99</p>
+                  </div>
+                </CardContent>
+                <CardAction className="w-full flex justify-center mt-1">
+                  <button className="text-white px-2 py-1 hover:text-blue-600 hover:cursor-pointer">
+                    <ShoppingCart size={20} />
+                  </button>
+                </CardAction>
+              </Card>
+            </div>
+          </div>
+
+          {/* checkbox */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+            <h2 className="text-xl font-bold mb-5 text-center">Checkbox</h2>
+
+            <div className="flex flex-col gap-6">
+              {/* Uncontrolled Checkbox (Internally Managed) */}
+              <div className="flex items-center gap-3">
+                <Checkbox id="terms" defaultChecked />
+                <label htmlFor="terms" className="text-sm">
+                  Accept terms and conditions
+                </label>
+              </div>
+
+              {/* Controlled Checkbox (State Managed Externally) */}
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="terms-2"
+                  checked={isChecked}
+                  onChange={setIsChecked}
+                />
+                <div className="grid gap-2">
+                  <label htmlFor="terms-2" className="text-sm">
+                    Accept terms and conditions
+                  </label>
+                  <p className="text-muted-foreground text-sm">
+                    By clicking this checkbox, you agree to the terms and
+                    conditions.
+                  </p>
+                </div>
+              </div>
+
+              {/* Disabled Checkbox */}
+              <div className="flex items-start gap-3">
+                <Checkbox id="toggle" disabled />
+                <label htmlFor="toggle" className="text-sm">
+                  Enable notifications
+                </label>
+              </div>
+
+              {/* Checkbox inside a styled Label */}
+              <label className="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950">
+                <Checkbox
+                  id="toggle-2"
+                  defaultChecked
+                  className="data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700"
+                />
+                <div className="grid gap-1.5 font-normal">
+                  <p className="text-sm leading-none font-medium">
+                    Enable notifications
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    You can enable or disable notifications at any time.
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          {/* checkbox group */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+            <h2 className="text-xl font-bold mb-5 text-center">
+              Checkbox Group
+            </h2>
+            <div>
+              <h3 className="text-lg font-bold mb-4">Preferences</h3>
+              <CheckboxGroup
+                options={[
+                  { id: "news", label: "Subscribe to newsletter" },
+                  { id: "offers", label: "Receive special offers" },
+                  { id: "updates", label: "Get product updates" },
+                ]}
+                selectedValues={selected}
+                onChange={setSelected}
+              />
+              <p className="mt-4 text-sm">
+                Selected: {selected.join(", ") || "None"}
+              </p>
+            </div>
+          </div>
+
+          {/* collapsible */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+            <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
+            <div>
+              <Collapsible defaultOpen>
+                {({ currentOpen, toggleOpen }) => (
+                  <>
+                    <CollapsibleTrigger
+                      toggle={toggleOpen}
+                      className="bg-blue-500 text-white rounded-md px-4 py-2"
+                    >
+                      {currentOpen ? "Hide Details" : "Show Details"}
+                    </CollapsibleTrigger>
+                    <CollapsibleContent
+                      open={currentOpen}
+                      className="p-3 border-t mt-2"
+                    >
+                      <p>
+                        This is the collapsible content area. You can add
+                        anything here.
+                      </p>
+                    </CollapsibleContent>
+                  </>
+                )}
+              </Collapsible>
             </div>
           </div>
         </div>

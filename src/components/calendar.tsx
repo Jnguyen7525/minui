@@ -97,8 +97,8 @@ const Calendar: React.FC<CalendarProps> = ({
             classNames.daysOfWeek || ""
           }`}
         >
-          {daysOfWeek.map((day) => (
-            <div key={day} className="font-semibold">
+          {daysOfWeek.map((day, index) => (
+            <div key={index} className="font-semibold">
               {day}
             </div>
           ))}
