@@ -12,6 +12,7 @@ import {
   SkipForward,
   Play,
   ShoppingCart,
+  ChevronsUpDown,
 } from "lucide-react";
 import Button from "./components/button";
 import { useEffect, useState } from "react";
@@ -43,11 +44,9 @@ import {
 } from "./components/card";
 import Checkbox from "./components/checkbox";
 import { CheckboxGroup } from "./components/checkboxgroup";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "./components/collapsible";
+import Collapsible from "./components/collapsible";
+import CircularProgress from "./components/circularprogress";
+import ProgressBar from "./components/progressbar";
 
 /* Header Component */
 function Header() {
@@ -74,9 +73,12 @@ function Sidebar() {
         "Breadcrumb",
         "Calendar",
         "Card",
+        "Chart*",
         "Checkbox",
         "Checkbox Group",
         "Collapsible",
+        "Circular Progress",
+        "Progress Bar",
       ].map((component) => (
         <button
           key={component}
@@ -93,9 +95,15 @@ function App() {
   const [openAlertDialog, setOpenAlertDialog] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState("Shoes");
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState<
+    Date | undefined
+  >(undefined);
   const [isChecked, setIsChecked] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selectedCheckboxGroup, setCheckboxGroupSelected] = useState<string[]>(
+    []
+  );
+  const [selectedCollapsedItem, setSelectedCollapsedItem] = useState("");
+  const [progress, setProgress] = useState(30);
 
   // make the alert that appear for alertDialog disappear after 3 secs.
   useEffect(() => {
@@ -530,8 +538,8 @@ function App() {
             <h2 className="text-xl font-bold mb-5">Calendar</h2>
             <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
               <Calendar
-                selectedDate={selectedDate}
-                onDateSelect={setSelectedDate}
+                selectedDate={selectedCalendarDate}
+                onDateSelect={setSelectedCalendarDate}
                 classNames={{
                   container:
                     "bg-black p-3 rounded-lg  shadow-md shadow-gray-700",
@@ -547,9 +555,9 @@ function App() {
                 }}
               />
 
-              {selectedDate && (
+              {selectedCalendarDate && (
                 <p className="text-gray-500 ">
-                  Selected Date: {selectedDate.toDateString()}
+                  Selected Date: {selectedCalendarDate.toDateString()}
                 </p>
               )}
             </div>
@@ -728,40 +736,100 @@ function App() {
                   { id: "offers", label: "Receive special offers" },
                   { id: "updates", label: "Get product updates" },
                 ]}
-                selectedValues={selected}
-                onChange={setSelected}
+                selectedValues={selectedCheckboxGroup}
+                onChange={setCheckboxGroupSelected}
               />
               <p className="mt-4 text-sm">
-                Selected: {selected.join(", ") || "None"}
+                Selected: {selectedCheckboxGroup.join(", ") || "None"}
               </p>
             </div>
           </div>
 
           {/* collapsible */}
-          <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[500px] border-t-[1px] m-5">
             <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
-            <div>
-              <Collapsible defaultOpen>
-                {({ currentOpen, toggleOpen }) => (
-                  <>
-                    <CollapsibleTrigger
-                      toggle={toggleOpen}
-                      className="bg-blue-500 text-white rounded-md px-4 py-2"
-                    >
-                      {currentOpen ? "Hide Details" : "Show Details"}
-                    </CollapsibleTrigger>
-                    <CollapsibleContent
-                      open={currentOpen}
-                      className="p-3 border-t mt-2"
-                    >
-                      <p>
-                        This is the collapsible content area. You can add
-                        anything here.
-                      </p>
-                    </CollapsibleContent>
-                  </>
-                )}
-              </Collapsible>
+            <div className="flex flex-col items-center justify-center w-full  ">
+              <Collapsible
+                items={["Fruits", "Veggies", "Meats", "Dairy"]}
+                trigger={<ChevronsUpDown />}
+                selectedItem={selectedCollapsedItem}
+                onSelectItem={setSelectedCollapsedItem}
+                className="flex flex-col w-1/2 space-y-2"
+                headerStyle="flex w-full justify-between text-gray-500 font-semibold"
+                triggerStyle="text-gray-500 hover:opacity-80"
+                collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900"
+              />
+
+              {/* Display Selected Item Outside Collapsible */}
+              <p
+                className={`${
+                  selectedCollapsedItem ? "mt-4  text-gray-500 flex" : "hidden"
+                }`}
+              >
+                Selected Item: {selectedCollapsedItem || "None"}
+              </p>
+            </div>
+          </div>
+
+          {/* spinner */}
+          <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] ">
+            <h2 className="text-xl font-bold mb-5">Spinner</h2>
+
+            <div className="flex space-x-5 items-center justify-center">
+              {/* Default Spinner */}
+              <CircularProgress
+                size={30}
+                borderWidth={2}
+                borderColor="border-blue-500"
+              />
+
+              {/* Custom Colors */}
+              <CircularProgress
+                size={40}
+                speed="1s"
+                borderWidth={4}
+                borderColor="border-red-500"
+              />
+              <CircularProgress
+                size={50}
+                speed="2s"
+                borderWidth={6}
+                borderColor="border-green-500"
+              />
+              <CircularProgress
+                size={60}
+                speed="3s"
+                borderWidth={8}
+                borderColor="border-yellow-500"
+              />
+              <CircularProgress
+                size={70}
+                speed="4s"
+                borderWidth={10}
+                borderColor="border-purple-500"
+              />
+            </div>
+          </div>
+          {/* Progressbar */}
+          <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px]">
+            <h2 className="text-xl font-bold">Progress Bar</h2>
+
+            <ProgressBar progress={progress} className="w-[300px]" />
+
+            {/* Update Progress */}
+            <div className="flex gap-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                onClick={() => setProgress((prev) => Math.min(prev + 10, 100))}
+              >
+                Increase
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-md"
+                onClick={() => setProgress((prev) => Math.max(prev - 10, 0))}
+              >
+                Decrease
+              </button>
             </div>
           </div>
         </div>
