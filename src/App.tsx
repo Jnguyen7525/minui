@@ -136,7 +136,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col ">
-      {/* // <div className="min-h-screen bg-black text-white flex items-center justify-center p-8 relative"> */}
       {/* Header */}
       <Header />
 
@@ -146,7 +145,6 @@ function App() {
           <Sidebar />
         </div>
 
-        {/* <div className="grid gap-10 grid-cols-1 md:grid-cols-2 pr-10"> */}
         <div
           className="flex flex-wrap p-10 items-center justify-center
         "
@@ -158,7 +156,6 @@ function App() {
               <AccordionItem
                 title="Section 1"
                 bgColor="black"
-                // borderColor="border-blue-500"
                 textColor="white"
               >
                 This is the first section
@@ -166,7 +163,6 @@ function App() {
               <AccordionItem
                 title="Section 2"
                 bgColor="black"
-                // borderColor="border-red-500"
                 textColor="white"
               >
                 More content here
@@ -174,7 +170,6 @@ function App() {
               <AccordionItem
                 title="Section 3"
                 bgColor="black"
-                // borderColor="border-yellow-500"
                 textColor="white"
               >
                 Final section details
@@ -789,59 +784,97 @@ function App() {
             </div>
           </div>
 
-          {/* spinner */}
+          {/* Circular Progress */}
           <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] ">
-            <h2 className="text-xl font-bold mb-5">Spinner</h2>
+            <h2 className="text-xl font-bold mb-5">Circular Progress</h2>
 
-            <div className="flex space-x-5 items-center justify-center">
-              {/* Default Spinner */}
-              <CircularProgress
-                size={30}
-                borderWidth={2}
-                borderColor="border-blue-500"
-              />
+            <div className="flex flex-col space-y-5 items-center justify-center">
+              <div
+                className="flex space-x-5 items-center justify-center
+              "
+              >
+                {/* Default Spinner */}
+                <CircularProgress
+                  size={30}
+                  borderWidth={2}
+                  borderColor="border-blue-500"
+                />
 
-              {/* Custom Colors */}
-              <CircularProgress
-                size={40}
-                speed="1s"
-                borderWidth={4}
-                borderColor="border-red-500"
-              />
-              <CircularProgress
-                size={50}
-                speed="2s"
-                borderWidth={6}
-                borderColor="border-green-500"
-              />
-              <CircularProgress
-                size={60}
-                speed="3s"
-                borderWidth={8}
-                borderColor="border-yellow-500"
-              />
-              <CircularProgress
-                size={70}
-                speed="4s"
-                borderWidth={10}
-                borderColor="border-purple-500"
-              />
+                {/* Custom Colors */}
+                <CircularProgress
+                  size={40}
+                  speed="1s"
+                  borderWidth={4}
+                  borderColor="border-red-500"
+                />
+                <CircularProgress
+                  size={50}
+                  speed="2s"
+                  borderWidth={6}
+                  borderColor="border-green-500"
+                />
+                <CircularProgress
+                  size={60}
+                  speed="3s"
+                  borderWidth={8}
+                  borderColor="border-yellow-500"
+                />
+                <CircularProgress
+                  size={70}
+                  speed="4s"
+                  borderWidth={10}
+                  borderColor="border-purple-500"
+                />
+              </div>
+              <div
+                className="flex space-x-5 items-center justify-center
+              "
+              >
+                {/* Indeterminate Progress */}
+                <CircularProgress
+                  borderColor="border-blue-500"
+                  label="Loading..."
+                />
 
-              {/* Indeterminate Progress */}
-              <CircularProgress
-                borderColor="border-blue-500"
-                label="Loading..."
-              />
+                {/* Progress Tracking */}
+                <CircularProgress
+                  showValueLabel
+                  progress={circularprogress}
+                  label="Downloading..."
+                />
 
-              {/* Progress Tracking */}
-              {/* Progress Tracking (Now Working) */}
-              <CircularProgress
-                showValueLabel
-                progress={circularprogress}
-                label="Downloading..."
-              />
+                <div className="flex flex-col space-y-2">
+                  {/* Circular Progress Bar */}
+                  <CircularProgress
+                    showValueLabel
+                    progress={progress}
+                    label="Downloading..."
+                  />
+
+                  {/* Update Progress buttons */}
+                  <div className="flex w-full justify-between text-sm">
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded-md"
+                      onClick={() =>
+                        setProgress((prev) => Math.max(prev - 10, 0))
+                      }
+                    >
+                      Decrease
+                    </button>
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 rounded-md"
+                      onClick={() =>
+                        setProgress((prev) => Math.min(prev + 10, 100))
+                      }
+                    >
+                      Increase
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
           {/* Progressbar */}
           <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px]">
             <h2 className="text-xl font-bold">Progress Bar</h2>
