@@ -104,6 +104,14 @@ function App() {
   );
   const [selectedCollapsedItem, setSelectedCollapsedItem] = useState("");
   const [progress, setProgress] = useState(30);
+  const [autoProgress, setAutoProgress] = useState(30);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAutoProgress((prev) => (prev >= 100 ? 0 : prev + 10));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // make the alert that appear for alertDialog disappear after 3 secs.
   useEffect(() => {
@@ -814,23 +822,54 @@ function App() {
           <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px]">
             <h2 className="text-xl font-bold">Progress Bar</h2>
 
-            <ProgressBar progress={progress} className="w-[300px]" />
-
-            {/* Update Progress */}
-            <div className="flex gap-4">
+            {/* progress bar with buttons */}
+            <ProgressBar
+              startLabel={`${progress}%`}
+              // endLabel="End"
+              progress={progress}
+              className=""
+              labelStyles="flex w-full justify-between mb-2"
+              barColor="bg-purple-500"
+              bgColor="bg-gray-700"
+              barHeight={10}
+              barWidth={300}
+            />
+            {/* Update Progress buttons */}
+            <div className="flex w-full justify-between text-sm">
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                className="bg-red-500 text-white px-2 py-1 rounded-md"
+                onClick={() => setProgress((prev) => Math.max(prev - 10, 0))}
+              >
+                Decrease
+              </button>{" "}
+              <button
+                className="bg-blue-500 text-white px-2 py-1 rounded-md"
                 onClick={() => setProgress((prev) => Math.min(prev + 10, 100))}
               >
                 Increase
               </button>
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded-md"
-                onClick={() => setProgress((prev) => Math.max(prev - 10, 0))}
-              >
-                Decrease
-              </button>
             </div>
+
+            {/* autoprogress */}
+            <ProgressBar
+              startLabel={`${autoProgress}%`}
+              // endLabel="End"
+              progress={autoProgress}
+              className=""
+              labelStyles="flex w-full justify-between mb-2"
+              barColor="bg-green-500"
+              bgColor="bg-gray-700"
+              barHeight={10}
+              barWidth={300}
+            />
+
+            {/* Indeterminate Progress Bar (Unknown Duration) */}
+            <ProgressBar
+              isIndeterminate
+              startLabel="Loading..."
+              barWidth={300}
+              bgColor="bg-gray-800"
+            />
           </div>
         </div>
       </div>
