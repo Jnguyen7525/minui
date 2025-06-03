@@ -113,6 +113,16 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  const [circularprogress, setCircularProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCircularProgress((prev) => (prev >= 100 ? 0 : prev + 10));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // make the alert that appear for alertDialog disappear after 3 secs.
   useEffect(() => {
     if (showSuccessAlert) {
@@ -815,6 +825,20 @@ function App() {
                 speed="4s"
                 borderWidth={10}
                 borderColor="border-purple-500"
+              />
+
+              {/* Indeterminate Progress */}
+              <CircularProgress
+                borderColor="border-blue-500"
+                label="Loading..."
+              />
+
+              {/* Progress Tracking */}
+              {/* Progress Tracking (Now Working) */}
+              <CircularProgress
+                showValueLabel
+                progress={circularprogress}
+                label="Downloading..."
               />
             </div>
           </div>
