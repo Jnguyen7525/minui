@@ -13,6 +13,9 @@ import {
   Play,
   ShoppingCart,
   ChevronsUpDown,
+  ChevronLeft,
+  ChevronRight,
+  Circle,
 } from "lucide-react";
 import Button from "./components/button";
 import { useEffect, useState } from "react";
@@ -47,6 +50,9 @@ import { CheckboxGroup } from "./components/checkboxgroup";
 import Collapsible from "./components/collapsible";
 import CircularProgress from "./components/circularprogress";
 import ProgressBar from "./components/progressbar";
+import Carousel from "./components/carousel";
+import Jumbotron from "./components/jumbotron";
+import DateInput from "./components/dateinput";
 
 /* Header Component */
 function Header() {
@@ -79,6 +85,9 @@ function Sidebar() {
         "Collapsible",
         "Circular Progress",
         "Progress Bar",
+        "Carousel",
+        "Jumbotron",
+        "Date Input",
       ].map((component) => (
         <button
           key={component}
@@ -785,7 +794,7 @@ function App() {
           </div>
 
           {/* Circular Progress */}
-          <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] ">
+          <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] m-5">
             <h2 className="text-xl font-bold mb-5">Circular Progress</h2>
 
             <div className="flex flex-col space-y-5 items-center justify-center">
@@ -841,6 +850,10 @@ function App() {
                   showValueLabel
                   progress={circularprogress}
                   label="Downloading..."
+                  size={80}
+                  valueTopPosition={"top-10"}
+                  borderColor="stroke-blue-600"
+                  borderWidth={10}
                 />
 
                 <div className="flex flex-col space-y-2">
@@ -876,7 +889,7 @@ function App() {
           </div>
 
           {/* Progressbar */}
-          <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px]">
+          <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] m-5">
             <h2 className="text-xl font-bold">Progress Bar</h2>
 
             {/* progress bar with buttons */}
@@ -927,6 +940,190 @@ function App() {
               barWidth={300}
               bgColor="bg-gray-800"
             />
+          </div>
+
+          {/* carousel */}
+          <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white w-[700px] h-[650px] m-5 border-t-[1px] space-y-5">
+            <h2 className="text-xl font-bold text-white mb-5">Carousel</h2>
+            {/* sliding transition */}
+            <Carousel
+              images={[
+                "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
+                "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
+                "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
+              ]}
+              transition="slide"
+              autoPlay={true}
+              autoPlayInterval={4000}
+              prevButton={
+                <ChevronLeft size={50} className="hover:cursor-pointer" />
+              }
+              nextButton={
+                <ChevronRight size={50} className="hover:cursor-pointer" />
+              }
+              indicatorItem={(index, isActive) => (
+                <Circle
+                  key={index}
+                  size={16}
+                  className={`hover:cursor-pointer
+                    ${
+                      isActive
+                        ? "bg-blue-500 rounded-full"
+                        : "bg-white rounded-full"
+                    }`}
+                />
+              )}
+            />
+            {/* fading transition */}
+            <Carousel
+              images={[
+                "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
+                "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
+                "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
+              ]}
+              transition="fade"
+              autoPlay={true}
+              autoPlayInterval={4000}
+              prevButton={
+                <ChevronLeft size={50} className="hover:cursor-pointer" />
+              }
+              nextButton={
+                <ChevronRight size={50} className="hover:cursor-pointer" />
+              }
+              indicatorItem={(index, isActive) => (
+                <Circle
+                  key={index}
+                  size={16}
+                  // color={isActive ? "blue" : "white"}
+                  className={`hover:cursor-pointer
+                    ${
+                      isActive
+                        ? "bg-blue-500 rounded-full"
+                        : "bg-white rounded-full"
+                    }`}
+                />
+              )}
+            />
+          </div>
+
+          {/* jumbotron */}
+          <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white w-[500px] h-[400px] m-5 border-t-[1px] space-y-5">
+            <h2 className="text-xl font-bold text-white mb-5">Jumbotron</h2>
+            <Jumbotron
+              backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
+              className="h-[400px] rounded-lg p-12"
+              overlayColor="bg-gray-900" // ✅ Customize overlay darkness
+              overlayOpacity="opacity-60"
+            >
+              <div className="relative flex flex-col items-center justify-center h-full w-full">
+                <h2 className="mb-4 text-4xl font-semibold text-white">
+                  Heading
+                </h2>
+                <h4 className="mb-6 text-xl font-semibold text-white">
+                  Subheading
+                </h4>
+                <button className="bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition">
+                  Call to action
+                </button>
+              </div>
+            </Jumbotron>
+          </div>
+
+          {/* Date Input */}
+
+          {/* Date Input */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+            <h2 className="text-xl font-bold mb-5 text-white">Date Input</h2>
+            <div className="flex flex-col space-y-10 w-[250px] h-full justify-center items-center">
+              {/* Uncontrolled DateInput */}
+              <DateInput
+                label="Uncontrolled Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                placeholder="Select a date..."
+                variant="flat"
+                className="text-white text-md bg-gray-700 "
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+
+              {/* Controlled DateInput */}
+              <DateInput
+                label="Controlled Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                value="2025-06-04"
+                onChange={(newDate) => console.log("Selected Date:", newDate)}
+                variant="bordered"
+                className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+
+              {/* Underlined Variant */}
+              <DateInput
+                label="Underlined Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                placeholder="Pick a date..."
+                variant="underlined"
+                className="text-white text-md "
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+
+              {/* Faded Variant */}
+              <DateInput
+                label="Faded Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                placeholder="YYYY-MM-DD"
+                variant="faded"
+                className="text-black text-md rounded-sm"
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
