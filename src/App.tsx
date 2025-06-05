@@ -53,6 +53,10 @@ import ProgressBar from "./components/progressbar";
 import Carousel from "./components/carousel";
 import Jumbotron from "./components/jumbotron";
 import DateInput from "./components/dateinput";
+import DateRangePicker from "./components/daterangepicker";
+import Dropdown from "./components/dropdown";
+import Combobox from "./components/combobox";
+import ContextMenu from "./components/contextmenu";
 
 /* Header Component */
 function Header() {
@@ -88,6 +92,10 @@ function Sidebar() {
         "Carousel",
         "Jumbotron",
         "Date Input",
+        "Date Range Picker",
+        "Dropdown",
+        "Combobox",
+        "Context Menu",
       ].map((component) => (
         <button
           key={component}
@@ -105,8 +113,9 @@ function App() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState("Shoes");
   const [selectedCalendarDate, setSelectedCalendarDate] = useState<
-    Date | undefined
+    Date[] | undefined
   >(undefined);
+  const [dateInput, setDateInput] = useState<string | undefined>("2024-04-04");
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCheckboxGroup, setCheckboxGroupSelected] = useState<string[]>(
     []
@@ -560,7 +569,7 @@ function App() {
             <h2 className="text-xl font-bold mb-5">Calendar</h2>
             <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
               <Calendar
-                selectedDate={selectedCalendarDate}
+                selectedDates={selectedCalendarDate}
                 onDateSelect={setSelectedCalendarDate}
                 classNames={{
                   container:
@@ -579,7 +588,7 @@ function App() {
 
               {selectedCalendarDate && (
                 <p className="text-gray-500 ">
-                  Selected Date: {selectedCalendarDate.toDateString()}
+                  Selected Date: {selectedCalendarDate[0].toDateString()}
                 </p>
               )}
             </div>
@@ -1030,8 +1039,6 @@ function App() {
           </div>
 
           {/* Date Input */}
-
-          {/* Date Input */}
           <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
             <h2 className="text-xl font-bold mb-5 text-white">Date Input</h2>
             <div className="flex flex-col space-y-10 w-[250px] h-full justify-center items-center">
@@ -1061,8 +1068,8 @@ function App() {
               <DateInput
                 label="Controlled Date"
                 labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
-                value="2025-06-04"
-                onChange={(newDate) => console.log("Selected Date:", newDate)}
+                value={dateInput}
+                onChange={(e) => setDateInput(e)}
                 variant="bordered"
                 className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
                 calendarStyles={{
@@ -1108,7 +1115,36 @@ function App() {
                 labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
                 placeholder="YYYY-MM-DD"
                 variant="faded"
-                className="text-black text-md rounded-sm"
+                className="text-black text-md rounded-sm bg-white  "
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700 ",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Date Range Picker */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+            <h2 className="text-xl font-bold mb-5 text-white">
+              Date Range Picker
+            </h2>
+            <div className="flex flex-col space-y-10 w-[300px] h-full justify-center items-center">
+              {/* Uncontrolled Date Range Picker  */}
+              <DateRangePicker
+                label="Uncontrolled Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                variant="flat"
+                className="text-white text-md bg-gray-700 "
                 calendarStyles={{
                   container:
                     "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
@@ -1123,6 +1159,133 @@ function App() {
                   dayDisabled: "opacity-30 cursor-not-allowed",
                 }}
               />
+
+              {/* Controlled Date Range Picker  */}
+              <DateRangePicker
+                label="Controlled Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                variant="bordered"
+                className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+
+              {/* Underlined Date Range Picker  */}
+              <DateRangePicker
+                label="Underlined Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                variant="underlined"
+                className="text-white text-md "
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+
+              {/* Faded Variant Date Range Picker  */}
+              <DateRangePicker
+                label="Faded Date"
+                labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+                variant="faded"
+                className="text-black text-md rounded-sm bg-white  "
+                calendarStyles={{
+                  container:
+                    "bg-black p-3 rounded-lg shadow-md shadow-gray-700 ",
+                  header: "bg-black p-3 rounded-lg bg-gray-900",
+                  title: "text-gray-500 font-bold",
+                  button:
+                    "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daysOfWeek: "text-gray-500",
+                  day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+                  daySelected: "bg-blue-500 text-white font-bold rounded-full",
+                  dayToday: "font-extrabold underline underline-offset-4",
+                  dayDisabled: "opacity-30 cursor-not-allowed",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* dropdown */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+            <h2 className="text-xl font-bold mb-5 text-white">Dropdown</h2>
+
+            <div className="p-5">
+              <Dropdown
+                triggerLabel="Open Menu"
+                placement="bottom"
+                options={[
+                  { key: "new", label: "New file" },
+                  { key: "copy", label: "Copy link" },
+                  { key: "edit", label: "Edit file" },
+                  {
+                    key: "delete",
+                    label: "Delete file",
+                    action: () => alert("Deleted!"),
+                  },
+                ]}
+                triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
+                menuStyle="w-48 bg-gray-800 border border-gray-600 rounded-md shadow-lg "
+                menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer"
+              />
+            </div>
+          </div>
+
+          {/* Combobox */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+            <h2 className="text-xl font-bold mb-5 text-white">Combobox</h2>
+
+            <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
+            <Combobox
+              options={[
+                { key: "next.js", label: "Next.js" },
+                { key: "sveltekit", label: "SvelteKit" },
+                { key: "nuxt.js", label: "Nuxt.js" },
+                { key: "remix", label: "Remix" },
+                { key: "astro", label: "Astro" },
+              ]}
+              onSelect={(key: string, label: string) => {
+                alert(`You selected: ${label} (${key})`);
+              }}
+              className="w-64"
+              triggerStyle="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white"
+              inputStyle="mt-2 bg-black border rounded-md shadow-lg p-2"
+              optionsStyle="flex items-center justify-between w-full p-2 hover:bg-gray-500 hover:cursor-pointer"
+            />
+          </div>
+
+          {/* context menu */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+            <h2 className="text-xl font-bold mb-5 text-white">context menu</h2>
+
+            <div className="p-5">
+              <h1 className="text-lg font-bold mb-4">
+                Right-click on the box below
+              </h1>
+              <ContextMenu>
+                <span className="text-gray-600">
+                  Right-click here to see menu
+                </span>
+              </ContextMenu>
             </div>
           </div>
         </div>

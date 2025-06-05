@@ -42,7 +42,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [filteredItems, setFilteredItems] = useState<AutocompleteItem[]>(items); // Dynamic list
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [selectedKey, setSelectedKey] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -61,14 +61,15 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
 
   const handleSelect = (key: string, label: string) => {
     setSelectedKey(key);
-    setInputValue(label);
+    setInputValue("");
     setIsOpen(false);
     onSelectionChange?.(key);
+    console.log(`${label} ${key}`);
   };
 
   const handleClear = () => {
     setInputValue("");
-    setSelectedKey(null);
+    setSelectedKey("");
     setFilteredItems(items); // 👈 Reset list with latest API items
     setIsOpen(false);
     onSelectionChange?.(null);
@@ -83,11 +84,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
           borderColor,
           textColor
         )} ${bgColor} ${borderColor} ${textColor}`}
-        // className={`flex items-center p-2 ${variantStyles[variant](
-        //   bgColor,
-        //   borderColor,
-        //   textColor
-        // )} `}
       >
         <input
           type="text"
