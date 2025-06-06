@@ -1,21 +1,31 @@
 import React, { useState, useRef } from "react";
 
-const ContextMenu = ({ children }: { children: React.ReactNode }) => {
+type MenuItem = {
+  label: string;
+  action?: () => void; // ✅ Optional action when clicked
+};
+
+type ContextMenuProps = {
+  children: React.ReactNode;
+  menuItems: MenuItem[]; // ✅ Dynamically set menu items
+  menuStyle?: string; // ✅ Custom styles for the menu container
+  menuItemStyle?: string; // ✅ Custom styles for individual menu items
+};
+
+const ContextMenu: React.FC<ContextMenuProps> = ({
+  children,
+  menuItems,
+  menuStyle,
+  menuItemStyle,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const menuRef = useRef<HTMLDivElement>(null);
 
-  //   const handleContextMenu = (event: React.MouseEvent) => {
-  //     event.preventDefault(); // ✅ Prevent default browser menu
-  //     console.log("Right-click detected!"); // ✅ Debugging: Confirm event fires
-  //     setPosition({ x: event.clientX, y: event.clientY });
-  //     setIsOpen(true);
-  //   };
-
   const handleContextMenu = (event: React.MouseEvent) => {
     event.preventDefault(); // ✅ Prevent default browser menu
+    const parentRect = event.currentTarget.getBoundingClientRect();
 
-    const parentRect = event.currentTarget.getBoundingClientRect(); // ✅ Get parent position
     setPosition({
       x: event.clientX - parentRect.left, // ✅ Convert to parent-relative X
       y: event.clientY - parentRect.top, // ✅ Convert to parent-relative Y
@@ -37,34 +47,34 @@ const ContextMenu = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
-      className="relative w-64 h-32 flex items-center justify-center border bg-gray-200"
-      onContextMenu={handleContextMenu} // ✅ Ensure this is inside the right-clickable area
-      style={{ position: "relative" }} // ✅ Ensure parent is positioned
+      className="relative w-64 h-32 flex items-center justify-center border"
+      onContextMenu={handleContextMenu}
+      style={{ position: "relative" }}
     >
       {children}
 
-      {/* ✅ Ensure the menu renders */}
       {isOpen && (
         <div
           ref={menuRef}
-          className="absolute z-50 bg-white border shadow-lg rounded-md p-2"
+          className={`absolute z-50 ${menuStyle}`} // ✅ Customizable menu styling
           style={{
-            top: `${position.y}px`, // ✅ Dynamically set position
-            left: `${position.x}px`, // ✅ Dynamically set position
-            display: "block", // ✅ Ensures visibility
+            top: `${position.y}px`,
+            left: `${position.x}px`,
+            display: "block",
           }}
         >
-          {/* ✅ Debugging Log (Correct Placement) */}
-          {/* {console.log("Rendering Context Menu at:", position)} */}
-
-          <p className="text-xs text-gray-500">Right-click menu</p>
-          <button className="block p-2 hover:bg-gray-200">Back</button>
-          <button className="block p-2 hover:bg-gray-200">Forward</button>
-          <button className="block p-2 hover:bg-gray-200">Reload</button>
-          <hr className="my-2 border-t" />
-          <button className="block p-2 hover:bg-gray-200 text-red-500">
-            Delete
-          </button>
+          {menuItems.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                item.action?.(); // ✅ Trigger action if defined
+                setIsOpen(false); // ✅ Close menu after selecting an item
+              }}
+              className={`block  ${menuItemStyle}`} // ✅ Customizable item styling
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
       )}
     </div>

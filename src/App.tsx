@@ -57,6 +57,14 @@ import DateRangePicker from "./components/daterangepicker";
 import Dropdown from "./components/dropdown";
 import Combobox from "./components/combobox";
 import ContextMenu from "./components/contextmenu";
+import Drawer from "./components/drawer";
+import Lightbox from "./components/lightbox";
+
+import lightboxone from "./assets/lightboxone.webp";
+import lightboxtwo from "./assets/lightboxtwo.webp";
+import lightboxthree from "./assets/lightboxthree.webp";
+
+const images = [lightboxone, lightboxtwo, lightboxthree];
 
 /* Header Component */
 function Header() {
@@ -96,6 +104,8 @@ function Sidebar() {
         "Dropdown",
         "Combobox",
         "Context Menu",
+        "Drawer",
+        "Lightbox",
       ].map((component) => (
         <button
           key={component}
@@ -123,6 +133,12 @@ function App() {
   const [selectedCollapsedItem, setSelectedCollapsedItem] = useState("");
   const [progress, setProgress] = useState(30);
   const [autoProgress, setAutoProgress] = useState(30);
+
+  const [isLeftDrawerOpen, setIsLeftDrawerOpen] = useState(false);
+  const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
+  const [isTopDrawerOpen, setIsTopDrawerOpen] = useState(false);
+  const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setAutoProgress((prev) => (prev >= 100 ? 0 : prev + 10));
@@ -153,7 +169,7 @@ function App() {
   }, [showSuccessAlert]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col ">
+    <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col relative">
       {/* Header */}
       <Header />
 
@@ -1274,19 +1290,162 @@ function App() {
           </div>
 
           {/* context menu */}
-          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
+          <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center ">
             <h2 className="text-xl font-bold mb-5 text-white">context menu</h2>
 
             <div className="p-5">
               <h1 className="text-lg font-bold mb-4">
                 Right-click on the box below
               </h1>
-              <ContextMenu>
+
+              <ContextMenu
+                menuItems={[
+                  { label: "Back", action: () => console.log("Back clicked!") },
+                  {
+                    label: "Forward",
+                    action: () => console.log("Forward clicked!"),
+                  },
+                  {
+                    label: "Reload",
+                    action: () => console.log("Reload clicked!"),
+                  },
+                  {
+                    label: "Delete",
+                    action: () => console.log("Delete clicked!"),
+                  },
+                ]}
+                menuStyle="bg-gray-900 text-white p-2 flex flex-col space-y-5 items-center justify-center w-[150px] h-fit rounded-md border border-gray-800" // ✅ Custom menu styling
+                menuItemStyle="hover:cursor-pointer hover:bg-gray-600 border-b border-gray-600 pb-1 w-full flex  " // ✅ Custom item styling
+              >
                 <span className="text-gray-600">
                   Right-click here to see menu
                 </span>
               </ContextMenu>
             </div>
+          </div>
+
+          {/* Drawer */}
+          <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center">
+            <h1 className="text-lg font-bold mb-4">Drawer Component</h1>
+            <div className="flex space-x-3">
+              {/* left drawer */}
+              {/* Buttons to open drawer */}
+              <button
+                className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
+                onClick={() => setIsLeftDrawerOpen(true)}
+              >
+                Open Left Drawer
+              </button>
+              {/* Drawer Component */}
+              <Drawer
+                isOpen={isLeftDrawerOpen}
+                placement="left"
+                onClose={() => setIsLeftDrawerOpen(false)}
+                drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+              >
+                <h2 className="text-xl font-semibold ">Drawer Content</h2>
+                <p>
+                  This is a fully functional, customizable drawer component!
+                </p>
+                <button
+                  className="mt-3 hover:cursor-pointer hover:text-gray-500 text-white px-3 py-2 rounded absolute top-0 right-0 text-sm"
+                  onClick={() => setIsLeftDrawerOpen(false)}
+                >
+                  <XCircle />
+                </button>
+              </Drawer>
+
+              {/* right drawer */}
+              {/* Buttons to open drawer */}
+              <button
+                className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
+                onClick={() => setIsRightDrawerOpen(true)}
+              >
+                Open Right Drawer
+              </button>
+              {/* Drawer Component */}
+              <Drawer
+                isOpen={isRightDrawerOpen}
+                placement="right"
+                onClose={() => setIsRightDrawerOpen(false)}
+                drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+              >
+                <h2 className="text-xl font-semibold ">Drawer Content</h2>
+                <p>
+                  This is a fully functional, customizable drawer component!
+                </p>
+                <button
+                  className="mt-3 hover:cursor-pointer hover:text-gray-500 text-white px-3 py-2 rounded absolute top-0 right-0 text-sm"
+                  onClick={() => setIsRightDrawerOpen(false)}
+                >
+                  <XCircle />
+                </button>
+              </Drawer>
+
+              {/* top drawer */}
+              {/* Buttons to open drawer */}
+              <button
+                className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
+                onClick={() => setIsTopDrawerOpen(true)}
+              >
+                Open Top Drawer
+              </button>
+              {/* Drawer Component */}
+              <Drawer
+                isOpen={isTopDrawerOpen}
+                placement="top"
+                onClose={() => setIsTopDrawerOpen(false)}
+                drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+              >
+                <h2 className="text-xl font-semibold ">Drawer Content</h2>
+                <p>
+                  This is a fully functional, customizable drawer component!
+                </p>
+                <button
+                  className="mt-3 hover:cursor-pointer hover:text-gray-500 text-white px-3 py-2 rounded absolute top-0 right-0 text-sm"
+                  onClick={() => setIsTopDrawerOpen(false)}
+                >
+                  <XCircle />
+                </button>
+              </Drawer>
+
+              {/* bottom drawer */}
+              {/* Buttons to open drawer */}
+              <button
+                className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
+                onClick={() => setIsBottomDrawerOpen(true)}
+              >
+                Open Bottom Drawer
+              </button>
+              {/* Drawer Component */}
+              <Drawer
+                isOpen={isBottomDrawerOpen}
+                placement="bottom"
+                onClose={() => setIsBottomDrawerOpen(false)}
+                drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+              >
+                <h2 className="text-xl font-semibold ">Drawer Content</h2>
+                <p>
+                  This is a fully functional, customizable drawer component!
+                </p>
+                <button
+                  className="mt-3 hover:cursor-pointer hover:text-gray-500 text-white px-3 py-2 rounded absolute top-0 right-0 text-sm"
+                  onClick={() => setIsBottomDrawerOpen(false)}
+                >
+                  <XCircle />
+                </button>
+              </Drawer>
+            </div>
+          </div>
+
+          {/* lightbox */}
+          <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
+            <h2 className="text-xl font-bold mb-5 text-white">Lightbox</h2>
+
+            <Lightbox
+              images={images}
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center"
+            />
           </div>
         </div>
       </div>
