@@ -63,6 +63,9 @@ import Lightbox from "./components/lightbox";
 import lightboxone from "./assets/lightboxone.webp";
 import lightboxtwo from "./assets/lightboxtwo.webp";
 import lightboxthree from "./assets/lightboxthree.webp";
+import Dialog from "./components/dialog";
+import Placeholder from "./components/placeholder";
+import Input from "./components/input";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -92,6 +95,7 @@ function Sidebar() {
         "Calendar",
         "Card",
         "Chart*",
+        "Form *",
         "Checkbox",
         "Checkbox Group",
         "Collapsible",
@@ -106,6 +110,9 @@ function Sidebar() {
         "Context Menu",
         "Drawer",
         "Lightbox",
+        "Dialog",
+        "Placeholder",
+        "Input",
       ].map((component) => (
         <button
           key={component}
@@ -138,6 +145,9 @@ function App() {
   const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
   const [isTopDrawerOpen, setIsTopDrawerOpen] = useState(false);
   const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState(false);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -175,12 +185,12 @@ function App() {
 
       <div className="flex justify-between w-full ">
         {/* Sidebar */}
-        <div className="flex w-full">
+        <div className="flex w-fit">
           <Sidebar />
         </div>
 
         <div
-          className="flex flex-wrap p-10 items-center justify-center
+          className="flex flex-1 flex-wrap p-10 items-center justify-center
         "
         >
           {/* Accordion Component */}
@@ -1446,6 +1456,155 @@ function App() {
               images={images}
               className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center"
             />
+          </div>
+
+          {/* dialog */}
+          <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
+            <h2 className="text-xl font-bold mb-5 text-white">Dialog</h2>
+
+            <div className="p-5">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                Open Dialog
+              </button>
+
+              <Dialog
+                isOpen={isDialogOpen}
+                onClose={() => setIsDialogOpen(false)}
+                header={<h2 className="text-xl font-bold">Dialog Title</h2>}
+                body={<p>This is a fully customizable dialog!</p>}
+                footer={
+                  <div className="flex gap-3">
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded">
+                      Confirm
+                    </button>
+                  </div>
+                }
+                bgColor="bg-black"
+                overlayColor="bg-black/60" // ✅ Keeps background semi-transparent
+                className="shadow-md shadow-white"
+              />
+            </div>
+          </div>
+
+          {/* Placeholder */}
+          <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
+            <h2 className="text-xl font-bold mb-5 text-white">Placeholder</h2>
+
+            <div className="flex flex-col space-y-4 w-full ">
+              <Placeholder
+                width="w-full"
+                height="h-10"
+                rounded="rounded-lg"
+                color="bg-purple-300"
+              />
+              <div className="flex flex-col space-y-2 w-full">
+                <Placeholder
+                  width="w-[75%]"
+                  height="h-4"
+                  rounded="rounded-lg"
+                  color="bg-neutral-300"
+                />
+                <Placeholder
+                  width="w-[75%]"
+                  height="h-4"
+                  rounded="rounded-lg"
+                  color="bg-neutral-300"
+                />
+              </div>
+
+              <div className="flex w-full justify-center">
+                <Placeholder
+                  width="w-full"
+                  height="h-2"
+                  rounded="rounded-lg"
+                  color="bg-blue-300"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Input */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+            <h2 className="text-xl font-bold mb-5">Input</h2>
+            <div className="flex flex-col space-y-5 w-full h-full justify-center items-center">
+              <Input
+                placeholder="Flat style"
+                variant="flat"
+                bgColor="bg-gray-100"
+                borderColor="border-gray-300"
+                textColor="text-white"
+                onChange={(val) => setInputValue(val)}
+              />
+
+              {/* <Autocomplete
+                items={[
+                  { label: "Apple", key: "apple" },
+                  { label: "Banana", key: "banana" },
+                  { label: "Cherry", key: "cherry" },
+                  { label: "Date", key: "date" },
+                  { label: "Grapes", key: "grapes" },
+                ]}
+                placeholder="Pick a fruit..."
+                bgColor="bg-black"
+                borderColor="border-blue-500"
+                textColor="text-white"
+                variant="flat"
+              />
+
+              <Autocomplete
+                items={[
+                  { label: "Apple", key: "apple" },
+                  { label: "Banana", key: "banana" },
+                  { label: "Cherry", key: "cherry" },
+                  { label: "Date", key: "date" },
+                  { label: "Grapes", key: "grapes" },
+                ]}
+                placeholder="Pick a fruit..."
+                bgColor="bg-black"
+                borderColor="border-blue-500"
+                textColor="text-white"
+                variant="bordered"
+              />
+
+              <Autocomplete
+                items={[
+                  { label: "Apple", key: "apple" },
+                  { label: "Banana", key: "banana" },
+                  { label: "Cherry", key: "cherry" },
+                  { label: "Date", key: "date" },
+                  { label: "Grapes", key: "grapes" },
+                ]}
+                placeholder="Pick a fruit..."
+                bgColor="bg-black"
+                borderColor="border-blue-500"
+                textColor="text-white"
+                variant="underlined"
+              />
+
+              <Autocomplete
+                items={[
+                  { label: "Apple", key: "apple" },
+                  { label: "Banana", key: "banana" },
+                  { label: "Cherry", key: "cherry" },
+                  { label: "Date", key: "date" },
+                  { label: "Grapes", key: "grapes" },
+                ]}
+                placeholder="Pick a fruit..."
+                bgColor="bg-blue-500"
+                borderColor="border-blue-500"
+                textColor="text-white"
+                variant="faded"
+              /> */}
+            </div>
           </div>
         </div>
       </div>
