@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 type InputProps = {
   placeholder?: string;
@@ -7,9 +7,11 @@ type InputProps = {
   bgColor?: string;
   borderColor?: string;
   textColor?: string;
-  onChange?: (value: string) => void;
+  value: string; // ✅ Controlled value
+  onChange: (value: string) => void;
 };
 
+// Apply the user's styles dynamically inside variants
 const variantStyles = {
   flat: (bgColor: string, borderColor: string, textColor: string) =>
     `border-none rounded-md ${bgColor} ${borderColor} ${textColor}`,
@@ -28,25 +30,23 @@ const Input: React.FC<InputProps> = ({
   bgColor = "bg-white",
   borderColor = "border-gray-300",
   textColor = "text-black",
+  value,
   onChange,
 }) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    onChange?.(e.target.value);
-  };
-
   return (
-    <div className={`relative w-full ${className}`}>
+    <div
+      className={`relative w-full ${className} ${variantStyles[variant](
+        bgColor,
+        borderColor,
+        textColor
+      )} ${bgColor} ${borderColor} ${textColor}`}
+    >
       {/* Input Field */}
       <input
         type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        className={`w-full p-2 outline-none bg-transparent ${variantStyles[
-          variant
-        ](bgColor, borderColor, textColor)}`}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={`w-full p-2 outline-none bg-transparent `}
         placeholder={placeholder}
       />
     </div>

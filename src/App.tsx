@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Circle,
+  Star,
 } from "lucide-react";
 import Button from "./components/button";
 import { useEffect, useState } from "react";
@@ -66,6 +67,10 @@ import lightboxthree from "./assets/lightboxthree.webp";
 import Dialog from "./components/dialog";
 import Placeholder from "./components/placeholder";
 import Input from "./components/input";
+import InputOTP from "./components/inputotp";
+import Rating from "./components/rating";
+import BackToTop from "./components/backtotop";
+import SocialIcons from "./components/socialicons";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -113,6 +118,10 @@ function Sidebar() {
         "Dialog",
         "Placeholder",
         "Input",
+        "Input OTP",
+        "Rating",
+        "Back to Top",
+        "Social Icons",
       ].map((component) => (
         <button
           key={component}
@@ -147,7 +156,10 @@ function App() {
   const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState(false);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const [inputValue, setInputValue] = useState("");
+  const [otp, setOtp] = useState("");
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1538,72 +1550,109 @@ function App() {
             <div className="flex flex-col space-y-5 w-full h-full justify-center items-center">
               <Input
                 placeholder="Flat style"
-                variant="flat"
-                bgColor="bg-gray-100"
-                borderColor="border-gray-300"
-                textColor="text-white"
-                onChange={(val) => setInputValue(val)}
-              />
-
-              {/* <Autocomplete
-                items={[
-                  { label: "Apple", key: "apple" },
-                  { label: "Banana", key: "banana" },
-                  { label: "Cherry", key: "cherry" },
-                  { label: "Date", key: "date" },
-                  { label: "Grapes", key: "grapes" },
-                ]}
-                placeholder="Pick a fruit..."
                 bgColor="bg-black"
                 borderColor="border-blue-500"
                 textColor="text-white"
                 variant="flat"
+                value={inputValue}
+                onChange={(val) => setInputValue(val)}
               />
-
-              <Autocomplete
-                items={[
-                  { label: "Apple", key: "apple" },
-                  { label: "Banana", key: "banana" },
-                  { label: "Cherry", key: "cherry" },
-                  { label: "Date", key: "date" },
-                  { label: "Grapes", key: "grapes" },
-                ]}
-                placeholder="Pick a fruit..."
+              <Input
+                placeholder="Bordered style"
                 bgColor="bg-black"
                 borderColor="border-blue-500"
                 textColor="text-white"
                 variant="bordered"
+                value={inputValue}
+                onChange={(val) => setInputValue(val)}
               />
-
-              <Autocomplete
-                items={[
-                  { label: "Apple", key: "apple" },
-                  { label: "Banana", key: "banana" },
-                  { label: "Cherry", key: "cherry" },
-                  { label: "Date", key: "date" },
-                  { label: "Grapes", key: "grapes" },
-                ]}
-                placeholder="Pick a fruit..."
+              <Input
+                placeholder="Underlined style"
                 bgColor="bg-black"
                 borderColor="border-blue-500"
                 textColor="text-white"
                 variant="underlined"
+                value={inputValue}
+                onChange={(val) => setInputValue(val)}
               />
-
-              <Autocomplete
-                items={[
-                  { label: "Apple", key: "apple" },
-                  { label: "Banana", key: "banana" },
-                  { label: "Cherry", key: "cherry" },
-                  { label: "Date", key: "date" },
-                  { label: "Grapes", key: "grapes" },
-                ]}
-                placeholder="Pick a fruit..."
+              <Input
+                placeholder="Faded style"
                 bgColor="bg-blue-500"
                 borderColor="border-blue-500"
                 textColor="text-white"
                 variant="faded"
-              /> */}
+                value={inputValue}
+                onChange={(val) => setInputValue(val)}
+              />
+            </div>
+          </div>
+
+          {/* Input Otp */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+            <h2 className="text-xl font-bold mb-5">Input OTP</h2>
+            <InputOTP
+              className="flex gap-2"
+              inputStyle="w-12 h-12 text-center text-lg border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              maxLength={6}
+              onComplete={(otp) => setOtp(otp)}
+            />
+            {otp && <p className="mt-3 text-green-500">Entered OTP: {otp}</p>}
+          </div>
+
+          {/* Rating */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+            <h2 className="text-xl font-bold mb-5">Rating</h2>
+            <div className="p-5 space-y-5">
+              <h2 className="text-xl font-bold">Interactive Star Rating</h2>
+              <Rating
+                value={rating}
+                maxRating={5}
+                icon={<Star />}
+                activeColor="text-yellow-500"
+                inactiveColor="text-gray-400"
+                onChange={setRating} // ✅ Controlled by state
+              />
+              <p className="mt-4 text-gray-700">Current rating: {rating}</p>
+            </div>
+            <div className="p-5 space-y-5">
+              <h2 className="text-xl font-bold">Read-Only Star Rating</h2>
+              <Rating
+                value={4} // ✅ Preset rating
+                maxRating={5}
+                icon={<Star />}
+                activeColor="text-yellow-500"
+                inactiveColor="text-gray-400"
+                readOnly
+              />
+              <p className="mt-4 text-gray-700">
+                This rating is set to 4 stars.
+              </p>
+            </div>
+          </div>
+
+          {/* back to top */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+            <h1 className="text-2xl font-bold">
+              Scroll Down to See the Button
+            </h1>
+            <p className="mt-5">
+              Keep scrolling, and the button will appear at bottom right!
+            </p>
+            <BackToTop />
+          </div>
+
+          {/* Social Icons */}
+          <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col space-y-10 justify-center items-center m-5">
+            <h1 className="text-2xl font-bold">Social Icons</h1>
+            <div className="bg-gray-800 p-5 rounded-md">
+              <SocialIcons className="hover:text-blue-700 transition duration-200 hover:cursor-pointer" />
+            </div>
+            <div className="bg-gray-800 p-5 rounded-md">
+              <SocialIcons
+                className="hover:text-blue-700 transition duration-200 hover:cursor-pointer"
+                platforms={["instagram", "discord", "facebook", "google"]}
+                color="text-blue-500"
+              />
             </div>
           </div>
         </div>
