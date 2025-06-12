@@ -1,53 +1,41 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-type ToastType = "success" | "error" | "warning" | "info";
+// ✅ Create the context with an initial empty object (NOT undefined)
+export const ToastContext = createContext({
+  toasts: [],
+  addToast: () => {},
+  removeToast: () => {},
+});
 
-type Toast = {
-  id: number;
-  message: string;
-  type: ToastType;
-};
+export const ToastProvider = ({ children }) => {
+  const [toasts, setToasts] = useState([]);
 
-type ToastContextType = {
-  toasts: Toast[];
-  showToastMessage: (message: string, type?: ToastType) => void;
-  removeToast: (id: number) => void;
-};
+  const addToast = (message, type = "info", duration = 3000) => {
+    console.log("🔥 addToast called with:", { message, type, duration });
 
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
+    const newToast = { id: Date.now(), message, type, duration };
+    setToasts((prev) => {
+      console.log("🟢 Before Update:", prev);
+      const updatedToasts = [...prev, newToast];
+      console.log("🔵 After Update:", updatedToasts);
+      return updatedToasts;
+    });
 
-export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [toasts, setToasts] = useState<Toast[]>([]);
+    setTimeout(() => removeToast(newToast.id), duration);
+  };
 
-  // Function to show a toast
-  const showToastMessage = useCallback(
-    (message: string, type: ToastType = "info") => {
-      const newToast = { id: Date.now(), message, type };
-      setToasts((prev) => [...prev, newToast]);
-
-      // Auto-remove toast after 3 seconds
-      setTimeout(() => removeToast(newToast.id), 3000);
-    },
-    []
-  );
-
-  // Function to remove a toast manually
-  const removeToast = useCallback((id: number) => {
+  const removeToast = (id) => {
+    console.log(toasts);
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
-  }, []);
+  };
+
+  useEffect(() => {
+    console.log("🔥 Updated Toasts:", toasts);
+  }, [toasts]);
 
   return (
-    <ToastContext.Provider value={{ toasts, showToastMessage, removeToast }}>
+    <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
       {children}
     </ToastContext.Provider>
   );
-};
-
-// Hook to use Toast Context
-export const useToast = () => {
-  const context = useContext(ToastContext);
-  if (!context) throw new Error("useToast must be used within a ToastProvider");
-  return context;
 };
