@@ -14,9 +14,6 @@ const Alert: React.FC<AlertProps> = ({
   children,
   className = "",
   variant = "default",
-  //   bgColor,
-  //   borderColor,
-  //   textColor,
   icon,
 }) => {
   // Define styles based on variant
