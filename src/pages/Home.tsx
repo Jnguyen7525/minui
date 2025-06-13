@@ -139,7 +139,7 @@ const Home = () => {
   "
     >
       {/* Accordion Component */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Accordion</h2>
         <Accordion bgColor="black" textColor="white">
           <AccordionItem title="Section 1" bgColor="black" textColor="white">
@@ -155,7 +155,7 @@ const Home = () => {
       </div>
 
       {/* Alert Component */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold ">Alerts</h2>
         <div className="flex flex-col justify-center space-y-3 mt-5">
           <Alert
@@ -195,7 +195,7 @@ const Home = () => {
       </div>
 
       {/* Alert Dialog Component */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Alert Dialog</h2>
         <div className="flex w-full h-full justify-center items-center">
           <Button
@@ -209,8 +209,8 @@ const Home = () => {
           <AlertDialog
             isOpen={openAlertDialog}
             onClose={() => setOpenAlertDialog(false)}
-            bgColor="bg-black"
-            overlayColor="bg-black/60"
+            bgColor=""
+            overlayColor="/60"
           >
             <AlertDialogTitle>Confirm Action</AlertDialogTitle>
             <AlertDialogDescription>
@@ -244,7 +244,7 @@ const Home = () => {
       </div>
 
       {/* AutoComplete */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">AutoComplete</h2>
         <div className="flex flex-col space-y-5 w-full h-full justify-center items-center">
           <Autocomplete
@@ -256,9 +256,8 @@ const Home = () => {
               { label: "Grapes", key: "grapes" },
             ]}
             placeholder="Pick a fruit..."
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="flat"
           />
 
@@ -271,9 +270,8 @@ const Home = () => {
               { label: "Grapes", key: "grapes" },
             ]}
             placeholder="Pick a fruit..."
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="bordered"
           />
 
@@ -286,9 +284,8 @@ const Home = () => {
               { label: "Grapes", key: "grapes" },
             ]}
             placeholder="Pick a fruit..."
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="underlined"
           />
 
@@ -303,20 +300,19 @@ const Home = () => {
             placeholder="Pick a fruit..."
             bgColor="bg-blue-500"
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="faded"
           />
         </div>
       </div>
 
       {/* avatar */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Avatar</h2>
         <div className="flex h-full w-full space-x-5 items-center ">
           <Avatar
             src={firstAvatar}
             size="xl"
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-black"
             className="border-2"
           />
@@ -331,7 +327,7 @@ const Home = () => {
           <Avatar
             src={thirdAvatar}
             size="md"
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
             textColor="text-red-500"
             className="border-2"
@@ -348,7 +344,7 @@ const Home = () => {
       </div>
 
       {/* Button Component */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold ">Button</h2>
 
         <div className="flex flex-wrap justify-center space-x-5 mt-5">
@@ -392,21 +388,20 @@ const Home = () => {
       </div>
 
       {/* Button Component */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Badge</h2>
         <div className="flex h-full w-full space-x-5 items-center ">
           <Badge
             content="1"
             placement="top-right"
             size="lg"
-            bgColor="bg-black"
-            textColor="text-white"
+            bgColor=""
             onClick={() => alert("hi")}
           >
             <Avatar
               src={firstAvatar}
               size="xl"
-              bgColor="bg-black"
+              bgColor=""
               borderColor="border-black"
               className="border-2"
             />
@@ -416,7 +411,6 @@ const Home = () => {
             placement="bottom-right"
             size="lg"
             bgColor="bg-red-500"
-            textColor="text-white"
             onClick={() => alert("i'm batman")}
           >
             <Avatar
@@ -433,7 +427,7 @@ const Home = () => {
             <Avatar
               src={thirdAvatar}
               size="md"
-              bgColor="bg-black"
+              bgColor=""
               borderColor="border-blue-500"
               textColor="text-red-500"
               className="border-2"
@@ -460,7 +454,6 @@ const Home = () => {
             placement="top-right"
             bgColor="bg-blue-500"
             borderColor="border-red-600"
-            textColor="text-white"
             offsetX="translate-x-[6px]"
             offsetY="-translate-y-[6px]"
           >
@@ -470,7 +463,7 @@ const Home = () => {
       </div>
 
       {/* breadcrumb */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Breadcrumb</h2>
         <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
           <Breadcrumbs
@@ -520,20 +513,20 @@ const Home = () => {
       </div>
 
       {/* calendar */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-[300px] border-t-[1px] m-5 underline-offset-2">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[300px] border shadow-lg m-5 underline-offset-2">
         <h2 className="text-xl font-bold mb-5">Calendar</h2>
         <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
           <Calendar
             selectedDates={selectedCalendarDate}
             onDateSelect={setSelectedCalendarDate}
             classNames={{
-              container: "bg-black p-3 rounded-lg  shadow-md shadow-gray-700",
-              header: "bg-black p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg  shadow-md shadow-gray-700",
+              header: " p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 " text-gray-500  hover:bg-gray-600 hover:rounded-full hover:cursor-pointer ",
               daysOfWeek: "text-gray-500",
-              day: "text-white hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
+              day: " hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
               daySelected: "bg-blue-500 text-white font-bold rounded-full",
               dayToday: "font-extrabold underline underline-offset-4",
               dayDisabled: "opacity-30 cursor-not-allowed",
@@ -549,7 +542,7 @@ const Home = () => {
       </div>
 
       {/* card */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px]">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg">
         <h2 className="text-xl font-bold mb-5">Card</h2>
         <div className="flex h-full w-full items-center justify-center space-x-4">
           {/* Login Card */}
@@ -651,7 +644,7 @@ const Home = () => {
       </div>
 
       {/* checkbox */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox</h2>
 
         <div className="flex flex-col gap-6">
@@ -709,7 +702,7 @@ const Home = () => {
       </div>
 
       {/* checkbox group */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[300px] border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox Group</h2>
         <div>
           <h3 className="text-lg font-bold mb-4">Preferences</h3>
@@ -729,7 +722,7 @@ const Home = () => {
       </div>
 
       {/* collapsible */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-[500px] border-t-[1px] m-5">
+      <div className=" p-5 rounded-lg  h-fit w-[500px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
         <div className="flex flex-col items-center justify-center w-full  ">
           <Collapsible
@@ -740,7 +733,7 @@ const Home = () => {
             className="flex flex-col w-1/2 space-y-2"
             headerStyle="flex w-full justify-between text-gray-500 font-semibold"
             triggerStyle="text-gray-500 hover:opacity-80"
-            collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900"
+            collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 hover:text-white"
           />
 
           {/* Display Selected Item Outside Collapsible */}
@@ -755,7 +748,7 @@ const Home = () => {
       </div>
 
       {/* Circular Progress */}
-      <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] m-5">
+      <div className="flex flex-col items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Circular Progress</h2>
 
         <div className="flex flex-col space-y-5 items-center justify-center">
@@ -848,7 +841,7 @@ const Home = () => {
       </div>
 
       {/* Progressbar */}
-      <div className="flex flex-col space-y-5 items-center bg-black p-5 rounded-lg shadow-md shadow-white h-fit w-fit border-t-[1px] m-5">
+      <div className="flex flex-col space-y-5 items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold">Progress Bar</h2>
 
         {/* progress bar with buttons */}
@@ -902,8 +895,8 @@ const Home = () => {
       </div>
 
       {/* carousel */}
-      <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white w-[700px] h-[650px] m-5 border-t-[1px] space-y-5">
-        <h2 className="text-xl font-bold text-white mb-5">Carousel</h2>
+      <div className="flex flex-col items-center  p-5 rounded-lg  w-[700px] h-[650px] m-5 border shadow-lg space-y-5">
+        <h2 className="text-xl font-bold  mb-5">Carousel</h2>
         {/* sliding transition */}
         <Carousel
           images={[
@@ -962,8 +955,8 @@ const Home = () => {
       </div>
 
       {/* jumbotron */}
-      <div className="flex flex-col items-center bg-black p-5 rounded-lg shadow-md shadow-white w-[500px] h-[400px] m-5 border-t-[1px] space-y-5">
-        <h2 className="text-xl font-bold text-white mb-5">Jumbotron</h2>
+      <div className="flex flex-col items-center  p-5 rounded-lg  w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
+        <h2 className="text-xl font-bold  mb-5">Jumbotron</h2>
         <Jumbotron
           backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
           className="h-[400px] rounded-lg p-12"
@@ -983,8 +976,8 @@ const Home = () => {
       </div>
 
       {/* Date Input */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 text-white">Date Input</h2>
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Date Input</h2>
         <div className="flex flex-col space-y-10 w-[250px] h-full justify-center items-center">
           {/* Uncontrolled DateInput */}
           <DateInput
@@ -994,8 +987,8 @@ const Home = () => {
             variant="flat"
             className="text-white text-md bg-gray-700 "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1016,8 +1009,8 @@ const Home = () => {
             variant="bordered"
             className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1035,10 +1028,10 @@ const Home = () => {
             labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
             placeholder="Pick a date..."
             variant="underlined"
-            className="text-white text-md "
+            className="text-md "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1058,8 +1051,8 @@ const Home = () => {
             variant="faded"
             className="text-black text-md rounded-sm bg-white  "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700 ",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700 ",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1074,8 +1067,8 @@ const Home = () => {
       </div>
 
       {/* Date Range Picker */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 text-white">Date Range Picker</h2>
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Date Range Picker</h2>
         <div className="flex flex-col space-y-10 w-[300px] h-full justify-center items-center">
           {/* Uncontrolled Date Range Picker  */}
           <DateRangePicker
@@ -1084,8 +1077,8 @@ const Home = () => {
             variant="flat"
             className="text-white text-md bg-gray-700 "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1104,8 +1097,8 @@ const Home = () => {
             variant="bordered"
             className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1122,10 +1115,10 @@ const Home = () => {
             label="Underlined Date"
             labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
             variant="underlined"
-            className="text-white text-md "
+            className=" text-md "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1144,8 +1137,8 @@ const Home = () => {
             variant="faded"
             className="text-black text-md rounded-sm bg-white  "
             calendarStyles={{
-              container: "bg-black p-3 rounded-lg shadow-md shadow-gray-700 ",
-              header: "bg-black p-3 rounded-lg bg-gray-900",
+              container: " p-3 rounded-lg shadow-md shadow-gray-700 ",
+              header: " p-3 rounded-lg bg-gray-900",
               title: "text-gray-500 font-bold",
               button:
                 "text-gray-500 hover:bg-gray-600 hover:rounded-full hover:cursor-pointer",
@@ -1160,8 +1153,8 @@ const Home = () => {
       </div>
 
       {/* dropdown */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 text-white">Dropdown</h2>
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Dropdown</h2>
 
         <div className="p-5">
           <Dropdown
@@ -1185,8 +1178,8 @@ const Home = () => {
       </div>
 
       {/* Combobox */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 text-white">Combobox</h2>
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Combobox</h2>
 
         <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
         <Combobox
@@ -1202,14 +1195,14 @@ const Home = () => {
           }}
           className="w-64"
           triggerStyle="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white"
-          inputStyle="mt-2 bg-black border rounded-md shadow-lg p-2"
+          inputStyle="mt-2  border rounded-md shadow-lg p-2"
           optionsStyle="flex items-center justify-between w-full p-2 hover:bg-gray-500 hover:cursor-pointer"
         />
       </div>
 
       {/* context menu */}
-      <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 text-white">context menu</h2>
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">context menu</h2>
 
         <div className="p-5">
           <h1 className="text-lg font-bold mb-4">
@@ -1241,7 +1234,7 @@ const Home = () => {
       </div>
 
       {/* Drawer */}
-      <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center">
         <h1 className="text-lg font-bold mb-4">Drawer Component</h1>
         <div className="flex space-x-3">
           {/* left drawer */}
@@ -1347,8 +1340,8 @@ const Home = () => {
       </div>
 
       {/* lightbox */}
-      <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 text-white">Lightbox</h2>
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Lightbox</h2>
 
         <Lightbox
           images={images}
@@ -1357,8 +1350,8 @@ const Home = () => {
       </div>
 
       {/* dialog */}
-      <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 text-white">Dialog</h2>
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Dialog</h2>
 
         <div className="p-5">
           <button
@@ -1386,16 +1379,16 @@ const Home = () => {
                 </button>
               </div>
             }
-            bgColor="bg-black"
-            overlayColor="bg-black/60" // ✅ Keeps background semi-transparent
-            className="shadow-md shadow-white"
+            bgColor=""
+            overlayColor="/60" // ✅ Keeps background semi-transparent
+            className=""
           />
         </div>
       </div>
 
       {/* Placeholder */}
-      <div className="bg-black p-5 m-5 pb-10 rounded-lg shadow-md shadow-white text-center h-fit w-[500px] border-t-[1px] flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 text-white">Placeholder</h2>
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Placeholder</h2>
 
         <div className="flex flex-col space-y-4 w-full ">
           <Placeholder
@@ -1431,32 +1424,29 @@ const Home = () => {
       </div>
 
       {/* Input */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Input</h2>
         <div className="flex flex-col space-y-5 w-full h-full justify-center items-center">
           <Input
             placeholder="Flat style"
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="flat"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
           />
           <Input
             placeholder="Bordered style"
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="bordered"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
           />
           <Input
             placeholder="Underlined style"
-            bgColor="bg-black"
+            bgColor=""
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="underlined"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
@@ -1465,7 +1455,6 @@ const Home = () => {
             placeholder="Faded style"
             bgColor="bg-blue-500"
             borderColor="border-blue-500"
-            textColor="text-white"
             variant="faded"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
@@ -1474,7 +1463,7 @@ const Home = () => {
       </div>
 
       {/* Input Otp */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Input OTP</h2>
         <InputOTP
           className="flex gap-2"
@@ -1486,7 +1475,7 @@ const Home = () => {
       </div>
 
       {/* Rating */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Rating</h2>
         <div className="p-5 space-y-5">
           <h2 className="text-xl font-bold">Interactive Star Rating</h2>
@@ -1515,7 +1504,7 @@ const Home = () => {
       </div>
 
       {/* back to top */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h1 className="text-2xl font-bold">Scroll Down to See the Button</h1>
         <p className="mt-5">
           Keep scrolling, and the button will appear at bottom right!
@@ -1524,7 +1513,7 @@ const Home = () => {
       </div>
 
       {/* Social Icons */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col space-y-10 justify-center items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Social Icons</h1>
         <div className="bg-gray-800 p-5 rounded-md">
           <SocialIcons className="hover:text-blue-700 transition duration-200 hover:cursor-pointer" />
@@ -1538,7 +1527,7 @@ const Home = () => {
         </div>
       </div>
       {/* Popover */}
-      <div className="bg-black p-5 rounded-lg shadow-md shadow-white text-center h-fit w-fit border-t-[1px] flex flex-col space-y-10 justify-center items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Popover</h1>
         <div className="flex space-x-5 justify-between">
           <Popover
@@ -1594,6 +1583,18 @@ const Home = () => {
             }
           />
         </div>
+      </div>
+
+            {/* Toast*/}
+            <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Toast</h2>
+        <InputOTP
+          className="flex gap-2"
+          inputStyle="w-12 h-12 text-center text-lg border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          maxLength={6}
+          onComplete={(otp) => setOtp(otp)}
+        />
+        {otp && <p className="mt-3 text-green-500">Entered OTP: {otp}</p>}
       </div>
     </div>
   );

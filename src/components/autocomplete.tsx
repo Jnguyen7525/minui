@@ -37,7 +37,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   variant = "bordered", // Default variant
   bgColor = "bg-white",
   borderColor = "border-gray-300",
-  textColor = "text-black",
+  textColor = "",
   onSelectionChange,
 }) => {
   const [inputValue, setInputValue] = useState("");

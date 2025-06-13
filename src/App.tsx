@@ -1728,13 +1728,22 @@
 
 // export default App;
 
+import { ThemeProvider } from "./components/theme";
+import { ToastProvider } from "./components/toast";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 
 export default function App() {
   return (
-    <MainLayout>
-      <Home />
-    </MainLayout>
+    <ToastProvider>
+      <ThemeProvider
+        lightTheme={{ background: "bg-white", text: "text-zinc-800" }}
+        darkTheme={{ background: "bg-black", text: "text-white" }}
+      >
+        <MainLayout>
+          <Home />
+        </MainLayout>
+      </ThemeProvider>
+    </ToastProvider>
   );
 }

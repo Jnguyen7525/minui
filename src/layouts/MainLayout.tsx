@@ -1,10 +1,12 @@
 import React, { type ReactNode } from "react";
+import { ThemeSwitcher } from "../components/theme";
 
 /* Header Component */
 function Header() {
   return (
-    <header className="bg-black p-4 flex items-center justify-between shadow-md border-b border-gray-600 mb-10 shadow-white">
-      <h1 className="text-xl font-semibold">MyUI</h1>
+    <header className=" p-4 flex items-center justify-between shadow-md border-b border-gray-600 mb-10 shadow-white">
+      <h1 className="text-xl font-semibold ">MyUI</h1>
+      <ThemeSwitcher />
     </header>
   );
 }
@@ -50,6 +52,7 @@ function Sidebar() {
         "Social Icons",
         "Popover",
         "Toast",
+        "Theme",
       ].map((component) => (
         <button
           key={component}
@@ -64,7 +67,8 @@ function Sidebar() {
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col relative">
+    // <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col relative">
+    <div className="min-h-screen overflow-y-scroll scrollbar-hide flex flex-col relative">
       <Header />
       <div className="flex">
         <Sidebar />

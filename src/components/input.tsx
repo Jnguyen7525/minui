@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
   variant = "bordered",
   bgColor = "bg-white",
   borderColor = "border-gray-300",
-  textColor = "text-black",
+  textColor = "",
   value,
   onChange,
 }) => {
