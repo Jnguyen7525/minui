@@ -1,12 +1,40 @@
-import React, { type ReactNode } from "react";
-import { ThemeSwitcher } from "../components/theme";
+import React, { useContext, type ReactNode } from "react";
+import { ThemeContext, ThemeSwitcher } from "../components/theme";
+import { Moon, Sun } from "lucide-react";
 
 /* Header Component */
 function Header() {
+  const themeContext = useContext(ThemeContext);
+  if (!themeContext) {
+    throw new Error("Header must be used within a ThemeProvider");
+  }
+
+  const { theme } = themeContext;
+
+  const triggerContent =
+    theme === "light" ? (
+      <button className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+        <Sun size={18} />
+        Light mode
+      </button>
+    ) : theme === "dark" ? (
+      <button className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+        <Moon size={18} />
+        Dark mode
+      </button>
+    ) : (
+      theme.charAt(0).toUpperCase() + theme.slice(1) + " " + "mode" // Other themes just display their names
+    );
+
   return (
-    <header className=" p-4 flex items-center justify-between shadow-md border-b border-gray-600 mb-10 shadow-white">
+    <header className="py-2 px-7 flex items-center justify-between shadow-md border-b border-gray-600 mb-10 shadow-white">
       <h1 className="text-xl font-semibold ">MyUI</h1>
-      <ThemeSwitcher />
+      <ThemeSwitcher
+        triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 "
+        triggerContent={triggerContent}
+        menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer hover:rounded-md"
+        menuStyle="w-fit bg-gray-800 border border-gray-600 rounded-md shadow-lg flex flex-col "
+      />
     </header>
   );
 }
@@ -53,6 +81,7 @@ function Sidebar() {
         "Popover",
         "Toast",
         "Theme",
+        "Tooltip",
       ].map((component) => (
         <button
           key={component}

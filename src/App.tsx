@@ -1735,10 +1735,26 @@ import Home from "./pages/Home";
 
 export default function App() {
   return (
-    <ToastProvider>
+    <ToastProvider
+      placement="bottom-right"
+      toastStyles={{
+        success:
+          "bg-green-600 text-white border border-white border-2 px-6 py-4 rounded-md",
+        error:
+          "bg-red-600 text-white border-white border-2 px-6 py-4 rounded-md",
+        info: "bg-yellow-500 text-white border-white border-2 px-6 py-4 rounded-md",
+      }}
+    >
       <ThemeProvider
-        lightTheme={{ background: "bg-white", text: "text-zinc-800" }}
-        darkTheme={{ background: "bg-black", text: "text-white" }}
+        // lightTheme={{ background: "bg-white", text: "text-zinc-800" }}
+        // darkTheme={{ background: "bg-black", text: "text-white" }}
+        themes={{
+          light: { background: "bg-white", text: "text-black" },
+          dark: { background: "bg-black", text: "text-white" },
+          blue: { background: "bg-blue-600", text: "text-white" },
+          sepia: { background: "bg-yellow-800", text: "text-black" },
+        }}
+        defaultTheme="dark"
       >
         <MainLayout>
           <Home />

@@ -1,69 +1,55 @@
-import { Moon, Sun } from "lucide-react";
 import React, {
   createContext,
   useState,
   useContext,
   type ReactNode,
 } from "react";
+import Dropdown from "./dropdown";
 
+// 1️⃣ Define theme structure
 interface CustomTheme {
   background: string;
   text: string;
   [key: string]: string;
 }
 
-interface ThemeProviderProps {
-  children: ReactNode;
-  lightTheme?: CustomTheme;
-  darkTheme?: CustomTheme;
-}
-
-const defaultLightTheme: CustomTheme = {
-  background: "bg-white",
-  text: "text-black",
-};
-
-const defaultDarkTheme: CustomTheme = {
-  background: "bg-zinc-900",
-  text: "text-white",
-};
-
-// 1. Define the shape of the context value
 interface ThemeContextType {
-  theme: "light" | "dark";
-  toggleTheme: () => void;
+  theme: string; // Current selected theme name
+  themes: Record<string, CustomTheme>; // ✅ Now stores all available themes
+  setTheme: (theme: string) => void;
 }
 
-// 2. Create the context with an initial undefined value
+// 3️⃣ Create the context
 export const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined
 );
 
-// 3. Define props type for the provider
+// 4️⃣ Provider props allowing dynamic themes
 interface ThemeProviderProps {
   children: ReactNode;
+  themes: Record<string, CustomTheme>; // Supports multiple themes
+  defaultTheme?: string;
 }
 
-// 4. Create the provider component
+interface ThemeSwitcherProps {
+  triggerContent?: React.ReactNode | string; // ✅ Custom content for the button (text, icons, etc.)
+  triggerStyle?: string; // ✅ Custom styles for the trigger button
+  menuStyle?: string;
+  menuItemStyle?: string;
+}
+
+// 5️⃣ Create ThemeProvider supporting multiple themes
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
-  lightTheme = defaultLightTheme,
-  darkTheme = defaultDarkTheme,
+  themes,
+  defaultTheme = "dark",
 }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
-
-  const appliedTheme = theme === "light" ? lightTheme : darkTheme;
-
-  const themeClasses = `${appliedTheme.background} ${appliedTheme.text}`;
+  const [theme, setTheme] = useState<string>(defaultTheme);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, themes, setTheme }}>
       <div
-        className={`${themeClasses} transition-colors duration-300 min-h-screen`}
+        className={`${themes[theme]?.background} ${themes[theme]?.text} transition-colors duration-300 min-h-screen`}
       >
         {children}
       </div>
@@ -71,21 +57,31 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   );
 };
 
-export const ThemeSwitcher = () => {
+// 6️⃣ Create ThemeSwitcher for dynamic switching
+export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
+  triggerContent = "Switch Theme", // Default label if no custom content provided
+  triggerStyle = "flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition",
+  menuStyle,
+  menuItemStyle,
+}) => {
   const themeContext = useContext(ThemeContext);
   if (!themeContext) {
     throw new Error("ThemeSwitcher must be used within a ThemeProvider");
   }
 
-  const { theme, toggleTheme } = themeContext;
+  const { themes, setTheme } = themeContext;
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition hover:cursor-pointer"
-    >
-      {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-      {theme === "light" ? "Dark mode" : "Light mode"}
-    </button>
+    <Dropdown
+      menuItemStyle={`${menuItemStyle}`}
+      menuStyle={`${menuStyle}`}
+      triggerLabel={triggerContent}
+      triggerStyle={triggerStyle}
+      options={Object.keys(themes).map((themeKey) => ({
+        key: themeKey,
+        label: themeKey.charAt(0).toUpperCase() + themeKey.slice(1),
+        action: () => setTheme(themeKey), // ✅ Set selected theme and close dropdown
+      }))}
+    />
   );
 };

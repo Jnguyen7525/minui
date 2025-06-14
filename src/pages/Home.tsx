@@ -71,6 +71,7 @@ import lightboxone from "../assets/lightboxone.webp";
 import lightboxtwo from "../assets/lightboxtwo.webp";
 import lightboxthree from "../assets/lightboxthree.webp";
 import { useToast } from "../components/toast";
+import Tooltip from "../components/tooltip";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -1597,7 +1598,7 @@ const Home = () => {
           onClick={() =>
             showToast("Success! Your action was completed.", "success")
           }
-          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+          className="px-4 py-2 border-white bg-green-500 text-white rounded-lg hover:cursor-pointer hover:bg-green-600 transition"
         >
           Show Success Toast
         </button>
@@ -1605,10 +1606,60 @@ const Home = () => {
         {/* Trigger an error toast */}
         <button
           onClick={() => showToast("Error! Something went wrong.", "error")}
-          className="mt-3 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+          className="mt-3 px-4 py-2 bg-red-500 text-white rounded-lg hover:cursor-pointer hover:bg-red-600 transition"
         >
           Show Error Toast
         </button>
+
+        {/* Trigger an info toast */}
+        <button
+          onClick={() => showToast("Info! Display some info.", "info")}
+          className="mt-3 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:cursor-pointer hover:bg-yellow-600 transition"
+        >
+          Show Info Toast
+        </button>
+      </div>
+
+      {/* Tooltip*/}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Tooltip</h2>
+        <div className="flex  space-x-5 relative w-full">
+          <Tooltip
+            content="Tooltip on top"
+            placement="top"
+            offset={10}
+            triggerContent={<span>Top</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on bottom"
+            placement="bottom"
+            offset={10}
+            triggerContent={<span>Bottom</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on right"
+            placement="right"
+            offset={10}
+            triggerContent={<span>Right</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on left"
+            placement="left"
+            offset={10}
+            triggerContent={<span>Left</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+        </div>
       </div>
     </div>
   );

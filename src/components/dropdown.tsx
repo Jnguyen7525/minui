@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 type DropdownProps = {
-  triggerLabel: string;
+  triggerLabel: React.ReactNode | string;
   triggerStyle?: string;
   menuStyle?: string;
   menuItemStyle?: string;
