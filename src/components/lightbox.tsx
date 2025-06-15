@@ -18,9 +18,8 @@ const Lightbox: React.FC<LightboxProps> = ({
       {/* Thumbnail Grid */}
       <div className={`${className}`}>
         {images.map((src) => (
-          <div className="flex w-full items-center justify-center">
+          <div key={src} className="flex w-full items-center justify-center">
             <img
-              key={src}
               src={src}
               alt="Gallery"
               className="cursor-zoom-in rounded-md shadow-lg transition-transform hover:scale-105"

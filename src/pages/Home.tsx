@@ -8,6 +8,7 @@ import {
   ChevronRight,
   ChevronsUpDown,
   Circle,
+  CreditCard,
   Heart,
   Info,
   Play,
@@ -16,6 +17,8 @@ import {
   SkipBack,
   SkipForward,
   Star,
+  Truck,
+  User,
   XCircle,
 } from "lucide-react";
 import Button from "../components/button";
@@ -72,8 +75,121 @@ import lightboxtwo from "../assets/lightboxtwo.webp";
 import lightboxthree from "../assets/lightboxthree.webp";
 import { useToast } from "../components/toast";
 import Tooltip from "../components/tooltip";
+import Stepper from "../components/stepper";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
+
+interface FormStepperProps {
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  address: string;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+  cardNumber: string;
+  setCardNumber: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const FormStepper: React.FC<FormStepperProps> = ({
+  currentStep,
+  setCurrentStep,
+  name,
+  setName,
+  address,
+  setAddress,
+  cardNumber,
+  setCardNumber,
+}) => {
+  const isStepValid = () => {
+    if (currentStep === 0) return name.trim() !== ""; // Name required
+    if (currentStep === 1) return address.trim() !== ""; // Address required
+    if (currentStep === 2) return cardNumber.trim() !== ""; // Card required
+    return true;
+  };
+
+  return (
+    <div className="w-full flex flex-col items-center">
+      {/* ✅ Form Sections with Persistent State */}
+      {currentStep === 0 && (
+        <div className="mt-4">
+          <h2>Customer Info</h2>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+            className="border p-2"
+          />
+        </div>
+      )}
+
+      {currentStep === 1 && (
+        <div className="mt-4">
+          <h2>Shipping Info</h2>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Address"
+            className="border p-2"
+          />
+        </div>
+      )}
+
+      {currentStep === 2 && (
+        <div className="mt-4">
+          <h2>Payment</h2>
+          <input
+            type="text"
+            value={cardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
+            placeholder="Card Number"
+            className="border p-2"
+          />
+        </div>
+      )}
+
+      {currentStep === 3 && (
+        <div className="mt-4">
+          <h2>Review & Confirm</h2>
+          <p>
+            <strong>Name:</strong> {name}
+          </p>
+          <p>
+            <strong>Address:</strong> {address}
+          </p>
+          <p>
+            <strong>Card Number:</strong> {cardNumber}
+          </p>
+          <p>Make sure all information is correct!</p>
+        </div>
+      )}
+
+      {/* ✅ Navigation Buttons */}
+      <div className="mt-4 flex space-x-4">
+        {currentStep > 0 && (
+          <button
+            className="px-4 py-2 bg-gray-700 text-white rounded"
+            onClick={() => setCurrentStep((prev) => prev - 1)}
+          >
+            Previous
+          </button>
+        )}
+        {currentStep < 3 && (
+          <button
+            className={`px-4 py-2 bg-blue-600 text-white rounded ${
+              !isStepValid() ? "opacity-50 cursor-not-allowed" : ""
+            }`} // ✅ Disable if invalid
+            disabled={!isStepValid()} // ✅ Prevents clicking when fields are empty
+            onClick={() => setCurrentStep((prev) => prev + 1)}
+          >
+            Next
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Home = () => {
   const [openAlertDialog, setOpenAlertDialog] = useState(false);
@@ -136,6 +252,14 @@ const Home = () => {
       return () => clearTimeout(timer); // Cleanup timer on unmount
     }
   }, [showSuccessAlert]);
+
+  const steps = ["Customer Info", "Shipping Info", "Payment", "Review"];
+  const [currentStep, setCurrentStep] = useState(0);
+
+  // ✅ Maintain form input state
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
 
   return (
     <div
@@ -1659,6 +1783,88 @@ const Home = () => {
             tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
             triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
           />
+        </div>
+      </div>
+
+      {/* Stepper*/}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Stepper</h2>
+        <div className="flex flex-col  space-y-5 items-center justify-center relative w-full">
+          {/* basic */}
+          <Stepper
+            steps={[
+              <span>Step 1</span>,
+              <span>Step 2</span>,
+              <span>Step 3</span>,
+              <span>Step 4</span>,
+            ]}
+            activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+            completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+            stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
+            buttonStyle="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
+            nextButton={<span>Next</span>} // ✅ Custom Next button
+            prevButton={<span>Previous</span>} // ✅ Custom Previous button
+            className="flex items-center space-x-4"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
+          {/* with circles */}
+          <Stepper
+            steps={[
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+            ]}
+            activeStepStyle="bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
+            completedStepStyle="bg-green-500 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
+            stepStyle="bg-gray-400 w-4 h-4 rounded-full flex items-center justify-center hover:cursor-pointer"
+            className="flex items-center w-full space-x-10 justify-center"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
+          {/* with icons */}
+          <Stepper
+            steps={[
+              <User size={20} />,
+              <Truck size={20} />,
+              <CreditCard size={20} />,
+              <CheckCircle size={20} />,
+            ]}
+            activeStepStyle="bg-blue-600 text-blue-600 p-3 rounded-full hover:cursor-pointer"
+            completedStepStyle="bg-green-500 text-white p-3 rounded-full hover:cursor-pointer"
+            stepStyle="bg-gray-400 p-3 rounded-full hover:cursor-pointer"
+            className="flex items-center space-x-4"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
+
+          {/* with form */}
+
+          <div className="w-full flex flex-col items-center">
+            <Stepper
+              steps={steps.map((step) => (
+                <span>{step}</span>
+              ))}
+              activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+              completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+              stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
+              currentStep={currentStep} // ✅ Syncs with stepper
+              setCurrentStep={setCurrentStep} // ✅ Updates step state
+            />
+
+            {/* ✅ Pass state and handlers to `FormStepper` */}
+            <FormStepper
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              name={name}
+              setName={setName}
+              address={address}
+              setAddress={setAddress}
+              cardNumber={cardNumber}
+              setCardNumber={setCardNumber}
+            />
+          </div>
         </div>
       </div>
     </div>

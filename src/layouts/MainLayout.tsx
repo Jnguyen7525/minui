@@ -13,15 +13,15 @@ function Header() {
 
   const triggerContent =
     theme === "light" ? (
-      <button className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+      <div className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
         <Sun size={18} />
         Light mode
-      </button>
+      </div>
     ) : theme === "dark" ? (
-      <button className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+      <div className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
         <Moon size={18} />
         Dark mode
-      </button>
+      </div>
     ) : (
       theme.charAt(0).toUpperCase() + theme.slice(1) + " " + "mode" // Other themes just display their names
     );
@@ -82,6 +82,7 @@ function Sidebar() {
         "Toast",
         "Theme",
         "Tooltip",
+        "Stepper",
       ].map((component) => (
         <button
           key={component}
