@@ -76,6 +76,8 @@ import lightboxthree from "../assets/lightboxthree.webp";
 import { useToast } from "../components/toast";
 import Tooltip from "../components/tooltip";
 import Stepper from "../components/stepper";
+import Testimonial from "../components/testimonial";
+import Switch from "../components/switch";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -255,11 +257,12 @@ const Home = () => {
 
   const steps = ["Customer Info", "Shipping Info", "Payment", "Review"];
   const [currentStep, setCurrentStep] = useState(0);
-
   // ✅ Maintain form input state
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [cardNumber, setCardNumber] = useState("");
+
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
 
   return (
     <div
@@ -1865,6 +1868,46 @@ const Home = () => {
               setCardNumber={setCardNumber}
             />
           </div>
+        </div>
+      </div>
+
+      {/* Testimonial */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Testimonial</h2>
+        <div className="grid gap-12 text-center md:grid-cols-2">
+          <Testimonial
+            name="Anna Morian"
+            review="Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut perspiciatis unde omnis."
+            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(22).jpg"
+            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            rating={4}
+          />
+
+          <Testimonial
+            name="Teresa May"
+            review="Neque cupiditate assumenda in maiores repudiandae mollitia architecto elit sed adipiscing elit."
+            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(19).jpg"
+            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            rating={5}
+          />
+        </div>
+      </div>
+
+      {/* Switch */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Switch</h2>
+        <div className="grid gap-12 text-center md:grid-cols-2">
+          <Switch
+            id="terms-switch"
+            checked={isChecked}
+            onChange={setIsChecked}
+            size="large"
+            onLabel="I Agree"
+            offLabel="Disagree"
+            disabled={false}
+            // onColor="bg-black border-green-500" // ✅ Custom "on" color
+            // offColor="bg-black border-red-500" // ✅ Custom "off" color
+          />
         </div>
       </div>
     </div>
