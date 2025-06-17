@@ -85,6 +85,9 @@ function Sidebar() {
         "Stepper",
         "Testimonial",
         "Switch",
+        "Radio",
+        "Textarea",
+        "Tab",
       ].map((component) => (
         <button
           key={component}

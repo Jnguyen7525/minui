@@ -8,7 +8,9 @@ import {
   ChevronRight,
   ChevronsUpDown,
   Circle,
+  Code,
   CreditCard,
+  FireExtinguisher,
   Heart,
   Info,
   Play,
@@ -78,6 +80,9 @@ import Tooltip from "../components/tooltip";
 import Stepper from "../components/stepper";
 import Testimonial from "../components/testimonial";
 import Switch from "../components/switch";
+import RadioGroup from "../components/radiogroup";
+import Textarea from "../components/textarea";
+import Tabs from "../components/tab";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -263,6 +268,29 @@ const Home = () => {
   const [cardNumber, setCardNumber] = useState("");
 
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+  const [radioSelected, setRadioSelected] = useState("comfortable");
+  const [text, setText] = useState("");
+  const [selectedTab, setSelectedTab] = useState("html");
+  const myTabs = [
+    {
+      id: "html",
+      label: (
+        <>
+          HTML <Code size={16} />
+        </>
+      ),
+      content: <p>HTML Content</p>,
+    },
+    {
+      id: "react",
+      label: (
+        <>
+          React <FireExtinguisher size={16} />
+        </>
+      ),
+      content: <p>React Content</p>,
+    },
+  ];
 
   return (
     <div
@@ -1896,17 +1924,86 @@ const Home = () => {
       {/* Switch */}
       <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Switch</h2>
-        <div className="grid gap-12 text-center md:grid-cols-2">
+        <div className="flex flex-col space-y-5">
           <Switch
             id="terms-switch"
-            checked={isChecked}
-            onChange={setIsChecked}
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
             size="large"
-            onLabel="I Agree"
-            offLabel="Disagree"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
             disabled={false}
-            // onColor="bg-black border-green-500" // ✅ Custom "on" color
-            // offColor="bg-black border-red-500" // ✅ Custom "off" color
+            onColor="blue" // ✅ Custom "on" color
+            offColor="yellow" // ✅ Custom "off" color
+          />
+          <Switch
+            id="terms-switch"
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
+            size="medium"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
+            disabled={false}
+            onColor="red" // ✅ Custom "on" color
+            offColor="gray" // ✅ Custom "off" color
+          />
+          <Switch
+            id="terms-switch"
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
+            size="small"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
+            disabled={false}
+            onColor="green" // ✅ Custom "on" color
+            offColor="blue" // ✅ Custom "off" color
+          />
+        </div>
+      </div>
+
+      {/* Radio */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Radio</h2>
+        <div className="flex flex-col space-y-5">
+          <RadioGroup
+            name="preferences"
+            checkedValue={radioSelected}
+            onChange={setRadioSelected}
+            options={[
+              { id: "r1", value: "default", label: "Default" },
+              { id: "r2", value: "comfortable", label: "Comfortable" },
+              { id: "r3", value: "compact", label: "Compact" },
+            ]}
+            size="medium"
+            onColor="blue"
+            offColor="gray"
+          />
+        </div>
+      </div>
+
+      {/* Textarea */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Textarea</h2>
+        <div className="flex flex-col space-y-5 w-[350px]">
+          <Textarea
+            value={text}
+            onChange={setText}
+            rows={2}
+            placeholder="Type your message..."
+            className="flex w-full bg-gray-800 text-blue-500 border border-stone-200 text-sm py-2 px-2.5  hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none rounded-lg "
+          />
+        </div>
+      </div>
+
+      {/* Tab */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Tab</h2>
+        <div className="flex flex-col space-y-5 w-[350px]">
+          <Tabs
+            tabs={myTabs}
+            variant="underlined"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
           />
         </div>
       </div>
