@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from "react";
+import React, { useEffect, useRef, useState, type ReactNode } from "react";
 
 type TabItem = {
   id: string;
@@ -11,7 +11,11 @@ type TabsProps = {
   activeTab?: string; // ✅ Controlled state
   defaultTab?: string; // ✅ Uncontrolled state
   onTabChange?: (tabId: string) => void;
-  variant?: "underlined" | "basic";
+  variant?: "underlined" | "solid";
+  currentTabStyle?: string;
+  inactiveTabStyle?: string;
+  underlineStyle?: string;
+  solidStyle?: string;
   className?: string;
 };
 
@@ -20,45 +24,64 @@ const Tabs: React.FC<TabsProps> = ({
   activeTab,
   defaultTab,
   onTabChange,
-  variant = "underlined",
+  variant = "solid",
   className,
+  currentTabStyle,
+  inactiveTabStyle,
+  underlineStyle,
+  solidStyle,
 }) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab ?? tabs[0]?.id);
 
   const currentTab = activeTab ?? selectedTab; // ✅ Use activeTab if provided
+
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]); // ✅ Store tab button refs
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
 
   const handleTabClick = (tabId: string) => {
     if (!activeTab) setSelectedTab(tabId); // ✅ Update state only if uncontrolled
     onTabChange?.(tabId);
   };
 
+  useEffect(() => {
+    const activeTabIndex = tabs.findIndex((tab) => tab.id === currentTab);
+    const activeTabElement = tabRefs.current[activeTabIndex];
+
+    if (activeTabElement && indicatorRef.current) {
+      const { offsetLeft, offsetWidth, offsetHeight } = activeTabElement;
+
+      indicatorRef.current.style.transform = `translateX(${offsetLeft}px)`;
+      indicatorRef.current.style.width = `${offsetWidth}px`; // ✅ Matches active tab width
+      indicatorRef.current.style.height = `${offsetHeight}px`;
+    }
+  }, [currentTab, tabs]);
+
   return (
     <div className="relative tab-group">
       {/* Tab Headers */}
-      <div
-        className={`flex ${
-          variant === "underlined"
-            ? "border-b border-stone-200"
-            : "bg-stone-100 p-0.5 rounded-lg"
-        } relative`}
-        role="tablist"
-      >
-        <div
-          className={`absolute ${
-            variant === "underlined"
-              ? "bottom-0 h-0.5 bg-stone-800"
-              : "top-1 left-0.5 h-8 bg-white rounded-md shadow-sm"
-          } transition-transform duration-300 transform scale-x-0 translate-x-0 tab-indicator`}
-        ></div>
+      <div className={`flex ${className} relative`} role="tablist">
+        {/* ✅ Animated Tab Indicator */}
+        {variant === "underlined" ? (
+          <div
+            ref={indicatorRef}
+            className={`absolute bottom-0 !h-[2px] transition-all duration-300 ${underlineStyle}`}
+          />
+        ) : (
+          <div
+            ref={indicatorRef}
+            className={`absolute bottom-0 h-full transition-all duration-300 z-10 ${solidStyle}`}
+          />
+        )}
 
-        {tabs.map(({ id, label }) => (
+        {tabs.map(({ id, label }, index) => (
           <button
             key={id}
+            ref={(el) => {
+              tabRefs.current[index] = el; // ✅ Assign without returning anything
+            }}
             onClick={() => handleTabClick(id)}
-            className={`text-sm inline-block py-2 px-4 ${
-              currentTab === id
-                ? "text-blue-500 font-semibold"
-                : "text-stone-500 hover:text-stone-800"
+            className={`text-sm inline-block py-2 px-4 z-20 ${
+              currentTab === id ? `${currentTabStyle}` : `${inactiveTabStyle}`
             } transition-colors duration-300`}
           >
             {label} {/* ✅ Accepts text or icons */}
@@ -71,9 +94,7 @@ const Tabs: React.FC<TabsProps> = ({
         {tabs.map(({ id, content }) => (
           <div
             key={id}
-            className={`tab-content text-stone-500 text-sm ${
-              currentTab === id ? "block" : "hidden"
-            }`}
+            className={`tab-content  ${currentTab === id ? "block" : "hidden"}`}
           >
             {content}
           </div>

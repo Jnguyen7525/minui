@@ -3,6 +3,7 @@ import { Accordion, AccordionItem } from "../components/accordion";
 import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 import {
   AlertTriangle,
+  Box,
   CheckCircle,
   ChevronLeft,
   ChevronRight,
@@ -12,7 +13,10 @@ import {
   CreditCard,
   FireExtinguisher,
   Heart,
+  HomeIcon,
   Info,
+  List,
+  Menu,
   Play,
   ShoppingBag,
   ShoppingCart,
@@ -83,6 +87,7 @@ import Switch from "../components/switch";
 import RadioGroup from "../components/radiogroup";
 import Textarea from "../components/textarea";
 import Tabs from "../components/tab";
+import Navbar from "../components/navbar";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -275,21 +280,34 @@ const Home = () => {
     {
       id: "html",
       label: (
-        <>
-          HTML <Code size={16} />
-        </>
+        <div className="flex items-center justify-center space-x-1 hover:cursor-pointer">
+          <span>HTML</span> <Code size={16} />
+        </div>
       ),
       content: <p>HTML Content</p>,
     },
     {
       id: "react",
       label: (
-        <>
-          React <FireExtinguisher size={16} />
-        </>
+        <div className="flex items-center justify-center space-x-1 hover:cursor-pointer">
+          <span>React</span> <FireExtinguisher size={16} />
+        </div>
       ),
       content: <p>React Content</p>,
     },
+  ];
+
+  const navbarItems = [
+    { label: "Home", href: "/", icon: <HomeIcon size={20} /> },
+    {
+      label: "Categories",
+      icon: <List size={20} />,
+      submenu: [
+        { label: "Technology", href: "/category/technology" },
+        { label: "Science", href: "/category/science" },
+      ],
+    },
+    { label: "Products", href: "/products", icon: <Box size={20} /> },
   ];
 
   return (
@@ -2004,6 +2022,44 @@ const Home = () => {
             variant="underlined"
             activeTab={selectedTab} // ✅ Controlled tab state
             onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex"
+            underlineStyle="bg-blue-500"
+          />
+
+          <Tabs
+            tabs={myTabs}
+            variant="solid"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex"
+            solidStyle="bg-gray-800 rounded-lg border"
+          />
+
+          <Tabs
+            tabs={myTabs}
+            variant="solid"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex border rounded-lg p-2"
+            solidStyle="bg-gray-800 rounded-lg border my-2 -mx-2"
+          />
+        </div>
+      </div>
+
+      {/* Navbar */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Navbar</h2>
+        <div className="flex flex-col space-y-5 =">
+          <Navbar
+            items={navbarItems}
+            logo={<Menu size={24} />}
+            className="border-b"
           />
         </div>
       </div>
