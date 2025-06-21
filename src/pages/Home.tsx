@@ -88,6 +88,7 @@ import RadioGroup from "../components/radiogroup";
 import Textarea from "../components/textarea";
 import Tabs from "../components/tab";
 import Navbar from "../components/navbar";
+import Sidebar from "../components/sidebar";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -2059,8 +2060,21 @@ const Home = () => {
           <Navbar
             items={navbarItems}
             logo={<Menu size={24} />}
-            className="border-b"
+            className="space-x-5"
+            navbarItemClassName="hover:opacity-50"
+            submenuClassName="bg-black flex flex-col items-start space-y-2 mt-2 p-4 border rounded-md"
+            subMenuItemClassName="hover:opacity-50"
           />
+        </div>
+      </div>
+
+      {/* Sidebar */}
+      <div className="p-5 rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Sidebar</h2>
+        <div className="w-full h-full grid grid-cols-[min-content_auto] grid-rows-[5fr_1fr] bg-black border">
+          <Sidebar />
+          <div className="bg-red-500 ">Main Content</div>
+          <div className="bg-yellow-500 col-span-2">Player</div>
         </div>
       </div>
     </div>

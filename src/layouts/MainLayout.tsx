@@ -89,6 +89,7 @@ function Sidebar() {
         "Textarea",
         "Tab",
         "Navbar",
+        "Sidebar",
       ].map((component) => (
         <button
           key={component}
