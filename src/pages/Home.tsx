@@ -3,6 +3,7 @@ import { Accordion, AccordionItem } from "../components/accordion";
 import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 import {
   AlertTriangle,
+  Archive,
   Box,
   CheckCircle,
   ChevronLeft,
@@ -11,20 +12,26 @@ import {
   Circle,
   Code,
   CreditCard,
+  FileText,
   FireExtinguisher,
   Heart,
   HomeIcon,
+  Inbox,
   Info,
   List,
   Menu,
+  Pencil,
   Play,
+  Send,
   ShoppingBag,
   ShoppingCart,
   SkipBack,
   SkipForward,
   Star,
+  Trash2,
   Truck,
   User,
+  X,
   XCircle,
 } from "lucide-react";
 import Button from "../components/button";
@@ -310,6 +317,8 @@ const Home = () => {
     },
     { label: "Products", href: "/products", icon: <Box size={20} /> },
   ];
+
+  const [openSidebar, setOpenSidebar] = useState(true);
 
   return (
     <div
@@ -2069,12 +2078,109 @@ const Home = () => {
       </div>
 
       {/* Sidebar */}
-      <div className="p-5 rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Sidebar</h2>
-        <div className="w-full h-full grid grid-cols-[min-content_auto] grid-rows-[5fr_1fr] bg-black border">
-          <Sidebar />
-          <div className="bg-red-500 ">Main Content</div>
-          <div className="bg-yellow-500 col-span-2">Player</div>
+        <div className="w-full h-full grid grid-cols-[min-content_auto]  bg-black border">
+          {/* <Sidebar /> */}
+          <Sidebar
+            isOpen={openSidebar}
+            onOpenChange={setOpenSidebar}
+            minWidth={280}
+            maxWidth={480}
+            defaultWidth={360}
+            trigger={
+              <div className="flex h-full items-center justify-center w-full">
+                {openSidebar ? (
+                  <X
+                    size={28}
+                    className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
+                  />
+                ) : (
+                  <button className="flex items-center justify-center w-[130px] cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-lg border py-1 px-2 ml-5">
+                    Toggle Sidebar
+                  </button>
+                )}
+              </div>
+            }
+          >
+            <div className="w-full h-full flex flex-col border shadow-sm overflow-hidden">
+              <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
+                <p className="font-sans antialiased text-base text-current font-semibold">
+                  Sidebar
+                </p>
+              </div>
+
+              <div className="w-full h-max rounded p-3">
+                <ul className="flex flex-col gap-0.5 min-w-60">
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Inbox size={18} />
+                    </span>
+                    Inbox
+                    <span className="grid place-items-center shrink-0 ps-2.5 ms-auto">
+                      <div className="relative inline-flex items-center border font-sans font-medium rounded-md text-xs px-2 py-0.5 bg-stone-800/10 border-transparent text-stone-500 shadow-none">
+                        14
+                      </div>
+                    </span>
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Send size={18} />
+                    </span>
+                    Sent
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <FileText size={18} />
+                    </span>
+                    Drafts
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Pencil size={18} />
+                    </span>
+                    Pins
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Archive size={18} />
+                    </span>
+                    Archive
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Trash2 size={18} />
+                    </span>
+                    Trash
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Sidebar>
+
+          <div className="p-5 ">
+            <h1>Main Content</h1>
+            <div className="flex flex-col space-y-4 w-full h-full ">
+              <Placeholder
+                width="w-full"
+                height="h-3/5"
+                rounded="rounded-lg"
+                color="bg-purple-300"
+              />
+
+              <Placeholder
+                width="w-full"
+                height="h-1/5"
+                rounded="rounded-lg"
+                color="bg-blue-300"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

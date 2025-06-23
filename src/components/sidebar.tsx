@@ -223,86 +223,154 @@
 //   );
 // }
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
-const [minWidth, maxWidth, defaultWidth] = [200, 500, 350];
+// const [minWidth, maxWidth, defaultWidth] = [200, 500, 350];
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+interface SidebarProps {
+  children?: React.ReactNode;
+  trigger?: React.ReactNode;
+  minWidth?: number;
+  maxWidth?: number;
+  defaultWidth?: number;
+  isOpen?: boolean; // controlled state (optional)
+  onOpenChange?: (open: boolean) => void; // handler to update state
+}
+
+export default function Sidebar({
+  children,
+  trigger,
+  minWidth = 200,
+  maxWidth = 500,
+  defaultWidth = 350,
+  isOpen: externalIsOpen,
+  onOpenChange,
+}: SidebarProps) {
+  const [internalOpen, setInternalOpen] = useState(true);
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalOpen;
+
+  //   const [isOpen, setIsOpen] = useState(true);
   const [width, setWidth] = useState(() => {
     const stored = localStorage.getItem("sidebarWidth");
     return stored ? parseInt(stored) : defaultWidth;
   });
 
   const widthRef = useRef(width);
-  const isResized = useRef(false);
+  const isResizing = useRef(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const toggleSidebar = () => setIsOpen((prev) => !prev);
+  const setOpen = (value: boolean) => {
+    if (onOpenChange) onOpenChange(value);
+    else setInternalOpen(value);
+  };
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isResized.current) return;
+  const toggleSidebar = () => {
+    const willOpen = !isOpen;
+    setOpen(willOpen);
 
-      const newWidth = widthRef.current + e.movementX / 2;
-      const clampedWidth = Math.min(maxWidth, Math.max(minWidth, newWidth));
+    const targetWidth = willOpen ? widthRef.current : 0;
+    setWidth(targetWidth);
 
-      widthRef.current = clampedWidth;
+    if (sidebarRef.current) {
+      sidebarRef.current.style.width = `${targetWidth}px`;
+    }
+
+    widthRef.current = minWidth;
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isResizing.current || !sidebarRef.current) return;
+
+    let nextWidth = widthRef.current + e.movementX;
+
+    if (nextWidth <= minWidth - 10) {
+      // Auto-close if dragged too far left
+      isResizing.current = false;
+      setOpen(false);
+      setWidth(0);
+      widthRef.current = minWidth;
 
       if (sidebarRef.current) {
-        sidebarRef.current.style.width = `${clampedWidth / 16}rem`;
+        sidebarRef.current.style.width = `0px`;
       }
-    };
 
-    const handleMouseUp = () => {
-      if (isResized.current) {
-        isResized.current = false;
-        setWidth(widthRef.current);
-        localStorage.setItem("sidebarWidth", widthRef.current.toString());
-      }
-    };
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      return;
+    }
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
+    const clamped = Math.min(maxWidth, Math.max(minWidth, nextWidth));
+    widthRef.current = clamped;
+    if (sidebarRef.current) {
+      sidebarRef.current.style.width = `${clamped}px`;
+    }
+  };
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, []);
+  const handleMouseUp = () => {
+    if (isResizing.current) {
+      isResizing.current = false;
+      setWidth(widthRef.current);
+      localStorage.setItem("sidebarWidth", widthRef.current.toString());
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    }
+  };
+
+  const handleMouseDown = () => {
+    isResizing.current = true;
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
 
   return (
-    <div className="flex relative">
-      {/* Sidebar */}
+    <div className="flex  relative">
       <div
         ref={sidebarRef}
-        className={`bg-neutral-700 transition-all duration-300 overflow-hidden ${
-          isOpen ? "border-r" : ""
+        className={` overflow-hidden ${
+          !isResizing.current
+            ? " transition-all duration-300 ease-in-out"
+            : "transition-transform duration-200 ease-in-out"
         }`}
         style={{
-          width: isOpen ? `${width / 16}rem` : "0rem",
+          width: `${width}px`,
+          transform: isOpen ? "translateX(0)" : `translateX(-${width}px)`,
+          opacity: isOpen ? 1 : 0,
+          willChange: "transform, width, opacity",
+          position: "relative",
         }}
       >
-        {isOpen && <div className="p-4 text-white">Sidebar</div>}
+        {/* <div className="p-4">Sidebar</div> */}
+        <div className="flex h-full w-full">{children}</div>
       </div>
 
-      {/* Resize Handle */}
       {isOpen && (
         <div
-          className="w-2 cursor-col-resize"
-          onMouseDown={() => {
-            isResized.current = true;
+          className="w-2 cursor-col-resize "
+          onMouseDown={(e) => {
+            e.preventDefault(); // <--- important! This prevents the browser from initiating unintended behaviors like drag selection or content highlighting, especially on overlapping elements.
+            handleMouseDown();
           }}
         />
       )}
 
-      {/* Toggle Button */}
-      <button
-        className="absolute top-2 left-2 z-10 bg-gray-200 hover:bg-gray-300 text-black px-2 py-1 rounded shadow"
+      {/* <button
         onClick={toggleSidebar}
+        className="absolute top-2 left-2 z-10 bg-gray-200 hover:bg-gray-300 text-black px-2 py-1 rounded shadow"
       >
         {isOpen ? "Close" : "Open"}
-      </button>
+      </button> */}
+      {trigger ? (
+        <div className=" " onClick={toggleSidebar}>
+          {trigger}
+        </div>
+      ) : (
+        <button
+          onClick={toggleSidebar}
+          className="absolute top-2 left-2 z-10 bg-gray-200 hover:bg-gray-300 text-black px-2 py-1 rounded shadow"
+        >
+          {isOpen ? "Close" : "Open"}
+        </button>
+      )}
     </div>
   );
 }
