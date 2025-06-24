@@ -691,7 +691,7 @@ export function ResizablePanel({
   return (
     <div
       ref={ref}
-      className="overflow-hidden relative shrink-0"
+      className="overflow-hidden relative  grow"
       style={{ width: "100%", height: "100%" }}
     >
       {children}
@@ -762,7 +762,7 @@ export function ResizableHandle({ index }: { index: number }) {
   return (
     <div
       className={`${
-        isHorizontal ? "w-1 cursor-col-resize" : "h-1 cursor-row-resize"
+        isHorizontal ? "w-1 cursor-ew-resize" : "h-1 cursor-ns-resize"
       } bg-gray-300 hover:bg-gray-400 shrink-0 transition-colors`}
       onMouseDown={onMouseDown}
     />
