@@ -96,6 +96,11 @@ import Textarea from "../components/textarea";
 import Tabs from "../components/tab";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "../components/resizable";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -2187,6 +2192,37 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* resizable */}
+      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Resizable</h2>
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="w-full h-screen border"
+        >
+          <ResizablePanel defaultSize={40}>
+            <div className="flex justify-center items-center h-full p-4">
+              Panel One
+            </div>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={60}>
+            <ResizablePanelGroup direction="vertical">
+              <ResizablePanel defaultSize={30}>
+                <div className="flex justify-center items-center h-full p-4">
+                  Nested Panel A
+                </div>
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={70}>
+                <div className="flex justify-center items-center h-full p-4">
+                  Nested Panel B
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );
