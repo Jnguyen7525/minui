@@ -2087,23 +2087,28 @@ const Home = () => {
             onOpenChange={setOpenSidebar}
             minWidth={280}
             maxWidth={480}
-            defaultWidth={360}
+            defaultWidth={350}
+            handleStyle=" border-stone-600 rounded-full border-2"
+            resizable={true}
+            className="w-full "
             trigger={
               <div className="flex h-full items-center justify-center w-full">
                 {openSidebar ? (
-                  <X
-                    size={28}
-                    className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
-                  />
+                  <button>
+                    <X
+                      size={28}
+                      className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:cursor-pointer z-50 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
+                    />
+                  </button>
                 ) : (
-                  <button className="flex items-center justify-center w-[130px] cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-lg border py-1 px-2 ml-5">
+                  <button className="flex flex-col items-center justify-center w-[130px] cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-lg border py-1 px-2 ml-5 mt-5">
                     Toggle Sidebar
                   </button>
                 )}
               </div>
             }
           >
-            <div className="w-full h-full flex flex-col border shadow-sm overflow-hidden">
+            <div className="w-full h-full flex flex-col border-r  overflow-hidden">
               <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
                 <p className="font-sans antialiased text-base text-current font-semibold">
                   Sidebar
@@ -2165,19 +2170,19 @@ const Home = () => {
 
           <div className="p-5 ">
             <h1>Main Content</h1>
-            <div className="flex flex-col space-y-4 w-full h-full ">
+            <div className="flex flex-col space-y-4 w-full h-full mt-5">
               <Placeholder
                 width="w-full"
                 height="h-3/5"
                 rounded="rounded-lg"
-                color="bg-purple-300"
+                color="bg-stone-800"
               />
 
               <Placeholder
                 width="w-full"
                 height="h-1/5"
                 rounded="rounded-lg"
-                color="bg-blue-300"
+                color="bg-stone-800"
               />
             </div>
           </div>
