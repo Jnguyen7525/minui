@@ -2195,9 +2195,9 @@ const Home = () => {
       </div>
 
       {/* resizable */}
-      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Resizable</h2>
-        <ResizablePanelGroup
+      {/* <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Resizable</h2> */}
+      {/* <ResizablePanelGroup
           direction="horizontal"
           className="w-full h-screen border"
         >
@@ -2218,6 +2218,65 @@ const Home = () => {
               <ResizablePanel defaultSize={70}>
                 <div className="flex justify-center items-center h-full p-4">
                   Nested Panel B
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+        </ResizablePanelGroup> */}
+
+      {/* <ResizablePanelGroup
+          direction="horizontal"
+          className="w-full h-screen border"
+        >
+          <ResizablePanel index={0}>
+            <div className="h-full flex items-center justify-center  p-6">
+              Left
+            </div>
+          </ResizablePanel>
+          <ResizableHandle index={0} />
+          <ResizablePanel index={1}>
+            <ResizablePanelGroup direction="vertical">
+              <ResizablePanel index={0}>
+                <div className="h-full w-full flex items-center justify-center  p-6">
+                  Top Right
+                </div>
+              </ResizablePanel>
+              <ResizableHandle index={0} />
+              <ResizablePanel index={1}>
+                <div className="h-full w-full flex items-center justify-center  p-6">
+                  Bottom Right
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+        </ResizablePanelGroup> */}
+      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Resizable</h2>
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="w-full h-screen border"
+          storageKey="my-layout"
+        >
+          <ResizablePanel index={0}>
+            <div className="flex justify-center items-center h-full p-6">
+              Panel 1
+            </div>
+          </ResizablePanel>
+          <ResizableHandle index={0} />
+          <ResizablePanel index={1}>
+            <ResizablePanelGroup
+              direction="vertical"
+              storageKey="nested-layout"
+            >
+              <ResizablePanel index={0}>
+                <div className="flex justify-center items-center h-full p-6">
+                  Panel 2
+                </div>
+              </ResizablePanel>
+              <ResizableHandle index={0} />
+              <ResizablePanel index={1}>
+                <div className="flex justify-center items-center h-full p-6">
+                  Panel 3
                 </div>
               </ResizablePanel>
             </ResizablePanelGroup>
