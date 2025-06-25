@@ -101,6 +101,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "../components/resizable";
+import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -2239,6 +2240,26 @@ const Home = () => {
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
+      </div>
+
+      {/* resizable grid */}
+      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Resizable Grid</h2>
+
+        <ResizableGridProvider rows={2} cols={2}>
+          <GridPanel row={0} col={0}>
+            Top Left
+          </GridPanel>
+          <GridPanel row={0} col={1}>
+            Top Right
+          </GridPanel>
+          <GridPanel row={1} col={0}>
+            Bottom Left
+          </GridPanel>
+          <GridPanel row={1} col={1}>
+            Bottom Right
+          </GridPanel>
+        </ResizableGridProvider>
       </div>
     </div>
   );
