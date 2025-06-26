@@ -2245,7 +2245,7 @@ const Home = () => {
       {/* resizable grid */}
       <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Resizable Grid</h2>
-        <div className="flex w-full h-full">
+        <div className="flex w-full h-full relative">
           <ResizableGridProvider rows={2} cols={2}>
             <GridPanel row={0} col={0}>
               Top Left
