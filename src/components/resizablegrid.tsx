@@ -1027,8 +1027,6 @@ export function GridPanel({
       ref={ref}
       className="relative overflow-hidden border border-gray-300"
       style={{
-        // gridRow: row + 1,
-        // gridColumn: col + 1,
         gridRow: `${row + 1} / span ${rowSpan}`,
         gridColumn: `${col + 1} / span ${colSpan}`,
       }}

@@ -102,6 +102,7 @@ import {
   ResizablePanelGroup,
 } from "../components/resizable";
 import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
+import { Pagination } from "../components/pagination";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -325,6 +326,9 @@ const Home = () => {
   ];
 
   const [openSidebar, setOpenSidebar] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(7);
+  const totalPages = 12; // Set this based on your data
 
   return (
     <div
@@ -2317,6 +2321,57 @@ const Home = () => {
               </ResizablePanelGroup>
             </GridPanel>
           </ResizableGridProvider>
+        </div>
+      </div>
+
+      {/* pagination */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Pagination</h2>
+
+        {/* Mock Page Content Display */}
+        <div className=" text-white mt-6 p-6 rounded-md ">
+          <p className="">
+            📄 You are currently viewing content for{" "}
+            <strong>Page {currentPage}</strong>.
+          </p>
+        </div>
+
+        <div className=" mx-auto py-10 px-4">
+          <Pagination
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
+            activePageClassName="text-white border"
+            disabledPageClassName="opacity-20 pointer-events-none"
+            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
+            visiblePages={2} // show 2 page buttons on each side of current
+            // other props...
+
+            renderPrev={() => (
+              <span className="flex items-center gap-1">
+                <ChevronLeft /> <span>Prev</span>
+              </span>
+            )}
+            renderNext={() => (
+              <span className="flex items-center gap-1">
+                <span>Next</span> <ChevronRight />
+              </span>
+            )}
+            renderFirst={() => (
+              <div className="flex items-center justify-center -space-x-4">
+                <ChevronLeft />
+                <ChevronLeft />
+              </div>
+            )}
+            renderLast={() => (
+              <div className="flex items-center justify-center -space-x-4">
+                <ChevronRight />
+                <ChevronRight />
+              </div>
+            )}
+            renderPage={(page) => <span>{page}</span>}
+          />
         </div>
       </div>
     </div>

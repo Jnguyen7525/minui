@@ -187,6 +187,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 "Sidebar",
                 "Resizable",
                 "Resizable Grid",
+                "Pagination",
               ].map((component) => (
                 <button
                   key={component}
