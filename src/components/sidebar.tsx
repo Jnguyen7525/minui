@@ -29,7 +29,7 @@ export default function Sidebar({
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalOpen;
 
   const [width, setWidth] = useState(() => {
-    const stored = localStorage.getItem("sidebarWidth");
+    const stored = sessionStorage.getItem("sidebarWidth");
     return stored ? parseInt(stored) : defaultWidth;
   });
 
@@ -93,7 +93,7 @@ export default function Sidebar({
     if (isResizing.current) {
       isResizing.current = false;
       setWidth(widthRef.current);
-      localStorage.setItem("sidebarWidth", widthRef.current.toString());
+      sessionStorage.setItem("sidebarWidth", widthRef.current.toString());
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     }

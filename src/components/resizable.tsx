@@ -36,7 +36,7 @@ export function ResizablePanelGroup({
   useLayoutEffect(() => {
     if (!storageKey) return;
     try {
-      const saved = localStorage.getItem(storageKey);
+      const saved = sessionStorage.getItem(storageKey);
       if (!saved) return;
       const sizes = JSON.parse(saved) as number[];
       sizes.forEach((size, i) => {
@@ -63,7 +63,7 @@ export function ResizablePanelGroup({
         direction === "horizontal" ? el.offsetWidth : el.offsetHeight;
       return Number(((elSize / parentSize) * 100).toFixed(2));
     });
-    localStorage.setItem(storageKey, JSON.stringify(sizes));
+    sessionStorage.setItem(storageKey, JSON.stringify(sizes));
   };
 
   return (

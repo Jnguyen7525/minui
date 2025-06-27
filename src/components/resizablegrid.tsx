@@ -686,6 +686,7 @@ interface GridContextType {
   >;
   setColSizes: React.Dispatch<React.SetStateAction<number[]>>;
   setRowSizes: React.Dispatch<React.SetStateAction<number[]>>;
+  saveLayout: () => void;
 }
 
 const GridContext = createContext<GridContextType | null>(null);
@@ -706,39 +707,108 @@ export function ResizableGridProvider({
 }: {
   rows: number;
   cols: number;
-  children: ReactNode;
+  children: React.ReactNode;
   gridResizable?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [rowSizes, setRowSizes] = useState(() => Array(rows).fill(150));
-  const [colSizes, setColSizes] = useState(() => Array(cols).fill(150));
-  const [gridSize, setGridSize] = useState({ width: 300, height: 300 });
-  const [gridPosition, setGridPosition] = useState({ top: 0, left: 0 });
 
-  const panelRefs = useRef<Record<string, HTMLDivElement>>({});
+  const saved =
+    typeof window !== "undefined"
+      ? sessionStorage.getItem("resizable-grid-layout")
+      : null;
 
-  const register = (row: number, col: number, ref: HTMLDivElement) => {
-    panelRefs.current[`${row},${col}`] = ref;
+  const parsed = saved ? JSON.parse(saved) : null;
+
+  const [gridSize, setGridSize] = useState(() =>
+    parsed?.width && parsed?.height
+      ? { width: parsed.width, height: parsed.height }
+      : { width: 300, height: 300 }
+  );
+
+  const [gridPosition, setGridPosition] = useState(() =>
+    typeof parsed?.top === "number" && typeof parsed?.left === "number"
+      ? { top: parsed.top, left: parsed.left }
+      : { top: 0, left: 0 }
+  );
+
+  const [colSizes, setColSizes] = useState(() => {
+    if (Array.isArray(parsed?.colSizes) && parsed?.width) {
+      return parsed.colSizes.map((p: number) => p * parsed.width);
+    }
+    return Array(cols).fill(150);
+  });
+
+  const [rowSizes, setRowSizes] = useState(() => {
+    if (Array.isArray(parsed?.rowSizes) && parsed?.height) {
+      return parsed.rowSizes.map((p: number) => p * parsed.height);
+    }
+    return Array(rows).fill(150);
+  });
+
+  const saveLayout = () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const totalWidth = colSizes.reduce(
+      (sum: number, size: number) => sum + size,
+      0
+    );
+    const totalHeight = rowSizes.reduce(
+      (sum: number, size: number) => sum + size,
+      0
+    );
+
+    const percentCols = colSizes.map(
+      (px: number) => +(px / totalWidth).toFixed(6)
+    );
+    const percentRows = rowSizes.map(
+      (px: number) => +(px / totalHeight).toFixed(6)
+    );
+
+    const rect = container.getBoundingClientRect();
+    const data = {
+      width: rect.width,
+      height: rect.height,
+      top: container.offsetTop,
+      left: container.offsetLeft,
+      rowSizes: percentRows,
+      colSizes: percentCols,
+    };
+
+    sessionStorage.setItem("resizable-grid-layout", JSON.stringify(data));
   };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    saveLayout();
+  }, [rowSizes, colSizes]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
     const parent = container?.parentElement;
     if (!container || !parent) return;
 
-    const width = parent.offsetWidth;
-    const height = parent.offsetHeight;
+    // Fallback init only if nothing was restored
+    if (!parsed) {
+      const isValidLayout =
+        parsed &&
+        Array.isArray(parsed.colSizes) &&
+        Array.isArray(parsed.rowSizes) &&
+        typeof parsed.width === "number" &&
+        typeof parsed.height === "number";
 
-    setColSizes(Array(cols).fill(width / cols));
-    setRowSizes(Array(rows).fill(height / rows));
-
-    if (gridResizable) {
-      setGridSize({ width, height });
-      setGridPosition({ top: 0, left: 0 });
+      if (!isValidLayout) {
+        const width = parent.offsetWidth;
+        const height = parent.offsetHeight;
+        setColSizes(Array(cols).fill(width / cols));
+        setRowSizes(Array(rows).fill(height / rows));
+        setGridSize({ width, height });
+        setGridPosition({ top: 0, left: 0 });
+      }
     }
-  }, [rows, cols, gridResizable]);
+  }, [cols, rows, parsed]);
 
-  const clampPair = (a: number, b: number, delta: number, min = 30) => {
+  const clampPair = (a: number, b: number, delta: number, min = 0.01) => {
     const total = a + b;
     let nextA = Math.max(min, a + delta);
     let nextB = total - nextA;
@@ -750,7 +820,7 @@ export function ResizableGridProvider({
   };
 
   const updateSize = (row: number, col: number, dx: number, dy: number) => {
-    setColSizes((prev) => {
+    setColSizes((prev: number[]) => {
       const left = prev[col];
       const right = prev[col + 1];
       if (left == null || right == null) return prev;
@@ -763,7 +833,7 @@ export function ResizableGridProvider({
       ];
     });
 
-    setRowSizes((prev) => {
+    setRowSizes((prev: number[]) => {
       const top = prev[row];
       const bottom = prev[row + 1];
       if (top == null || bottom == null) return prev;
@@ -775,6 +845,11 @@ export function ResizableGridProvider({
         ...prev.slice(row + 2),
       ];
     });
+  };
+
+  const panelRefs = useRef<Record<string, HTMLDivElement>>({});
+  const register = (row: number, col: number, ref: HTMLDivElement) => {
+    panelRefs.current[`${row},${col}`] = ref;
   };
 
   return (
@@ -794,6 +869,7 @@ export function ResizableGridProvider({
         setRowSizes,
         gridPosition,
         setGridPosition,
+        saveLayout,
       }}
     >
       <div
@@ -804,8 +880,8 @@ export function ResizableGridProvider({
           left: `${gridPosition.left}px`,
           width: `${gridSize.width}px`,
           height: `${gridSize.height}px`,
-          gridTemplateRows: rowSizes.map((r) => `${r}px`).join(" "),
-          gridTemplateColumns: colSizes.map((c) => `${c}px`).join(" "),
+          gridTemplateRows: rowSizes.map((r: number) => `${r}px`).join(" "),
+          gridTemplateColumns: colSizes.map((c: number) => `${c}px`).join(" "),
         }}
       >
         {children}
@@ -822,7 +898,7 @@ export function ResizableGridProvider({
   );
 }
 
-// ==== Grid-Level Corner Resizer ====
+// ==== Corner Resizer ====
 
 function GridCornerResizer({
   direction,
@@ -839,20 +915,19 @@ function GridCornerResizer({
     setRowSizes,
     colSizes,
     rowSizes,
+    saveLayout,
   } = useResizableGrid();
 
   const isTop = direction.includes("top");
   const isLeft = direction.includes("left");
   const isDiagonalNWSE =
     direction === "top-left" || direction === "bottom-right";
-
   const positionClass = {
     "top-left": "top-0 left-0",
     "top-right": "top-0 right-0",
     "bottom-left": "bottom-0 left-0",
     "bottom-right": "bottom-0 right-0",
   }[direction];
-
   const cursorClass = isDiagonalNWSE
     ? "cursor-nwse-resize"
     : "cursor-nesw-resize";
@@ -863,9 +938,9 @@ function GridCornerResizer({
     if (!parent) return;
 
     const parentRect = parent.getBoundingClientRect();
-
     let lastX = e.clientX;
     let lastY = e.clientY;
+
     const initialWidth = gridSize.width;
     const initialHeight = gridSize.height;
     const initialLeft = gridPosition.left;
@@ -883,9 +958,8 @@ function GridCornerResizer({
       let newLeft = isLeft ? initialLeft + totalDX : initialLeft;
       let newTop = isTop ? initialTop + totalDY : initialTop;
 
-      // Clamp left/top to non-negative
-      newLeft = Math.max(0, newLeft);
-      newTop = Math.max(0, newTop);
+      newLeft = Math.max(0, Math.min(newLeft, parentRect.width - 0.01));
+      newTop = Math.max(0, Math.min(newTop, parentRect.height - 0.01));
 
       let newWidth = initialWidth + (isLeft ? -totalDX : totalDX);
       let newHeight = initialHeight + (isTop ? -totalDY : totalDY);
@@ -895,17 +969,6 @@ function GridCornerResizer({
 
       newWidth = Math.min(Math.max(100, newWidth), maxWidth);
       newHeight = Math.min(Math.max(100, newHeight), maxHeight);
-
-      // Clamp size
-      newWidth = Math.max(100, Math.min(newWidth, parentRect.width - newLeft));
-      newHeight = Math.max(
-        100,
-        Math.min(newHeight, parentRect.height - newTop)
-      );
-
-      // Clamp position
-      newLeft = Math.max(0, Math.min(newLeft, parentRect.width - newWidth));
-      newTop = Math.max(0, Math.min(newTop, parentRect.height - newHeight));
 
       setGridPosition({ top: newTop, left: newLeft });
       setGridSize({ width: newWidth, height: newHeight });
@@ -917,6 +980,7 @@ function GridCornerResizer({
     };
 
     const onMouseUp = () => {
+      saveLayout(); // 💾 Persist layout on drag end
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
     };
@@ -933,14 +997,17 @@ function GridCornerResizer({
   );
 }
 
-// ==== GridPanel and CornerResizer remain unchanged (already functioning correctly) ====
 export function GridPanel({
   row,
   col,
+  rowSpan = 1,
+  colSpan = 1,
   children,
 }: {
   row: number;
   col: number;
+  rowSpan?: number;
+  colSpan?: number;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -960,8 +1027,10 @@ export function GridPanel({
       ref={ref}
       className="relative overflow-hidden border border-gray-300"
       style={{
-        gridRow: row + 1,
-        gridColumn: col + 1,
+        // gridRow: row + 1,
+        // gridColumn: col + 1,
+        gridRow: `${row + 1} / span ${rowSpan}`,
+        gridColumn: `${col + 1} / span ${colSpan}`,
       }}
     >
       <div className="w-full h-full">{children}</div>

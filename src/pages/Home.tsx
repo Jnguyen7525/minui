@@ -2243,21 +2243,78 @@ const Home = () => {
       </div>
 
       {/* resizable grid */}
-      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+      <div className="rounded-lg text-center h-[800px] w-full border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Resizable Grid</h2>
         <div className="flex w-full h-full relative">
-          <ResizableGridProvider rows={2} cols={2}>
-            <GridPanel row={0} col={0}>
-              Top Left
+          <ResizableGridProvider rows={4} cols={3}>
+            <GridPanel row={0} col={0} colSpan={2} rowSpan={2}>
+              <div className="flex w-full h-full relative">
+                <ResizableGridProvider rows={2} cols={2}>
+                  <GridPanel row={0} col={0}>
+                    Top Left
+                  </GridPanel>
+                  <GridPanel row={0} col={1}>
+                    Top Right
+                  </GridPanel>
+                  <GridPanel row={1} col={0}>
+                    Bottom Left
+                  </GridPanel>
+                  <GridPanel row={1} col={1}>
+                    Bottom Right
+                  </GridPanel>
+                </ResizableGridProvider>
+              </div>
             </GridPanel>
-            <GridPanel row={0} col={1}>
-              Top Right
+
+            <GridPanel row={0} col={2}>
+              right top
             </GridPanel>
-            <GridPanel row={1} col={0}>
-              Bottom Left
+            <GridPanel row={1} col={2}>
+              right bottom
             </GridPanel>
-            <GridPanel row={1} col={1}>
-              Bottom Right
+
+            <GridPanel row={2} col={0} colSpan={3} rowSpan={2}>
+              <ResizablePanelGroup
+                direction="vertical"
+                className="w-full  border rounded-md"
+                storageKey="my-layout"
+              >
+                {/* Header */}
+                <ResizablePanel index={0}>
+                  <div className="flex justify-center items-center h-full p-6 ">
+                    Header
+                  </div>
+                </ResizablePanel>
+                <ResizableHandle index={0} />
+
+                {/* Body */}
+                <ResizablePanel index={1}>
+                  <ResizablePanelGroup
+                    direction="horizontal"
+                    storageKey="nested-layout"
+                  >
+                    <ResizablePanel index={0}>
+                      <div className="flex justify-center items-center w-full h-full p-6 ">
+                        Sidebar
+                      </div>
+                    </ResizablePanel>
+                    <ResizableHandle index={0} />
+                    <ResizablePanel index={1}>
+                      <div className="flex justify-center items-center w-full h-full p-6 ">
+                        Main Content
+                      </div>
+                    </ResizablePanel>
+                  </ResizablePanelGroup>
+                </ResizablePanel>
+                <ResizableHandle index={1} />
+
+                {/* Footer */}
+                <ResizablePanel index={2}>
+                  <div className="flex justify-center items-center h-full p-6">
+                    Footer
+                  </div>
+                </ResizablePanel>
+              </ResizablePanelGroup>
             </GridPanel>
           </ResizableGridProvider>
         </div>
