@@ -105,7 +105,7 @@ import {
 import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
 import { Pagination } from "../components/pagination";
 import { useSearchParams } from "react-router-dom";
-import { Timeline, type TimelineItem } from "../components/timeline";
+import { Timeline } from "../components/timeline";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -354,7 +354,7 @@ const Home = () => {
     setParams(params);
   };
 
-  const events: TimelineItem[] = [
+  const events = [
     {
       id: 1,
       title: "First Step",
@@ -2491,7 +2491,7 @@ const Home = () => {
         <div className=" flex items-center justify-between">
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-xl font-bold mb-6">🗓️ Vertical Timeline</h2>
-            <Timeline
+            {/* <Timeline
               items={events}
               withLine // optional: if true, connector line appears
               dotClassName="h-4 w-4 bg-stone-800"
@@ -2510,11 +2510,35 @@ const Home = () => {
                   </small>
                 </div>
               )}
+            /> */}
+            {/* <TimelineNoAbsolute items={events} /> */}
+
+            <Timeline
+              items={events}
+              withLine
+              dotClassName="w-6 h-6 flex items-center justify-center rounded-full bg-stone-600 border-white"
+              lineClassName="bg-green-300"
+              renderIcon={(item) => (
+                <span className="text-white">{item.icon}</span>
+              )}
+              renderContent={(item) => (
+                <>
+                  <p className="text-base font-semibold text-stone-700">
+                    {item.title}
+                  </p>
+                  <small className="text-sm text-stone-500">
+                    {item.timestamp}
+                  </small>
+                  <p className="mt-1 text-sm text-stone-600">
+                    {item.description}
+                  </p>
+                </>
+              )}
             />
           </div>
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-xl font-bold  mb-6">📦 Card Timeline</h2>
-            <Timeline
+            {/* <Timeline
               items={events}
               withLine // optional: if true, connector line appears
               dotClassName="h-4 w-4 bg-stone-800"
@@ -2531,7 +2555,7 @@ const Home = () => {
                   </small>
                 </>
               )}
-            />
+            /> */}
           </div>
         </div>
       </div>
