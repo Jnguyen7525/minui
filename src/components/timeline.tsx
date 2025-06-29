@@ -140,7 +140,8 @@ type TimelineProps = {
   className?: string;
   dotClassName?: string;
   lineClassName?: string;
-  itemSpacing?: string;
+  itemSpacing?: string; // Tailwind class like "mb-8"
+  lineSpacingOverlap?: string; // Tailwind class like "-mb-8"
 };
 
 export function Timeline({
@@ -151,7 +152,8 @@ export function Timeline({
   dotClassName = "h-4 w-4 rounded-full bg-stone-800 border-2 border-white",
   lineClassName = "bg-stone-300",
   itemSpacing = "mb-8",
-  className = "flex flex-col w-full border-l-2 border-stone-300 pl-6",
+  lineSpacingOverlap = "-mb-8",
+  className = "flex flex-col w-full ",
 }: TimelineProps) {
   return (
     <div className={className}>
@@ -170,7 +172,9 @@ export function Timeline({
               </div>
 
               {withLine && !isLast && (
-                <div className={`flex-1 w-px  -mb-8 ${lineClassName}`} />
+                <div
+                  className={`flex-1  ${lineSpacingOverlap} ${lineClassName}`}
+                />
               )}
             </div>
 
@@ -180,16 +184,12 @@ export function Timeline({
                 renderContent(item, index)
               ) : (
                 <>
-                  <p className="font-bold text-stone-800">{item.title}</p>
+                  <p className="font-bold ">{item.title}</p>
                   {item.timestamp && (
-                    <small className="text-sm text-stone-500">
-                      {item.timestamp}
-                    </small>
+                    <small className="text-sm ">{item.timestamp}</small>
                   )}
                   {item.description && (
-                    <p className=" text-sm text-stone-600">
-                      {item.description}
-                    </p>
+                    <p className=" text-sm ">{item.description}</p>
                   )}
                 </>
               )}

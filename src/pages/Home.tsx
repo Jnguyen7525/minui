@@ -4,6 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 import {
   AlertTriangle,
   Archive,
+  Banknote,
   Bell,
   Box,
   CheckCircle,
@@ -21,6 +22,7 @@ import {
   Info,
   List,
   Menu,
+  Pen,
   Pencil,
   Play,
   Send,
@@ -106,6 +108,7 @@ import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
 import { Pagination } from "../components/pagination";
 import { useSearchParams } from "react-router-dom";
 import { Timeline } from "../components/timeline";
+import { Table, type TableColumn } from "../components/table";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -375,6 +378,151 @@ const Home = () => {
       description: "Culmination of your journey.",
       timestamp: "2025-06-10 06:00 PM",
       icon: <CreditCard className="w-4 h-4" />,
+    },
+  ];
+
+  type Invoice = {
+    invoice: string;
+    paymentStatus: string;
+    totalAmount: string;
+    paymentMethod: string;
+    issuedOn: string;
+  };
+
+  const invoices: Invoice[] = [
+    {
+      invoice: "INV001",
+      paymentStatus: "Paid",
+      totalAmount: "$250.00",
+      paymentMethod: "Credit Card",
+      issuedOn: "2024-12-01",
+    },
+    {
+      invoice: "INV002",
+      paymentStatus: "Pending",
+      totalAmount: "$150.00",
+      paymentMethod: "PayPal",
+      issuedOn: "2025-01-15",
+    },
+    {
+      invoice: "INV003",
+      paymentStatus: "Unpaid",
+      totalAmount: "$350.00",
+      paymentMethod: "Bank Transfer",
+      issuedOn: "2024-11-08",
+    },
+    {
+      invoice: "INV004",
+      paymentStatus: "Paid",
+      totalAmount: "$450.00",
+      paymentMethod: "Credit Card",
+      issuedOn: "2025-03-20",
+    },
+    {
+      invoice: "INV005",
+      paymentStatus: "Paid",
+      totalAmount: "$550.00",
+      paymentMethod: "PayPal",
+      issuedOn: "2025-04-02",
+    },
+    {
+      invoice: "INV006",
+      paymentStatus: "Pending",
+      totalAmount: "$200.00",
+      paymentMethod: "Bank Transfer",
+      issuedOn: "2025-01-01",
+    },
+    {
+      invoice: "INV007",
+      paymentStatus: "Unpaid",
+      totalAmount: "$300.00",
+      paymentMethod: "Credit Card",
+      issuedOn: "2024-10-25",
+    },
+  ];
+
+  const columns: TableColumn<(typeof invoices)[0]>[] = [
+    {
+      key: "invoice",
+      label: "Invoice",
+      className: "font-semibold",
+      sortable: true,
+    },
+    { key: "paymentStatus", label: "Status", sortable: true },
+    // { key: "paymentMethod", label: "Method", sortable: true },
+    {
+      key: "paymentMethod",
+      label: "Method",
+      sortable: true,
+      render: (method: string) => {
+        const iconMap: Record<string, React.ReactNode> = {
+          "Credit Card": <CreditCard className="w-4 h-4 text-stone-500" />,
+          "Bank Transfer": <Banknote className="w-4 h-4 text-stone-500" />,
+          PayPal: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-4 h-4 text-stone-500"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M6.5 21h2.2l.4-2.5h1.9c2.6 0 4.7-1.7 5.3-4.2.2-.9.1-1.8-.3-2.6-.4-.8-1-1.4-1.8-1.8.5-.6.8-1.3.9-2.1.2-1.2-.1-2.3-.8-3.2C13.6 3.2 12.3 2.5 11 2.5H6.8c-.4 0-.7.3-.8.6L4 18.5c-.1.5.3.9.8.9H6.5zm3.1-6.5l.5-3.2h1.7c.6 0 1.1.3 1.4.7.3.5.4 1.1.3 1.6-.3 1.2-1.4 2-2.6 2H9.6zm.9-5.2l.5-3.1h1.5c.5 0 1 .2 1.3.6.3.4.4.9.3 1.4-.2.9-1 1.6-1.9 1.6h-1.7z" />
+            </svg>
+          ),
+        };
+
+        return (
+          <div className="flex items-center gap-2">
+            {iconMap[method] ?? null}
+            <span>{method}</span>
+          </div>
+        );
+      },
+    },
+
+    {
+      key: "totalAmount",
+      label: "Amount",
+      align: "right",
+      sortable: true,
+    },
+    {
+      key: "issuedOn",
+      label: "Issued",
+      sortable: true,
+      render: (val) => new Date(val as string).toLocaleDateString(),
+    },
+  ];
+
+  type Member = {
+    name: string;
+    role: string;
+    startDate: string;
+  };
+
+  const members: Member[] = [
+    { name: "Michael Levi", role: "Developer", startDate: "2008-12-24" },
+    { name: "Laurent Perrier", role: "Executive", startDate: "2017-09-19" },
+    { name: "John Michael", role: "Manager", startDate: "2018-04-23" },
+    { name: "Alexa Liras", role: "Developer", startDate: "2018-04-23" },
+    { name: "Richard Gran", role: "Manager", startDate: "2021-10-04" },
+  ];
+
+  const memberColumns: TableColumn<Member>[] = [
+    { key: "name", label: "Name", sortable: true },
+    { key: "role", label: "Job", sortable: true },
+    { key: "startDate", label: "Employed", sortable: true },
+    {
+      key: "name",
+      label: "",
+      render: (_, row) => (
+        <a
+          onClick={() => alert(`Editing ${row.name}`)}
+          className="text-blue-600 cursor-pointer hover:underline flex space-x-1 items-center justify-center"
+        >
+          <Pen size={16} />
+          <span>Edit</span>
+        </a>
+      ),
     },
   ];
 
@@ -2491,33 +2639,14 @@ const Home = () => {
         <div className=" flex items-center justify-between">
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-xl font-bold mb-6">🗓️ Vertical Timeline</h2>
-            {/* <Timeline
-              items={events}
-              withLine // optional: if true, connector line appears
-              dotClassName="h-4 w-4 bg-stone-800"
-              className="relative flex items-start gap-4 rounded-lg p-3"
-              renderIcon={(item) => (
-                <span className="text-white">{item.icon}</span>
-              )}
-              renderContent={(item) => (
-                <div className="bg-gray-800">
-                  <p className="text-base font-bold ">{item.title}</p>
-                  <small className="block text-sm text-stone-500">
-                    {item.timestamp}
-                  </small>
-                  <small className="block text-sm text-stone-500">
-                    {item.description}
-                  </small>
-                </div>
-              )}
-            /> */}
-            {/* <TimelineNoAbsolute items={events} /> */}
 
             <Timeline
               items={events}
               withLine
               dotClassName="w-6 h-6 flex items-center justify-center rounded-full bg-stone-600 border-white"
-              lineClassName="bg-green-300"
+              lineClassName="bg-white w-px"
+              itemSpacing={"mb-8"}
+              lineSpacingOverlap="-mb-8"
               renderIcon={(item) => (
                 <span className="text-white">{item.icon}</span>
               )}
@@ -2538,24 +2667,65 @@ const Home = () => {
           </div>
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-xl font-bold  mb-6">📦 Card Timeline</h2>
-            {/* <Timeline
+            <Timeline
               items={events}
-              withLine // optional: if true, connector line appears
-              dotClassName="h-4 w-4 bg-stone-800"
+              withLine={false} // 👈 no connecting line
+              itemSpacing="mb-6" // spacing between cards
+              dotClassName="hidden" // 👈 no visible dot for cleaner card style
               renderIcon={(item) => (
-                <span className="text-white">{item.icon}</span>
+                <span className="hidden">{item.icon}</span> // icon can go inside content
               )}
               renderContent={(item) => (
-                <>
-                  <p className="text-base font-bold text-stone-800">
-                    {item.title}
-                  </p>
-                  <small className="block text-sm text-stone-500">
-                    {item.timestamp}
-                  </small>
-                </>
+                <div className="w-full bg-stone-100 rounded-lg p-2 border border-stone-300 shadow-sm text-left">
+                  <div className="flex items-center gap-4 mb-2">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-stone-700 text-white">
+                      {item.icon}
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-stone-800">
+                        {item.title}
+                      </p>
+                      <small className="text-sm text-stone-500">
+                        {item.timestamp}
+                      </small>
+                    </div>
+                  </div>
+                  {item.description && (
+                    <p className="text-sm text-stone-600">{item.description}</p>
+                  )}
+                </div>
               )}
-            /> */}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* table */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">table</h2>
+        <div className="flex space-x-5">
+          <div className="flex h-fit w-fit">
+            <Table
+              data={invoices}
+              columns={columns}
+              caption="A list of your recent invoices."
+              footer="Total billed: $1,200.00"
+              striping="column"
+              sortable
+            />
+          </div>
+
+          <div className="flex h-fit w-fit">
+            <Table
+              data={members}
+              columns={memberColumns}
+              caption="Team members and their roles."
+              striping="row"
+              tableClassName="w-full text-sm"
+              headerClassName="bg-stone-100 border-b border-stone-200 text-stone-600"
+              rowClassName="border-b border-stone-200 last:border-0"
+              sortable
+            />
           </div>
         </div>
       </div>
