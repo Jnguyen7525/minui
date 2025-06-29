@@ -4,6 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 import {
   AlertTriangle,
   Archive,
+  Bell,
   Box,
   CheckCircle,
   ChevronLeft,
@@ -103,6 +104,8 @@ import {
 } from "../components/resizable";
 import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
 import { Pagination } from "../components/pagination";
+import { useSearchParams } from "react-router-dom";
+import { Timeline, type TimelineItem } from "../components/timeline";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -329,6 +332,51 @@ const Home = () => {
 
   const [currentPage, setCurrentPage] = useState(7);
   const totalPages = 12; // Set this based on your data
+
+  const allItems = Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`);
+  const ITEMS_PER_PAGE = 5;
+
+  const [params, setParams] = useSearchParams();
+  const pageParam = parseInt(params.get("page") || "1", 10);
+  const [currentPageWithLink, setCurrentPageWithLink] = useState(pageParam);
+  const totalPagesWithLink = Math.ceil(allItems.length / ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    setCurrentPageWithLink(pageParam);
+  }, [pageParam]);
+
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentItems = allItems.slice(start, start + ITEMS_PER_PAGE);
+
+  // Updates URL with new ?page= value
+  const updatePage = (page: number) => {
+    params.set("page", String(page));
+    setParams(params);
+  };
+
+  const events: TimelineItem[] = [
+    {
+      id: 1,
+      title: "First Step",
+      description: "Start your journey with this initial step.",
+      timestamp: "2025-06-01 08:00 AM",
+      icon: <Bell className="w-4 h-4" />,
+    },
+    {
+      id: 2,
+      title: "Second Step",
+      description: "Building upon the foundation with more advanced ideas.",
+      timestamp: "2025-06-05 01:30 PM",
+      icon: <ShoppingCart className="w-4 h-4" />,
+    },
+    {
+      id: 3,
+      title: "Final Step",
+      description: "Culmination of your journey.",
+      timestamp: "2025-06-10 06:00 PM",
+      icon: <CreditCard className="w-4 h-4" />,
+    },
+  ];
 
   return (
     <div
@@ -2336,7 +2384,8 @@ const Home = () => {
           </p>
         </div>
 
-        <div className=" mx-auto py-10 px-4">
+        {/* basic demo with no links */}
+        <div className=" mx-auto py-10 px-4 border-b">
           <Pagination
             current={currentPage}
             total={totalPages}
@@ -2372,6 +2421,118 @@ const Home = () => {
             )}
             renderPage={(page) => <span>{page}</span>}
           />
+        </div>
+
+        {/*  demo with links */}
+        <div className="w-full max-w-xl mx-auto p-6 shadow rounded-md flex flex-col items-center justify-center">
+          <h2 className="font-semibold mb-4">📄 Page {currentPageWithLink}</h2>
+
+          <ul className="space-y-2 mb-6 flex flex-col w-full">
+            {currentItems.map((item) => (
+              <li
+                key={item}
+                className="bg-stone-800 text-white p-1 rounded flex w-full items-center justify-center"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <Pagination
+            current={currentPageWithLink}
+            total={totalPagesWithLink}
+            onPageChange={updatePage}
+            visiblePages={2}
+            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
+            activePageClassName="text-white border"
+            disabledPageClassName="opacity-20 pointer-events-none"
+            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
+            renderPage={(page) => (
+              <a
+                href={`?page=${page}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  updatePage(page);
+                }}
+              >
+                {page}
+              </a>
+            )}
+            renderPrev={(disabled) => (
+              <a
+                href={`?page=${currentPageWithLink - 1}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!disabled) updatePage(currentPageWithLink - 1);
+                }}
+              >
+                <ChevronLeft /> Prev
+              </a>
+            )}
+            renderNext={(disabled) => (
+              <a
+                href={`?page=${currentPageWithLink + 1}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!disabled) updatePage(currentPageWithLink + 1);
+                }}
+              >
+                Next <ChevronRight />
+              </a>
+            )}
+          />
+        </div>
+      </div>
+
+      {/* timeline */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Timeline</h2>
+
+        <div className=" flex items-center justify-between">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-xl font-bold mb-6">🗓️ Vertical Timeline</h2>
+            <Timeline
+              items={events}
+              withLine // optional: if true, connector line appears
+              dotClassName="h-4 w-4 bg-stone-800"
+              className="relative flex items-start gap-4 rounded-lg p-3"
+              renderIcon={(item) => (
+                <span className="text-white">{item.icon}</span>
+              )}
+              renderContent={(item) => (
+                <div className="bg-gray-800">
+                  <p className="text-base font-bold ">{item.title}</p>
+                  <small className="block text-sm text-stone-500">
+                    {item.timestamp}
+                  </small>
+                  <small className="block text-sm text-stone-500">
+                    {item.description}
+                  </small>
+                </div>
+              )}
+            />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-xl font-bold  mb-6">📦 Card Timeline</h2>
+            <Timeline
+              items={events}
+              withLine // optional: if true, connector line appears
+              dotClassName="h-4 w-4 bg-stone-800"
+              renderIcon={(item) => (
+                <span className="text-white">{item.icon}</span>
+              )}
+              renderContent={(item) => (
+                <>
+                  <p className="text-base font-bold text-stone-800">
+                    {item.title}
+                  </p>
+                  <small className="block text-sm text-stone-500">
+                    {item.timestamp}
+                  </small>
+                </>
+              )}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1728,6 +1728,7 @@
 
 // export default App;
 
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./components/theme";
 import { ToastProvider } from "./components/toast";
 import MainLayout from "./layouts/MainLayout";
@@ -1757,7 +1758,9 @@ export default function App() {
         defaultTheme="dark"
       >
         <MainLayout>
-          <Home />
+          <BrowserRouter>
+            <Home />
+          </BrowserRouter>
         </MainLayout>
       </ThemeProvider>
     </ToastProvider>
