@@ -449,7 +449,6 @@ const Home = () => {
       sortable: true,
     },
     { key: "paymentStatus", label: "Status", sortable: true },
-    // { key: "paymentMethod", label: "Method", sortable: true },
     {
       key: "paymentMethod",
       label: "Method",
@@ -494,30 +493,43 @@ const Home = () => {
   ];
 
   type Member = {
+    id: number;
     name: string;
     role: string;
     startDate: string;
   };
 
   const members: Member[] = [
-    { name: "Michael Levi", role: "Developer", startDate: "2008-12-24" },
-    { name: "Laurent Perrier", role: "Executive", startDate: "2017-09-19" },
-    { name: "John Michael", role: "Manager", startDate: "2018-04-23" },
-    { name: "Alexa Liras", role: "Developer", startDate: "2018-04-23" },
-    { name: "Richard Gran", role: "Manager", startDate: "2021-10-04" },
+    { id: 1, name: "John Michael", role: "Manager", startDate: "2018-04-23" },
+    { id: 2, name: "Alexa Liras", role: "Developer", startDate: "2018-04-23" },
+    {
+      id: 3,
+      name: "Laurent Perrier",
+      role: "Executive",
+      startDate: "2017-09-19",
+    },
+    { id: 4, name: "Michael Levi", role: "Developer", startDate: "2008-12-24" },
+    { id: 5, name: "Richard Gran", role: "Manager", startDate: "2021-10-04" },
   ];
 
   const memberColumns: TableColumn<Member>[] = [
     { key: "name", label: "Name", sortable: true },
-    { key: "role", label: "Job", sortable: true },
-    { key: "startDate", label: "Employed", sortable: true },
+    { key: "role", label: "Role", sortable: true },
+    {
+      key: "startDate",
+      label: "Employed",
+      sortable: true,
+    },
     {
       key: "name",
       label: "",
       render: (_, row) => (
         <a
-          onClick={() => alert(`Editing ${row.name}`)}
-          className="text-blue-600 cursor-pointer hover:underline flex space-x-1 items-center justify-center"
+          onClick={(e) => {
+            e.stopPropagation();
+            alert(`Editing ${row.name}`);
+          }}
+          className="text-blue-600 cursor-pointer hover:underline flex items-center justify-center space-x-1"
         >
           <Pen size={16} />
           <span>Edit</span>
@@ -525,6 +537,9 @@ const Home = () => {
       ),
     },
   ];
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const selectedMembers = members.filter((m) => selectedIds.includes(m.id));
 
   return (
     <div
@@ -2711,21 +2726,50 @@ const Home = () => {
               caption="A list of your recent invoices."
               footer="Total billed: $1,200.00"
               striping="column"
-              sortable
+              headerClassName="bg-gray-700"
+              rowClassName="hover:bg-blue-600 cursor-pointer"
+              strippedClassName="bg-blue-600 text-black"
             />
           </div>
 
-          <div className="flex h-fit w-fit">
+          <div className="flex flex-col h-fit w-fit">
             <Table
               data={members}
               columns={memberColumns}
               caption="Team members and their roles."
-              striping="row"
-              tableClassName="w-full text-sm"
-              headerClassName="bg-stone-100 border-b border-stone-200 text-stone-600"
-              rowClassName="border-b border-stone-200 last:border-0"
               sortable
+              striping="row"
+              selectionMode="multiple"
+              rowClassName="hover:bg-blue-600 cursor-pointer"
+              strippedClassName="bg-stone-50 text-black"
+              rowId={(row) => row.id}
+              selectedRowIds={selectedIds}
+              onSelectionChange={(ids) => setSelectedIds(ids as number[])}
+              renderSelectionAction={(selected) => (
+                <div className="flex justify-between items-center p-4 border-t bg-stone-50">
+                  <span className="text-sm text-stone-600">
+                    Selected: {selected.length}
+                  </span>
+                  <button
+                    onClick={() =>
+                      alert(
+                        `Messaging: ${selected.map((m) => m.name).join(", ")}`
+                      )
+                    }
+                    className="rounded bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700"
+                  >
+                    Message Selected Members
+                  </button>
+                </div>
+              )}
             />
+            <div className="flex space-x-1 text-sm text-stone-700 mt-2">
+              {selectedMembers ? (
+                selectedMembers.map((member) => <span>{member.name}</span>)
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
       </div>
