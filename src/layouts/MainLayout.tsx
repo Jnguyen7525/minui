@@ -190,6 +190,8 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 "Pagination",
                 "Timeline",
                 "Table",
+                "Number Input",
+                "Time Input",
               ].map((component) => (
                 <button
                   key={component}

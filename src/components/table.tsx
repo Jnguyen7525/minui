@@ -370,9 +370,9 @@ export function Table<T>({
                 />
               </th>
             )}
-            {columns.map((col) => (
+            {columns.map((col, i) => (
               <th
-                key={String(col.key)}
+                key={String(i)}
                 onClick={() => {
                   if (!sortable || !col.sortable) return;
                   setSortDescriptor((prev) =>
@@ -428,7 +428,7 @@ export function Table<T>({
               const selected = isSelected(row);
               return (
                 <tr
-                  key={getRowId(row)}
+                  key={rowIndex}
                   onClick={() =>
                     selectionMode !== "none" ? toggleRow(row) : undefined
                   }
@@ -456,7 +456,7 @@ export function Table<T>({
                   )}
                   {columns.map((col, colIndex) => (
                     <td
-                      key={String(col.key)}
+                      key={String(colIndex)}
                       className={`px-4 py-3 ${
                         col.align === "right"
                           ? "text-right"

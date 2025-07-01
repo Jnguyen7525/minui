@@ -163,7 +163,13 @@ type DateRangePickerProps = {
   labelStyle?: string;
   className?: string;
   variant?: "flat" | "bordered" | "underlined" | "faded";
-  calendarStyles?: Record<string, string>; // Custom styles for calendar
+  calendarContainerClassName?: string;
+  calendarHeaderClassName?: string;
+  calendarMonthButtonClassName?: string;
+  calendarSelectedDateClassName?: string;
+  calendarDateInRangeClassName?: string;
+  calendarDayDisabledClassName?: string;
+  calendarDayClassName?: string;
   onChange?: (range: { startDate: string; endDate: string }) => void;
 };
 
@@ -179,7 +185,13 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   labelStyle,
   className = "",
   variant = "bordered",
-  calendarStyles = {},
+  calendarContainerClassName,
+  calendarHeaderClassName,
+  calendarMonthButtonClassName,
+  calendarSelectedDateClassName,
+  calendarDateInRangeClassName,
+  calendarDayDisabledClassName,
+  calendarDayClassName,
   onChange,
 }) => {
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
@@ -274,7 +286,13 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
             selectedDates={selectedDates}
             onDateSelect={handleDateSelect} // Updates & hides calendar once range is picked
             selectionType="range"
-            classNames={calendarStyles}
+            containerClassName={calendarContainerClassName}
+            monthButtonClassName={calendarMonthButtonClassName}
+            headerClassName={calendarHeaderClassName}
+            selectedDateClassName={calendarSelectedDateClassName}
+            dateInRangeClassName={calendarDateInRangeClassName}
+            dayClassName={calendarDayClassName}
+            dayDisabledClassName={calendarDayDisabledClassName}
           />
         </div>
       )}

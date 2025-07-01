@@ -10,7 +10,13 @@ type DateInputProps = {
   placeholder?: string;
   variant?: "flat" | "bordered" | "underlined" | "faded";
   className?: string;
-  calendarStyles?: Record<string, string>; // New prop for calendar styling
+  calendarContainerClassName?: string;
+  calendarHeaderClassName?: string;
+  calendarMonthButtonClassName?: string;
+  calendarSelectedDateClassName?: string;
+  calendarDateInRangeClassName?: string;
+  calendarDayDisabledClassName?: string;
+  calendarDayClassName?: string;
 };
 
 const variantStyles = {
@@ -28,7 +34,14 @@ const DateInput: React.FC<DateInputProps> = ({
   placeholder = "YYYY-MM-DD",
   variant = "bordered",
   className = "",
-  calendarStyles = {}, // Default empty object
+  // calendarStyles = {}, // Default empty object
+  calendarContainerClassName,
+  calendarHeaderClassName,
+  calendarMonthButtonClassName,
+  calendarSelectedDateClassName,
+  calendarDateInRangeClassName,
+  calendarDayDisabledClassName,
+  calendarDayClassName,
 }) => {
   const [internalValue, setInternalValue] = useState(value || "");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -88,7 +101,13 @@ const DateInput: React.FC<DateInputProps> = ({
               setShowCalendar(false);
             }}
             selectionType="single" // Ensure single-date selection
-            classNames={calendarStyles} // Pass styling down
+            containerClassName={calendarContainerClassName}
+            monthButtonClassName={calendarMonthButtonClassName}
+            headerClassName={calendarHeaderClassName}
+            selectedDateClassName={calendarSelectedDateClassName}
+            dateInRangeClassName={calendarDateInRangeClassName}
+            dayClassName={calendarDayClassName}
+            dayDisabledClassName={calendarDayDisabledClassName}
           />
         </div>
       )}
