@@ -1,82 +1,3 @@
-// import React, { useState } from "react";
-// import { Clock } from "lucide-react";
-
-// type TimeInputProps = {
-//   label?: string;
-//   labelStyle?: string;
-//   value?: string;
-//   onChange?: (value: string) => void;
-//   placeholder?: string;
-//   variant?: "flat" | "bordered" | "underlined" | "faded";
-//   className?: string;
-//   hourFormat?: 12 | 24;
-// };
-
-// const variantStyles = {
-//   flat: "border-none rounded-md",
-//   bordered: "border rounded-md",
-//   underlined: "border-b",
-//   faded: "border opacity-50",
-// };
-
-// const TimeInput: React.FC<TimeInputProps> = ({
-//   label,
-//   labelStyle,
-//   value,
-//   onChange,
-//   placeholder = "-- : --",
-//   variant = "bordered",
-//   className = "",
-//   hourFormat = 12,
-// }) => {
-//   const [internalValue, setInternalValue] = useState(value || "");
-//   const [meridian, setMeridian] = useState<"AM" | "PM">("AM");
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     let raw = e.target.value.replace(/[^0-9:]/g, "").slice(0, 5);
-//     let [h, m] = raw.split(":");
-
-//     if (h && Number(h) > (hourFormat === 12 ? 12 : 23)) return;
-//     if (m && Number(m) > 59) return;
-
-//     if (h?.length === 2 && raw.length === 2) raw += ":";
-
-//     setInternalValue(raw);
-//     onChange?.(hourFormat === 12 ? `${raw} ${meridian}` : raw);
-//   };
-
-//   return (
-//     <div className="flex flex-col gap-2 w-full">
-//       {label && <label className={labelStyle}>{label}</label>}
-//       <div className={`relative flex items-center ${variantStyles[variant]}`}>
-//         <div className="flex items-center justify-center">
-//           <Clock className="mx-2 text-gray-500 size-5" strokeWidth={1.5} />
-//           <input
-//             type="text"
-//             inputMode="numeric"
-//             placeholder={placeholder}
-//             value={onChange ? value : internalValue}
-//             onChange={handleChange}
-//             className={`p-2 w-[60px] outline-none  ${className}`}
-//             autoComplete="off"
-//           />
-//           {hourFormat === 12 && (
-//             <button
-//               type="button"
-//               onClick={() => setMeridian(meridian === "AM" ? "PM" : "AM")}
-//               className=" text-sm  rounded  shadow-sm hover:text-blue-600 hover:cursor-pointer "
-//             >
-//               {meridian}
-//             </button>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TimeInput;
-
 import React, { useState } from "react";
 import { Clock } from "lucide-react";
 
@@ -103,107 +24,59 @@ const TimeInput: React.FC<TimeInputProps> = ({
   labelStyle,
   value,
   onChange,
-  placeholder = "--:--",
+  placeholder = "HH:MM",
   variant = "bordered",
   className = "",
   hourFormat = 12,
 }) => {
-  const [internalValue, setInternalValue] = useState("--:--");
+  const [internalValue, setInternalValue] = useState(
+    value?.split(" ")[0] || ""
+  );
   const [meridian, setMeridian] = useState<"AM" | "PM">("AM");
 
-  const isControlled = onChange !== undefined;
-  const displayedValue = isControlled
-    ? value?.split(" ")[0] || "--:--"
+  const isControlled = typeof onChange === "function";
+  const currentValue = isControlled
+    ? value?.split(" ")[0] || ""
     : internalValue;
 
-  const formatTime = (digits: string): string => {
-    if (digits.length === 0) return "--:--";
-    if (digits.length === 1) return `${digits}-:--`;
-    if (digits.length === 2) return `${digits}:--`;
-    if (digits.length === 3) return `${digits.slice(0, 2)}:${digits.slice(2)}-`;
-    if (digits.length === 4)
-      return `${digits.slice(0, 2)}:${digits.slice(2, 4)}`;
-    return "--:--";
-  };
-
-  //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const rawDigits = e.target.value.replace(/[^0-9]/g, "").slice(0, 4);
-  //     const formatted = formatTime(rawDigits);
-
-  //     const [hh, mm] = formatted.split(":");
-  //     const h = parseInt(hh.replace("-", "") || "0", 10);
-  //     const m = parseInt(mm.replace("-", "") || "0", 10);
-  //     const maxHour = hourFormat === 12 ? 12 : 23;
-
-  //     if (h > maxHour || m > 59) return;
-
-  //     if (!isControlled) setInternalValue(formatted);
-  //     onChange?.(hourFormat === 12 ? `${formatted} ${meridian}` : formatted);
-  //   };
-
-  //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const input = e.target;
-  //     const cursor = input.selectionStart || 0;
-  //     const rawDigits = input.value.replace(/[^0-9]/g, "").slice(0, 4);
-  //     const formatted = formatTime(rawDigits);
-
-  //     const [hh, mm] = formatted.split(":");
-  //     const h = parseInt(hh.replace("-", "") || "0", 10);
-  //     const m = parseInt(mm.replace("-", "") || "0", 10);
-  //     const maxHour = hourFormat === 12 ? 12 : 23;
-  //     if (h > maxHour || m > 59) return;
-
-  //     if (!isControlled) setInternalValue(formatted);
-  //     onChange?.(hourFormat === 12 ? `${formatted} ${meridian}` : formatted);
-
-  //     // 🧠 Restore cursor after DOM update
-  //     setTimeout(() => {
-  //       input.setSelectionRange(cursor, cursor);
-  //     }, 0);
-  //   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target;
-    const cursor = input.selectionStart ?? 0;
-    const rawInput = input.value.replace(/[^0-9]/g, "").slice(0, 4);
-    const formatted = formatTime(rawInput); // "--:--" format
+    let inputValue = e.target.value.replace(/[^0-9:]/g, "");
 
-    const [hh, mm] = formatted.split(":");
-    const h = parseInt(hh.replace("-", "") || "0");
-    const m = parseInt(mm.replace("-", "") || "0");
-    const maxHour = hourFormat === 12 ? 12 : 23;
+    // Auto insert colon if user types 3+ digits and there's no colon yet
+    if (!inputValue.includes(":") && inputValue.length >= 3) {
+      inputValue = inputValue.slice(0, 2) + ":" + inputValue.slice(2);
+    }
 
-    if (h > maxHour || m > 59) return;
+    // Validate hour/minute ranges
+    const [hh = "", mm = ""] = inputValue.split(":");
+    const hourLimit = hourFormat === 12 ? 12 : 23;
 
-    if (!isControlled) setInternalValue(formatted);
-    onChange?.(hourFormat === 12 ? `${formatted} ${meridian}` : formatted);
+    if (
+      hh.length > 2 ||
+      mm.length > 2 ||
+      (hh && Number(hh) > hourLimit) ||
+      (mm && Number(mm) > 59)
+    )
+      return;
 
-    // 🧠 Now re-calculate precise caret shift
-    setTimeout(() => {
-      const isColonJump =
-        cursor === 2 &&
-        input.value[cursor] === ":" &&
-        formatted.length > input.value.length;
-
-      const nextCursor = isColonJump ? cursor + 1 : cursor;
-      input.setSelectionRange(nextCursor, nextCursor);
-    }, 100);
+    if (!isControlled) setInternalValue(inputValue);
+    onChange?.(hourFormat === 12 ? `${inputValue} ${meridian}` : inputValue);
   };
 
   return (
     <div className="flex flex-col gap-2 w-full">
       {label && <label className={labelStyle}>{label}</label>}
       <div
-        className={`relative flex items-center px-2 w-fit ${variantStyles[variant]}`}
+        className={`relative flex items-center px-2 ${variantStyles[variant]}`}
       >
         <Clock className="text-gray-500 size-5 mr-2" strokeWidth={1.5} />
         <input
           type="text"
           inputMode="numeric"
-          placeholder={placeholder}
-          value={displayedValue}
+          value={currentValue}
           onChange={handleChange}
-          className={`w-[60px] text-center outline-none bg-transparent ${className}`}
+          placeholder={placeholder}
+          className={`w-[60px] text-start outline-none bg-transparent ${className}`}
           autoComplete="off"
         />
         {hourFormat === 12 && (
@@ -212,11 +85,9 @@ const TimeInput: React.FC<TimeInputProps> = ({
             onClick={() => {
               const next = meridian === "AM" ? "PM" : "AM";
               setMeridian(next);
-              if (onChange) {
-                onChange(`${displayedValue} ${next}`);
-              }
+              onChange?.(`${currentValue} ${next}`);
             }}
-            className="ml-2 px-1.5 py-0.5 text-sm rounded text-gray-700 hover:text-blue-600"
+            className=" px-1 py-0.5 text-sm rounded text-gray-700 hover:text-blue-600"
           >
             {meridian}
           </button>

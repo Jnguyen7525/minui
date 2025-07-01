@@ -114,6 +114,7 @@ import {
 } from "../../constants";
 import NumberInput from "../components/numberinput";
 import TimeInput from "../components/timeinput";
+import Slider from "../components/slider";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -222,7 +223,10 @@ const Home = () => {
   const selectedMembers = members.filter((m) => selectedIds.includes(m.id));
 
   const [amount, setAmount] = useState("0");
-  const [time, setTime] = useState("12:30");
+  const [time, setTime] = useState("");
+
+  const [single, setSingle] = useState(40);
+  const [range, setRange] = useState<[number, number]>([20, 70]);
 
   return (
     <div
@@ -2439,9 +2443,69 @@ const Home = () => {
       <div className="rounded-lg text-center h-fit w-[300px] border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Time Input</h2>
 
-        <div className="flex w-full flex-col">
-          <TimeInput label="Start Time" value={time} onChange={setTime} />
-          <p className="text-sm text-gray-600">Selected: {time}</p>
+        <div className="flex w-full flex-col space-y-4">
+          <TimeInput
+            label="Start Time"
+            value={time}
+            onChange={setTime}
+            hourFormat={12}
+            variant="bordered"
+          />
+          <TimeInput
+            label="Start Time"
+            value={time}
+            onChange={setTime}
+            hourFormat={12}
+            variant="bordered"
+          />
+          <TimeInput
+            label="Start Time"
+            value={time}
+            onChange={setTime}
+            hourFormat={12}
+            variant="flat"
+          />
+          <TimeInput
+            label="Start Time"
+            value={time}
+            onChange={setTime}
+            hourFormat={12}
+            variant="underlined"
+          />
+          <p className="text-sm text-gray-600">Time: {time || "--:--"}</p>
+        </div>
+      </div>
+
+      {/* slider */}
+      <div className="rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Slider</h2>
+
+        <div className="flex flex-col w-full">
+          <div>
+            <label className="block mb-1 text-sm font-medium">
+              Single: {single}
+            </label>
+            <Slider
+              value={single}
+              onChange={setSingle}
+              min={0}
+              max={100}
+              step={1}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">
+              Range: {range[0]} - {range[1]}
+            </label>
+            <Slider
+              mode="range"
+              value={range}
+              onChange={setRange}
+              min={0}
+              max={100}
+              step={1}
+            />
+          </div>
         </div>
       </div>
     </div>
