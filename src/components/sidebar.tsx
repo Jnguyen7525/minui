@@ -108,7 +108,8 @@ export default function Sidebar({
 
   return (
     <div
-      className={`flex  w-full h-full relative ${className}`}
+      // className={`flex w-full h-full relative ${className}`}
+      className={`${className}`}
       style={{
         width: `${!resizable && `${minWidth}px`}`,
       }}

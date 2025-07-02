@@ -40,78 +40,13 @@ function Header() {
   );
 }
 
-/* Sidebar Component */
-// function Sidebar() {
-//   return (
-//     <aside className="w-fit  p-4 flex flex-col space-y-1 items-start">
-//       <h2 className="font-semibold">Components</h2>
-//       {[
-//         "Accordion",
-//         "Alert",
-//         "Alert Dialog",
-//         "Autocomplete",
-//         "Avatar",
-//         "Button",
-//         "Badge",
-//         "Breadcrumb",
-//         "Calendar",
-//         "Card",
-//         "Chart*",
-//         "Form *",
-//         "Checkbox",
-//         "Checkbox Group",
-//         "Collapsible",
-//         "Circular Progress",
-//         "Progress Bar",
-//         "Carousel",
-//         "Jumbotron",
-//         "Date Input",
-//         "Date Range Picker",
-//         "Dropdown",
-//         "Combobox",
-//         "Context Menu",
-//         "Drawer",
-//         "Lightbox",
-//         "Dialog",
-//         "Placeholder",
-//         "Input",
-//         "Input OTP",
-//         "Rating",
-//         "Back to Top",
-//         "Social Icons",
-//         "Popover",
-//         "Toast",
-//         "Theme",
-//         "Tooltip",
-//         "Stepper",
-//         "Testimonial",
-//         "Switch",
-//         "Radio",
-//         "Textarea",
-//         "Tab",
-//         "Navbar",
-//         "Sidebar",
-//       ].map((component) => (
-//         <button
-//           key={component}
-//           className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex"
-//         >
-//           {component}
-//         </button>
-//       ))}
-//     </aside>
-//   );
-// }
-
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [openMainSidebar, setOpenMainSidebar] = useState(true);
   return (
-    // <div className="min-h-screen bg-black text-white overflow-y-scroll scrollbar-hide flex flex-col relative">
-    <div className="min-h-screen overflow-y-scroll scrollbar-hide flex flex-col relative">
+    <div className="h-screen overflow-hidden scrollbar-hide flex flex-col relative">
       <Header />
       <div className="flex h-full">
-        {/* <Sidebar /> */}
-        <div className="w-[200px] h-auto px-4 flex flex-col space-y-1 items-start">
+        <div className="w-[200px]  px-4 flex flex-col space-y-1 items-start">
           <Sidebar
             isOpen={openMainSidebar}
             onOpenChange={setOpenMainSidebar}
@@ -120,7 +55,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
             defaultWidth={200}
             handleStyle=" border-stone-600 rounded-full "
             resizable={false}
-            className="border-r h-full flex flex-col pt-10"
+            className="border-r overflow-y-auto flex flex-col h-[calc(100vh-56px)] overflow-x-hidden  py-10"
             trigger={
               <div className={"flex  items-center justify-start w-full  "}>
                 {openMainSidebar ? (
@@ -137,61 +72,59 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
               </div>
             }
           >
-            <aside className="w-full px-4 flex flex-col space-y-1 items-start mt-8">
-              {/* <h2 className="font-semibold">Components</h2> */}
+            <aside className="flex flex-col flex-1 h-auto overflow-y-auto scrollbar-hide px-4 space-y-1 mt-6">
               {[
                 "Accordion",
                 "Alert",
                 "Alert Dialog",
                 "Autocomplete",
                 "Avatar",
-                "Button",
+                "Back to Top",
                 "Badge",
                 "Breadcrumb",
+                "Button",
                 "Calendar",
                 "Card",
-                "Chart*",
-                "Form *",
+                "Carousel",
                 "Checkbox",
                 "Checkbox Group",
-                "Collapsible",
                 "Circular Progress",
-                "Progress Bar",
-                "Carousel",
-                "Jumbotron",
-                "Date Input",
-                "Date Range Picker",
-                "Dropdown",
+                "Collapsible",
                 "Combobox",
                 "Context Menu",
-                "Drawer",
-                "Lightbox",
+                "Date Input",
+                "Date Range Picker",
                 "Dialog",
-                "Placeholder",
+                "Drawer",
+                "Dropdown",
                 "Input",
                 "Input OTP",
-                "Rating",
-                "Back to Top",
-                "Social Icons",
-                "Popover",
-                "Toast",
-                "Theme",
-                "Tooltip",
-                "Stepper",
-                "Testimonial",
-                "Switch",
-                "Radio",
-                "Textarea",
-                "Tab",
+                "Jumbotron",
+                "Lightbox",
                 "Navbar",
-                "Sidebar",
+                "Number Input",
+                "Pagination",
+                "Placeholder",
+                "Popover",
+                "Progress Bar",
+                "Radio",
+                "Rating",
                 "Resizable",
                 "Resizable Grid",
-                "Pagination",
-                "Timeline",
+                "Sidebar",
+                "Slider",
+                "Social Icons",
+                "Stepper",
+                "Switch",
+                "Tab",
                 "Table",
-                "Number Input",
+                "Testimonial",
+                "Textarea",
+                "Theme",
+                "Timeline",
                 "Time Input",
+                "Toast",
+                "Tooltip",
               ].map((component) => (
                 <button
                   key={component}
@@ -203,7 +136,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
             </aside>
           </Sidebar>
         </div>
-        <main className={``}>{children}</main>
+        <main className={`overflow-y-auto py-10`}>{children}</main>
       </div>
     </div>
   );

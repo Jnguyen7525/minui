@@ -438,51 +438,16 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Button Component */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
-        <h2 className="text-xl font-bold ">Button</h2>
-
-        <div className="flex flex-wrap justify-center space-x-5 mt-5">
-          <Button
-            label="Default"
-            variant="default"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-          <Button
-            label="Destructive"
-            variant="destructive"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-          <Button
-            label="Outline"
-            variant="outline"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-          <Button
-            label="Secondary"
-            variant="secondary"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-          <Button
-            label="Ghost"
-            variant="ghost"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-          <Button
-            label="Link"
-            variant="link"
-            size="default"
-            className="border rounded-sm flex items-center hover:cursor-pointer"
-          />
-        </div>
+      {/* back to top */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h1 className="text-2xl font-bold">Scroll Down to See the Button</h1>
+        <p className="mt-5">
+          Keep scrolling, and the button will appear at bottom right!
+        </p>
+        <BackToTop />
       </div>
 
-      {/* Button Component */}
+      {/* Badge Component */}
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Badge</h2>
         <div className="flex h-full w-full space-x-5 items-center ">
@@ -603,6 +568,50 @@ const Home = () => {
             currentItemStyle="text-blue-600 font-bold"
             dropDownMenuStyle="bg-gradient-to-l from-blue-800 to-purple-600 text-white flex flex-col space-y-2 p-5 border rounded-md"
             onAction={(item) => setCurrentBreadcrumb(item)}
+          />
+        </div>
+      </div>
+
+      {/* Button Component */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
+        <h2 className="text-xl font-bold ">Button</h2>
+
+        <div className="flex flex-wrap justify-center space-x-5 mt-5">
+          <Button
+            label="Default"
+            variant="default"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
+          />
+          <Button
+            label="Destructive"
+            variant="destructive"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
+          />
+          <Button
+            label="Outline"
+            variant="outline"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
+          />
+          <Button
+            label="Secondary"
+            variant="secondary"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
+          />
+          <Button
+            label="Ghost"
+            variant="ghost"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
+          />
+          <Button
+            label="Link"
+            variant="link"
+            size="default"
+            className="border rounded-sm flex items-center hover:cursor-pointer"
           />
         </div>
       </div>
@@ -732,6 +741,66 @@ const Home = () => {
         </div>
       </div>
 
+      {/* carousel */}
+      <div className="flex flex-col items-center  p-5 rounded-lg  w-[700px] h-[650px] m-5 border shadow-lg space-y-5">
+        <h2 className="text-xl font-bold  mb-5">Carousel</h2>
+        {/* sliding transition */}
+        <Carousel
+          images={[
+            "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
+            "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
+            "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
+          ]}
+          transition="slide"
+          autoPlay={true}
+          autoPlayInterval={4000}
+          prevButton={
+            <ChevronLeft size={50} className="hover:cursor-pointer" />
+          }
+          nextButton={
+            <ChevronRight size={50} className="hover:cursor-pointer" />
+          }
+          indicatorItem={(index, isActive) => (
+            <Circle
+              key={index}
+              size={16}
+              className={`hover:cursor-pointer
+              ${
+                isActive ? "bg-blue-500 rounded-full" : "bg-white rounded-full"
+              }`}
+            />
+          )}
+        />
+        {/* fading transition */}
+        <Carousel
+          images={[
+            "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
+            "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
+            "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
+          ]}
+          transition="fade"
+          autoPlay={true}
+          autoPlayInterval={4000}
+          prevButton={
+            <ChevronLeft size={50} className="hover:cursor-pointer" />
+          }
+          nextButton={
+            <ChevronRight size={50} className="hover:cursor-pointer" />
+          }
+          indicatorItem={(index, isActive) => (
+            <Circle
+              key={index}
+              size={16}
+              // color={isActive ? "blue" : "white"}
+              className={`hover:cursor-pointer
+              ${
+                isActive ? "bg-blue-500 rounded-full" : "bg-white rounded-full"
+              }`}
+            />
+          )}
+        />
+      </div>
+
       {/* checkbox */}
       <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox</h2>
@@ -806,32 +875,6 @@ const Home = () => {
           />
           <p className="mt-4 text-sm">
             Selected: {selectedCheckboxGroup.join(", ") || "None"}
-          </p>
-        </div>
-      </div>
-
-      {/* collapsible */}
-      <div className=" p-5 rounded-lg  h-fit w-[500px] border shadow-lg m-5">
-        <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
-        <div className="flex flex-col items-center justify-center w-full  ">
-          <Collapsible
-            items={["Fruits", "Veggies", "Meats", "Dairy"]}
-            trigger={<ChevronsUpDown />}
-            selectedItem={selectedCollapsedItem}
-            onSelectItem={setSelectedCollapsedItem}
-            className="flex flex-col w-1/2 space-y-2"
-            headerStyle="flex w-full justify-between text-gray-500 font-semibold"
-            triggerStyle="text-gray-500 hover:opacity-80"
-            collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 hover:text-white"
-          />
-
-          {/* Display Selected Item Outside Collapsible */}
-          <p
-            className={`${
-              selectedCollapsedItem ? "mt-4  text-gray-500 flex" : "hidden"
-            }`}
-          >
-            Selected Item: {selectedCollapsedItem || "None"}
           </p>
         </div>
       </div>
@@ -929,139 +972,86 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Progressbar */}
-      <div className="flex flex-col space-y-5 items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
-        <h2 className="text-xl font-bold">Progress Bar</h2>
+      {/* collapsible */}
+      <div className=" p-5 rounded-lg  h-fit w-[500px] border shadow-lg m-5">
+        <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
+        <div className="flex flex-col items-center justify-center w-full  ">
+          <Collapsible
+            items={["Fruits", "Veggies", "Meats", "Dairy"]}
+            trigger={<ChevronsUpDown />}
+            selectedItem={selectedCollapsedItem}
+            onSelectItem={setSelectedCollapsedItem}
+            className="flex flex-col w-1/2 space-y-2"
+            headerStyle="flex w-full justify-between text-gray-500 font-semibold"
+            triggerStyle="text-gray-500 hover:opacity-80"
+            collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 hover:text-white"
+          />
 
-        {/* progress bar with buttons */}
-        <ProgressBar
-          startLabel={`${progress}%`}
-          // endLabel="End"
-          progress={progress}
-          className=""
-          labelStyles="flex w-full justify-between mb-2"
-          barColor="bg-purple-500"
-          bgColor="bg-gray-700"
-          barHeight={10}
-          barWidth={300}
-        />
-        {/* Update Progress buttons */}
-        <div className="flex w-full justify-between text-sm">
-          <button
-            className="bg-red-500 text-white px-2 py-1 rounded-md"
-            onClick={() => setProgress((prev) => Math.max(prev - 10, 0))}
+          {/* Display Selected Item Outside Collapsible */}
+          <p
+            className={`${
+              selectedCollapsedItem ? "mt-4  text-gray-500 flex" : "hidden"
+            }`}
           >
-            Decrease
-          </button>{" "}
-          <button
-            className="bg-blue-500 text-white px-2 py-1 rounded-md"
-            onClick={() => setProgress((prev) => Math.min(prev + 10, 100))}
-          >
-            Increase
-          </button>
+            Selected Item: {selectedCollapsedItem || "None"}
+          </p>
         </div>
+      </div>
 
-        {/* autoprogress */}
-        <ProgressBar
-          startLabel={`${autoProgress}%`}
-          // endLabel="End"
-          progress={autoProgress}
-          className=""
-          labelStyles="flex w-full justify-between mb-2"
-          barColor="bg-green-500"
-          bgColor="bg-gray-700"
-          barHeight={10}
-          barWidth={300}
-        />
+      {/* Combobox */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Combobox</h2>
 
-        {/* Indeterminate Progress Bar (Unknown Duration) */}
-        <ProgressBar
-          isIndeterminate
-          startLabel="Loading..."
-          barWidth={300}
-          bgColor="bg-gray-800"
+        <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
+        <Combobox
+          options={[
+            { key: "next.js", label: "Next.js" },
+            { key: "sveltekit", label: "SvelteKit" },
+            { key: "nuxt.js", label: "Nuxt.js" },
+            { key: "remix", label: "Remix" },
+            { key: "astro", label: "Astro" },
+          ]}
+          onSelect={(key: string, label: string) => {
+            alert(`You selected: ${label} (${key})`);
+          }}
+          className="w-64"
+          triggerStyle="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white"
+          inputStyle="mt-2  border rounded-md shadow-lg p-2"
+          optionsStyle="flex items-center justify-between w-full p-2 hover:bg-gray-500 hover:cursor-pointer"
         />
       </div>
 
-      {/* carousel */}
-      <div className="flex flex-col items-center  p-5 rounded-lg  w-[700px] h-[650px] m-5 border shadow-lg space-y-5">
-        <h2 className="text-xl font-bold  mb-5">Carousel</h2>
-        {/* sliding transition */}
-        <Carousel
-          images={[
-            "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
-            "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
-            "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
-          ]}
-          transition="slide"
-          autoPlay={true}
-          autoPlayInterval={4000}
-          prevButton={
-            <ChevronLeft size={50} className="hover:cursor-pointer" />
-          }
-          nextButton={
-            <ChevronRight size={50} className="hover:cursor-pointer" />
-          }
-          indicatorItem={(index, isActive) => (
-            <Circle
-              key={index}
-              size={16}
-              className={`hover:cursor-pointer
-              ${
-                isActive ? "bg-blue-500 rounded-full" : "bg-white rounded-full"
-              }`}
-            />
-          )}
-        />
-        {/* fading transition */}
-        <Carousel
-          images={[
-            "https://mdbcdn.b-cdn.net/img/new/slides/041.webp",
-            "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
-            "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
-          ]}
-          transition="fade"
-          autoPlay={true}
-          autoPlayInterval={4000}
-          prevButton={
-            <ChevronLeft size={50} className="hover:cursor-pointer" />
-          }
-          nextButton={
-            <ChevronRight size={50} className="hover:cursor-pointer" />
-          }
-          indicatorItem={(index, isActive) => (
-            <Circle
-              key={index}
-              size={16}
-              // color={isActive ? "blue" : "white"}
-              className={`hover:cursor-pointer
-              ${
-                isActive ? "bg-blue-500 rounded-full" : "bg-white rounded-full"
-              }`}
-            />
-          )}
-        />
-      </div>
+      {/* context menu */}
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">context menu</h2>
 
-      {/* jumbotron */}
-      <div className="flex flex-col items-center  p-5 rounded-lg  w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
-        <h2 className="text-xl font-bold  mb-5">Jumbotron</h2>
-        <Jumbotron
-          backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
-          className="h-[400px] rounded-lg p-12"
-          overlayColor="bg-gray-900" // ✅ Customize overlay darkness
-          overlayOpacity="opacity-60"
-        >
-          <div className="relative flex flex-col items-center justify-center h-full w-full">
-            <h2 className="mb-4 text-4xl font-semibold text-white">Heading</h2>
-            <h4 className="mb-6 text-xl font-semibold text-white">
-              Subheading
-            </h4>
-            <button className="bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition">
-              Call to action
-            </button>
-          </div>
-        </Jumbotron>
+        <div className="p-5">
+          <h1 className="text-lg font-bold mb-4">
+            Right-click on the box below
+          </h1>
+
+          <ContextMenu
+            menuItems={[
+              { label: "Back", action: () => console.log("Back clicked!") },
+              {
+                label: "Forward",
+                action: () => console.log("Forward clicked!"),
+              },
+              {
+                label: "Reload",
+                action: () => console.log("Reload clicked!"),
+              },
+              {
+                label: "Delete",
+                action: () => console.log("Delete clicked!"),
+              },
+            ]}
+            menuStyle="bg-gray-900 text-white p-2 flex flex-col space-y-5 items-center justify-center w-[150px] h-fit rounded-md border border-gray-800" // ✅ Custom menu styling
+            menuItemStyle="hover:cursor-pointer hover:bg-gray-600 border-b border-gray-600 pb-1 w-full flex  " // ✅ Custom item styling
+          >
+            <span className="text-gray-600">Right-click here to see menu</span>
+          </ContextMenu>
+        </div>
       </div>
 
       {/* Date Input */}
@@ -1177,84 +1167,40 @@ const Home = () => {
         </div>
       </div>
 
-      {/* dropdown */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 ">Dropdown</h2>
+      {/* dialog */}
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Dialog</h2>
 
         <div className="p-5">
-          <Dropdown
-            triggerLabel="Open Menu"
-            placement="bottom"
-            options={[
-              { key: "new", label: "New file" },
-              { key: "copy", label: "Copy link" },
-              { key: "edit", label: "Edit file" },
-              {
-                key: "delete",
-                label: "Delete file",
-                action: () => alert("Deleted!"),
-              },
-            ]}
-            triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
-            menuStyle="w-48 bg-gray-800 border border-gray-600 rounded-md shadow-lg "
-            menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
-        </div>
-      </div>
-
-      {/* Combobox */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 ">Combobox</h2>
-
-        <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
-        <Combobox
-          options={[
-            { key: "next.js", label: "Next.js" },
-            { key: "sveltekit", label: "SvelteKit" },
-            { key: "nuxt.js", label: "Nuxt.js" },
-            { key: "remix", label: "Remix" },
-            { key: "astro", label: "Astro" },
-          ]}
-          onSelect={(key: string, label: string) => {
-            alert(`You selected: ${label} (${key})`);
-          }}
-          className="w-64"
-          triggerStyle="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white"
-          inputStyle="mt-2  border rounded-md shadow-lg p-2"
-          optionsStyle="flex items-center justify-between w-full p-2 hover:bg-gray-500 hover:cursor-pointer"
-        />
-      </div>
-
-      {/* context menu */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 ">context menu</h2>
-
-        <div className="p-5">
-          <h1 className="text-lg font-bold mb-4">
-            Right-click on the box below
-          </h1>
-
-          <ContextMenu
-            menuItems={[
-              { label: "Back", action: () => console.log("Back clicked!") },
-              {
-                label: "Forward",
-                action: () => console.log("Forward clicked!"),
-              },
-              {
-                label: "Reload",
-                action: () => console.log("Reload clicked!"),
-              },
-              {
-                label: "Delete",
-                action: () => console.log("Delete clicked!"),
-              },
-            ]}
-            menuStyle="bg-gray-900 text-white p-2 flex flex-col space-y-5 items-center justify-center w-[150px] h-fit rounded-md border border-gray-800" // ✅ Custom menu styling
-            menuItemStyle="hover:cursor-pointer hover:bg-gray-600 border-b border-gray-600 pb-1 w-full flex  " // ✅ Custom item styling
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => setIsDialogOpen(true)}
           >
-            <span className="text-gray-600">Right-click here to see menu</span>
-          </ContextMenu>
+            Open Dialog
+          </button>
+
+          <Dialog
+            isOpen={isDialogOpen}
+            onClose={() => setIsDialogOpen(false)}
+            header={<h2 className="text-xl font-bold">Dialog Title</h2>}
+            body={<p>This is a fully customizable dialog!</p>}
+            footer={
+              <div className="flex gap-3">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button className="bg-green-500 text-white px-4 py-2 rounded">
+                  Confirm
+                </button>
+              </div>
+            }
+            bgColor=""
+            overlayColor="/60" // ✅ Keeps background semi-transparent
+            className=""
+          />
         </div>
       </div>
 
@@ -1364,87 +1310,28 @@ const Home = () => {
         </div>
       </div>
 
-      {/* lightbox */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 ">Lightbox</h2>
-
-        <Lightbox
-          images={images}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center"
-        />
-      </div>
-
-      {/* dialog */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 ">Dialog</h2>
+      {/* dropdown */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5 ">Dropdown</h2>
 
         <div className="p-5">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={() => setIsDialogOpen(true)}
-          >
-            Open Dialog
-          </button>
-
-          <Dialog
-            isOpen={isDialogOpen}
-            onClose={() => setIsDialogOpen(false)}
-            header={<h2 className="text-xl font-bold">Dialog Title</h2>}
-            body={<p>This is a fully customizable dialog!</p>}
-            footer={
-              <div className="flex gap-3">
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => setIsDialogOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button className="bg-green-500 text-white px-4 py-2 rounded">
-                  Confirm
-                </button>
-              </div>
-            }
-            bgColor=""
-            overlayColor="/60" // ✅ Keeps background semi-transparent
-            className=""
+          <Dropdown
+            triggerLabel="Open Menu"
+            placement="bottom"
+            options={[
+              { key: "new", label: "New file" },
+              { key: "copy", label: "Copy link" },
+              { key: "edit", label: "Edit file" },
+              {
+                key: "delete",
+                label: "Delete file",
+                action: () => alert("Deleted!"),
+              },
+            ]}
+            triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
+            menuStyle="w-48 bg-gray-800 border border-gray-600 rounded-md shadow-lg "
+            menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer"
           />
-        </div>
-      </div>
-
-      {/* Placeholder */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
-        <h2 className="text-xl font-bold mb-5 ">Placeholder</h2>
-
-        <div className="flex flex-col space-y-4 w-full ">
-          <Placeholder
-            width="w-full"
-            height="h-10"
-            rounded="rounded-lg"
-            color="bg-purple-300"
-          />
-          <div className="flex flex-col space-y-2 w-full">
-            <Placeholder
-              width="w-[75%]"
-              height="h-4"
-              rounded="rounded-lg"
-              color="bg-neutral-300"
-            />
-            <Placeholder
-              width="w-[75%]"
-              height="h-4"
-              rounded="rounded-lg"
-              color="bg-neutral-300"
-            />
-          </div>
-
-          <div className="flex w-full justify-center">
-            <Placeholder
-              width="w-full"
-              height="h-2"
-              rounded="rounded-lg"
-              color="bg-blue-300"
-            />
-          </div>
         </div>
       </div>
 
@@ -1499,58 +1386,249 @@ const Home = () => {
         {otp && <p className="mt-3 text-green-500">Entered OTP: {otp}</p>}
       </div>
 
-      {/* Rating */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Rating</h2>
-        <div className="p-5 space-y-5">
-          <h2 className="text-xl font-bold">Interactive Star Rating</h2>
-          <Rating
-            value={rating}
-            maxRating={5}
-            icon={<Star />}
-            activeColor="text-yellow-500"
-            inactiveColor="text-gray-400"
-            onChange={setRating} // ✅ Controlled by state
+      {/* jumbotron */}
+      <div className="flex flex-col items-center  p-5 rounded-lg  w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
+        <h2 className="text-xl font-bold  mb-5">Jumbotron</h2>
+        <Jumbotron
+          backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
+          className="h-[400px] rounded-lg p-12"
+          overlayColor="bg-gray-900" // ✅ Customize overlay darkness
+          overlayOpacity="opacity-60"
+        >
+          <div className="relative flex flex-col items-center justify-center h-full w-full">
+            <h2 className="mb-4 text-4xl font-semibold text-white">Heading</h2>
+            <h4 className="mb-6 text-xl font-semibold text-white">
+              Subheading
+            </h4>
+            <button className="bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition">
+              Call to action
+            </button>
+          </div>
+        </Jumbotron>
+      </div>
+
+      {/* lightbox */}
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Lightbox</h2>
+
+        <Lightbox
+          images={images}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center"
+        />
+      </div>
+
+      {/* Navbar */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Navbar</h2>
+        <div className="flex flex-col space-y-5 =">
+          <Navbar
+            items={navbarItems}
+            logo={<Menu size={24} />}
+            className="space-x-5"
+            navbarItemClassName="hover:opacity-50"
+            submenuClassName="bg-black flex flex-col items-start space-y-2 mt-2 p-4 border rounded-md"
+            subMenuItemClassName="hover:opacity-50"
           />
-          <p className="mt-4 text-gray-700">Current rating: {rating}</p>
-        </div>
-        <div className="p-5 space-y-5">
-          <h2 className="text-xl font-bold">Read-Only Star Rating</h2>
-          <Rating
-            value={4} // ✅ Preset rating
-            maxRating={5}
-            icon={<Star />}
-            activeColor="text-yellow-500"
-            inactiveColor="text-gray-400"
-            readOnly
-          />
-          <p className="mt-4 text-gray-700">This rating is set to 4 stars.</p>
         </div>
       </div>
 
-      {/* back to top */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h1 className="text-2xl font-bold">Scroll Down to See the Button</h1>
-        <p className="mt-5">
-          Keep scrolling, and the button will appear at bottom right!
-        </p>
-        <BackToTop />
+      {/* number input */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Number Input</h2>
+        <div className="max-w-sm space-y-4">
+          <NumberInput
+            label="Amount"
+            value={amount}
+            onChange={(val) => setAmount(val)}
+            placeholder="0.00"
+            allowDecimals
+            min={0}
+            max={9999}
+            variant="bordered"
+          />
+          <NumberInput
+            label="Amount"
+            value={amount}
+            onChange={(val) => setAmount(val)}
+            placeholder="0.00"
+            allowDecimals
+            min={0}
+            max={9999}
+            variant="faded"
+          />
+          <NumberInput
+            label="Amount"
+            value={amount}
+            onChange={(val) => setAmount(val)}
+            placeholder="0.00"
+            allowDecimals
+            min={0}
+            max={9999}
+            variant="flat"
+          />
+          <NumberInput
+            label="Amount"
+            value={amount}
+            onChange={(val) => setAmount(val)}
+            placeholder="0.00"
+            allowDecimals
+            min={0}
+            max={9999}
+            variant="underlined"
+          />
+          <p className="text-sm text-gray-600">Typed value: {amount}</p>
+        </div>
       </div>
 
-      {/* Social Icons */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
-        <h1 className="text-2xl font-bold">Social Icons</h1>
-        <div className="bg-gray-800 p-5 rounded-md">
-          <SocialIcons className="hover:text-blue-700 transition duration-200 hover:cursor-pointer" />
+      {/* pagination */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Pagination</h2>
+
+        {/* Mock Page Content Display */}
+        <div className=" text-white mt-6 p-6 rounded-md ">
+          <p className="">
+            📄 You are currently viewing content for{" "}
+            <strong>Page {currentPage}</strong>.
+          </p>
         </div>
-        <div className="bg-gray-800 p-5 rounded-md">
-          <SocialIcons
-            className="hover:text-blue-700 transition duration-200 hover:cursor-pointer"
-            platforms={["instagram", "discord", "facebook", "google"]}
-            color="text-blue-500"
+
+        {/* basic demo with no links */}
+        <div className=" mx-auto py-10 px-4 border-b">
+          <Pagination
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
+            activePageClassName="text-white border"
+            disabledPageClassName="opacity-20 pointer-events-none"
+            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
+            visiblePages={2} // show 2 page buttons on each side of current
+            // other props...
+
+            renderPrev={() => (
+              <span className="flex items-center gap-1">
+                <ChevronLeft /> <span>Prev</span>
+              </span>
+            )}
+            renderNext={() => (
+              <span className="flex items-center gap-1">
+                <span>Next</span> <ChevronRight />
+              </span>
+            )}
+            renderFirst={() => (
+              <div className="flex items-center justify-center -space-x-4">
+                <ChevronLeft />
+                <ChevronLeft />
+              </div>
+            )}
+            renderLast={() => (
+              <div className="flex items-center justify-center -space-x-4">
+                <ChevronRight />
+                <ChevronRight />
+              </div>
+            )}
+            renderPage={(page) => <span>{page}</span>}
+          />
+        </div>
+
+        {/*  demo with links */}
+        <div className="w-full max-w-xl mx-auto p-6 shadow rounded-md flex flex-col items-center justify-center">
+          <h2 className="font-semibold mb-4">📄 Page {currentPageWithLink}</h2>
+
+          <ul className="space-y-2 mb-6 flex flex-col w-full">
+            {currentItems.map((item) => (
+              <li
+                key={item}
+                className="bg-stone-800 text-white p-1 rounded flex w-full items-center justify-center"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <Pagination
+            current={currentPageWithLink}
+            total={totalPagesWithLink}
+            onPageChange={updatePage}
+            visiblePages={2}
+            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
+            activePageClassName="text-white border"
+            disabledPageClassName="opacity-20 pointer-events-none"
+            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
+            renderPage={(page) => (
+              <a
+                href={`?page=${page}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  updatePage(page);
+                }}
+              >
+                {page}
+              </a>
+            )}
+            renderPrev={(disabled) => (
+              <a
+                href={`?page=${currentPageWithLink - 1}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!disabled) updatePage(currentPageWithLink - 1);
+                }}
+              >
+                <ChevronLeft /> Prev
+              </a>
+            )}
+            renderNext={(disabled) => (
+              <a
+                href={`?page=${currentPageWithLink + 1}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!disabled) updatePage(currentPageWithLink + 1);
+                }}
+              >
+                Next <ChevronRight />
+              </a>
+            )}
           />
         </div>
       </div>
+
+      {/* Placeholder */}
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+        <h2 className="text-xl font-bold mb-5 ">Placeholder</h2>
+
+        <div className="flex flex-col space-y-4 w-full ">
+          <Placeholder
+            width="w-full"
+            height="h-10"
+            rounded="rounded-lg"
+            color="bg-purple-300"
+          />
+          <div className="flex flex-col space-y-2 w-full">
+            <Placeholder
+              width="w-[75%]"
+              height="h-4"
+              rounded="rounded-lg"
+              color="bg-neutral-300"
+            />
+            <Placeholder
+              width="w-[75%]"
+              height="h-4"
+              rounded="rounded-lg"
+              color="bg-neutral-300"
+            />
+          </div>
+
+          <div className="flex w-full justify-center">
+            <Placeholder
+              width="w-full"
+              height="h-2"
+              rounded="rounded-lg"
+              color="bg-blue-300"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Popover */}
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Popover</h1>
@@ -1610,221 +1688,58 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Toast*/}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Toast</h2>
+      {/* Progressbar */}
+      <div className="flex flex-col space-y-5 items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
+        <h2 className="text-xl font-bold">Progress Bar</h2>
 
-        {/* Trigger a success toast */}
-        <button
-          onClick={() =>
-            showToast("Success! Your action was completed.", "success")
-          }
-          className="px-4 py-2 border-white bg-green-500 text-white rounded-lg hover:cursor-pointer hover:bg-green-600 transition"
-        >
-          Show Success Toast
-        </button>
-
-        {/* Trigger an error toast */}
-        <button
-          onClick={() => showToast("Error! Something went wrong.", "error")}
-          className="mt-3 px-4 py-2 bg-red-500 text-white rounded-lg hover:cursor-pointer hover:bg-red-600 transition"
-        >
-          Show Error Toast
-        </button>
-
-        {/* Trigger an info toast */}
-        <button
-          onClick={() => showToast("Info! Display some info.", "info")}
-          className="mt-3 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:cursor-pointer hover:bg-yellow-600 transition"
-        >
-          Show Info Toast
-        </button>
-      </div>
-
-      {/* Tooltip*/}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Tooltip</h2>
-        <div className="flex  space-x-5 relative w-full">
-          <Tooltip
-            content="Tooltip on top"
-            placement="top"
-            offset={10}
-            triggerContent={<span>Top</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
-
-          <Tooltip
-            content="Tooltip on bottom"
-            placement="bottom"
-            offset={10}
-            triggerContent={<span>Bottom</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
-
-          <Tooltip
-            content="Tooltip on right"
-            placement="right"
-            offset={10}
-            triggerContent={<span>Right</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
-
-          <Tooltip
-            content="Tooltip on left"
-            placement="left"
-            offset={10}
-            triggerContent={<span>Left</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
+        {/* progress bar with buttons */}
+        <ProgressBar
+          startLabel={`${progress}%`}
+          // endLabel="End"
+          progress={progress}
+          className=""
+          labelStyles="flex w-full justify-between mb-2"
+          barColor="bg-purple-500"
+          bgColor="bg-gray-700"
+          barHeight={10}
+          barWidth={300}
+        />
+        {/* Update Progress buttons */}
+        <div className="flex w-full justify-between text-sm">
+          <button
+            className="bg-red-500 text-white px-2 py-1 rounded-md"
+            onClick={() => setProgress((prev) => Math.max(prev - 10, 0))}
+          >
+            Decrease
+          </button>{" "}
+          <button
+            className="bg-blue-500 text-white px-2 py-1 rounded-md"
+            onClick={() => setProgress((prev) => Math.min(prev + 10, 100))}
+          >
+            Increase
+          </button>
         </div>
-      </div>
 
-      {/* Stepper*/}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Stepper</h2>
-        <div className="flex flex-col  space-y-5 items-center justify-center relative w-full">
-          {/* basic */}
-          <Stepper
-            steps={[
-              <span>Step 1</span>,
-              <span>Step 2</span>,
-              <span>Step 3</span>,
-              <span>Step 4</span>,
-            ]}
-            activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-            completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-            stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
-            buttonStyle="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
-            nextButton={<span>Next</span>} // ✅ Custom Next button
-            prevButton={<span>Previous</span>} // ✅ Custom Previous button
-            className="flex items-center space-x-4"
-            currentStep={currentStep} // ✅ Syncs with stepper
-            setCurrentStep={setCurrentStep} // ✅ Updates step state
-          />
-          {/* with circles */}
-          <Stepper
-            steps={[
-              <div className="w-4 h-4 rounded-full bg-gray-500" />,
-              <div className="w-4 h-4 rounded-full bg-gray-500" />,
-              <div className="w-4 h-4 rounded-full bg-gray-500" />,
-              <div className="w-4 h-4 rounded-full bg-gray-500" />,
-            ]}
-            activeStepStyle="bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
-            completedStepStyle="bg-green-500 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
-            stepStyle="bg-gray-400 w-4 h-4 rounded-full flex items-center justify-center hover:cursor-pointer"
-            className="flex items-center w-full space-x-10 justify-center"
-            currentStep={currentStep} // ✅ Syncs with stepper
-            setCurrentStep={setCurrentStep} // ✅ Updates step state
-          />
-          {/* with icons */}
-          <Stepper
-            steps={[
-              <User size={20} />,
-              <Truck size={20} />,
-              <CreditCard size={20} />,
-              <CheckCircle size={20} />,
-            ]}
-            activeStepStyle="bg-blue-600 text-blue-600 p-3 rounded-full hover:cursor-pointer"
-            completedStepStyle="bg-green-500 text-white p-3 rounded-full hover:cursor-pointer"
-            stepStyle="bg-gray-400 p-3 rounded-full hover:cursor-pointer"
-            className="flex items-center space-x-4"
-            currentStep={currentStep} // ✅ Syncs with stepper
-            setCurrentStep={setCurrentStep} // ✅ Updates step state
-          />
+        {/* autoprogress */}
+        <ProgressBar
+          startLabel={`${autoProgress}%`}
+          // endLabel="End"
+          progress={autoProgress}
+          className=""
+          labelStyles="flex w-full justify-between mb-2"
+          barColor="bg-green-500"
+          bgColor="bg-gray-700"
+          barHeight={10}
+          barWidth={300}
+        />
 
-          {/* with form */}
-
-          <div className="w-full flex flex-col items-center">
-            <Stepper
-              steps={steps.map((step) => (
-                <span>{step}</span>
-              ))}
-              activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-              completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-              stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
-              currentStep={currentStep} // ✅ Syncs with stepper
-              setCurrentStep={setCurrentStep} // ✅ Updates step state
-            />
-
-            {/* ✅ Pass state and handlers to `FormStepper` */}
-            <FormStepper
-              currentStep={currentStep}
-              setCurrentStep={setCurrentStep}
-              name={name}
-              setName={setName}
-              address={address}
-              setAddress={setAddress}
-              cardNumber={cardNumber}
-              setCardNumber={setCardNumber}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonial */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Testimonial</h2>
-        <div className="grid gap-12 text-center md:grid-cols-2">
-          <Testimonial
-            name="Anna Morian"
-            review="Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut perspiciatis unde omnis."
-            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(22).jpg"
-            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
-            rating={4}
-          />
-
-          <Testimonial
-            name="Teresa May"
-            review="Neque cupiditate assumenda in maiores repudiandae mollitia architecto elit sed adipiscing elit."
-            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(19).jpg"
-            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
-            rating={5}
-          />
-        </div>
-      </div>
-
-      {/* Switch */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Switch</h2>
-        <div className="flex flex-col space-y-5">
-          <Switch
-            id="terms-switch"
-            checked={isSwitchChecked}
-            onChange={setIsSwitchChecked}
-            size="large"
-            onLabel="I Agree to Terms and Conditions"
-            offLabel="I Agree to Terms and Conditions"
-            disabled={false}
-            onColor="blue" // ✅ Custom "on" color
-            offColor="yellow" // ✅ Custom "off" color
-          />
-          <Switch
-            id="terms-switch"
-            checked={isSwitchChecked}
-            onChange={setIsSwitchChecked}
-            size="medium"
-            onLabel="I Agree to Terms and Conditions"
-            offLabel="I Agree to Terms and Conditions"
-            disabled={false}
-            onColor="red" // ✅ Custom "on" color
-            offColor="gray" // ✅ Custom "off" color
-          />
-          <Switch
-            id="terms-switch"
-            checked={isSwitchChecked}
-            onChange={setIsSwitchChecked}
-            size="small"
-            onLabel="I Agree to Terms and Conditions"
-            offLabel="I Agree to Terms and Conditions"
-            disabled={false}
-            onColor="green" // ✅ Custom "on" color
-            offColor="blue" // ✅ Custom "off" color
-          />
-        </div>
+        {/* Indeterminate Progress Bar (Unknown Duration) */}
+        <ProgressBar
+          isIndeterminate
+          startLabel="Loading..."
+          barWidth={300}
+          bgColor="bg-gray-800"
+        />
       </div>
 
       {/* Radio */}
@@ -1847,183 +1762,32 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Textarea */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Textarea</h2>
-        <div className="flex flex-col space-y-5 w-[350px]">
-          <Textarea
-            value={text}
-            onChange={setText}
-            rows={2}
-            placeholder="Type your message..."
-            className="flex w-full bg-gray-800 text-blue-500 border border-stone-200 text-sm py-2 px-2.5  hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none rounded-lg "
+      {/* Rating */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Rating</h2>
+        <div className="p-5 space-y-5">
+          <h2 className="text-xl font-bold">Interactive Star Rating</h2>
+          <Rating
+            value={rating}
+            maxRating={5}
+            icon={<Star />}
+            activeColor="text-yellow-500"
+            inactiveColor="text-gray-400"
+            onChange={setRating} // ✅ Controlled by state
           />
+          <p className="mt-4 text-gray-700">Current rating: {rating}</p>
         </div>
-      </div>
-
-      {/* Tab */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Tab</h2>
-        <div className="flex flex-col space-y-5 w-[350px]">
-          <Tabs
-            tabs={myTabs}
-            variant="underlined"
-            activeTab={selectedTab} // ✅ Controlled tab state
-            onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex"
-            underlineStyle="bg-blue-500"
+        <div className="p-5 space-y-5">
+          <h2 className="text-xl font-bold">Read-Only Star Rating</h2>
+          <Rating
+            value={4} // ✅ Preset rating
+            maxRating={5}
+            icon={<Star />}
+            activeColor="text-yellow-500"
+            inactiveColor="text-gray-400"
+            readOnly
           />
-
-          <Tabs
-            tabs={myTabs}
-            variant="solid"
-            activeTab={selectedTab} // ✅ Controlled tab state
-            onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex"
-            solidStyle="bg-gray-800 rounded-lg border"
-          />
-
-          <Tabs
-            tabs={myTabs}
-            variant="solid"
-            activeTab={selectedTab} // ✅ Controlled tab state
-            onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex border rounded-lg p-2"
-            solidStyle="bg-gray-800 rounded-lg border my-2 -mx-2"
-          />
-        </div>
-      </div>
-
-      {/* Navbar */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h2 className="text-xl font-bold mb-5">Navbar</h2>
-        <div className="flex flex-col space-y-5 =">
-          <Navbar
-            items={navbarItems}
-            logo={<Menu size={24} />}
-            className="space-x-5"
-            navbarItemClassName="hover:opacity-50"
-            submenuClassName="bg-black flex flex-col items-start space-y-2 mt-2 p-4 border rounded-md"
-            subMenuItemClassName="hover:opacity-50"
-          />
-        </div>
-      </div>
-
-      {/* Sidebar */}
-      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 pt-5">
-        <h2 className="text-xl font-bold mb-5">Sidebar</h2>
-        <div className="w-full h-full grid grid-cols-[min-content_auto]  bg-black border">
-          {/* <Sidebar /> */}
-          <Sidebar
-            isOpen={openSidebar}
-            onOpenChange={setOpenSidebar}
-            minWidth={280}
-            maxWidth={480}
-            defaultWidth={350}
-            handleStyle=" border-stone-600 rounded-full border-2"
-            resizable={true}
-            className="w-full "
-            trigger={
-              <div className="flex h-full items-center justify-center w-full">
-                {openSidebar ? (
-                  <button>
-                    <X
-                      size={28}
-                      className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:cursor-pointer z-50 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
-                    />
-                  </button>
-                ) : (
-                  <button className="flex flex-col items-center justify-center w-[130px] cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-lg border py-1 px-2 ml-5 mt-5">
-                    Toggle Sidebar
-                  </button>
-                )}
-              </div>
-            }
-          >
-            <div className="w-full h-full flex flex-col border-r  overflow-hidden">
-              <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
-                <p className="font-sans antialiased text-base text-current font-semibold">
-                  Sidebar
-                </p>
-              </div>
-
-              <div className="w-full h-max rounded p-3">
-                <ul className="flex flex-col gap-0.5 min-w-60">
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <Inbox size={18} />
-                    </span>
-                    Inbox
-                    <span className="grid place-items-center shrink-0 ps-2.5 ms-auto">
-                      <div className="relative inline-flex items-center border font-sans font-medium rounded-md text-xs px-2 py-0.5 bg-stone-800/10 border-transparent text-stone-500 shadow-none">
-                        14
-                      </div>
-                    </span>
-                  </li>
-
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <Send size={18} />
-                    </span>
-                    Sent
-                  </li>
-
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <FileText size={18} />
-                    </span>
-                    Drafts
-                  </li>
-
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <Pencil size={18} />
-                    </span>
-                    Pins
-                  </li>
-
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <Archive size={18} />
-                    </span>
-                    Archive
-                  </li>
-
-                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
-                    <span className="grid place-items-center shrink-0 me-2.5">
-                      <Trash2 size={18} />
-                    </span>
-                    Trash
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Sidebar>
-
-          <div className="p-5 ">
-            <h1>Main Content</h1>
-            <div className="flex flex-col space-y-4 w-full h-full mt-5">
-              <Placeholder
-                width="w-full"
-                height="h-3/5"
-                rounded="rounded-lg"
-                color="bg-stone-800"
-              />
-
-              <Placeholder
-                width="w-full"
-                height="h-1/5"
-                rounded="rounded-lg"
-                color="bg-stone-800"
-              />
-            </div>
-          </div>
+          <p className="mt-4 text-gray-700">This rating is set to 4 stars.</p>
         </div>
       </div>
 
@@ -2152,114 +1916,424 @@ const Home = () => {
         </div>
       </div>
 
-      {/* pagination */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
-        <h2 className="text-xl font-bold mb-5">Pagination</h2>
+      {/* Sidebar */}
+      <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 pt-5">
+        <h2 className="text-xl font-bold mb-5">Sidebar</h2>
+        <div className="w-full h-full grid grid-cols-[min-content_auto]  bg-black border">
+          {/* <Sidebar /> */}
+          <Sidebar
+            isOpen={openSidebar}
+            onOpenChange={setOpenSidebar}
+            minWidth={280}
+            maxWidth={480}
+            defaultWidth={350}
+            handleStyle=" border-stone-600 rounded-full border-2"
+            resizable={true}
+            className="w-full "
+            trigger={
+              <div className="flex h-full items-center justify-center w-full">
+                {openSidebar ? (
+                  <button>
+                    <X
+                      size={28}
+                      className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:cursor-pointer z-50 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
+                    />
+                  </button>
+                ) : (
+                  <button className="flex flex-col items-center justify-center w-[130px] cursor-pointer shadow text-stone-800 bg-stone-200 hover:bg-stone-400 hover:text-stone-600 rounded-lg border py-1 px-2 ml-5 mt-5">
+                    Toggle Sidebar
+                  </button>
+                )}
+              </div>
+            }
+          >
+            <div className="w-full h-full flex flex-col border-r  overflow-hidden">
+              <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
+                <p className="font-sans antialiased text-base text-current font-semibold">
+                  Sidebar
+                </p>
+              </div>
 
-        {/* Mock Page Content Display */}
-        <div className=" text-white mt-6 p-6 rounded-md ">
-          <p className="">
-            📄 You are currently viewing content for{" "}
-            <strong>Page {currentPage}</strong>.
-          </p>
+              <div className="w-full h-max rounded p-3">
+                <ul className="flex flex-col gap-0.5 min-w-60">
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Inbox size={18} />
+                    </span>
+                    Inbox
+                    <span className="grid place-items-center shrink-0 ps-2.5 ms-auto">
+                      <div className="relative inline-flex items-center border font-sans font-medium rounded-md text-xs px-2 py-0.5 bg-stone-800/10 border-transparent text-stone-500 shadow-none">
+                        14
+                      </div>
+                    </span>
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Send size={18} />
+                    </span>
+                    Sent
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <FileText size={18} />
+                    </span>
+                    Drafts
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Pencil size={18} />
+                    </span>
+                    Pins
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Archive size={18} />
+                    </span>
+                    Archive
+                  </li>
+
+                  <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
+                    <span className="grid place-items-center shrink-0 me-2.5">
+                      <Trash2 size={18} />
+                    </span>
+                    Trash
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Sidebar>
+
+          <div className="p-5 ">
+            <h1>Main Content</h1>
+            <div className="flex flex-col space-y-4 w-full h-full mt-5">
+              <Placeholder
+                width="w-full"
+                height="h-3/5"
+                rounded="rounded-lg"
+                color="bg-stone-800"
+              />
+
+              <Placeholder
+                width="w-full"
+                height="h-1/5"
+                rounded="rounded-lg"
+                color="bg-stone-800"
+              />
+            </div>
+          </div>
         </div>
+      </div>
 
-        {/* basic demo with no links */}
-        <div className=" mx-auto py-10 px-4 border-b">
-          <Pagination
-            current={currentPage}
-            total={totalPages}
-            onPageChange={setCurrentPage}
-            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
-            activePageClassName="text-white border"
-            disabledPageClassName="opacity-20 pointer-events-none"
-            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
-            visiblePages={2} // show 2 page buttons on each side of current
-            // other props...
+      {/* slider */}
+      <div className="rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">Slider</h2>
 
-            renderPrev={() => (
-              <span className="flex items-center gap-1">
-                <ChevronLeft /> <span>Prev</span>
-              </span>
-            )}
-            renderNext={() => (
-              <span className="flex items-center gap-1">
-                <span>Next</span> <ChevronRight />
-              </span>
-            )}
-            renderFirst={() => (
-              <div className="flex items-center justify-center -space-x-4">
-                <ChevronLeft />
-                <ChevronLeft />
-              </div>
-            )}
-            renderLast={() => (
-              <div className="flex items-center justify-center -space-x-4">
-                <ChevronRight />
-                <ChevronRight />
-              </div>
-            )}
-            renderPage={(page) => <span>{page}</span>}
+        <div className="flex flex-col w-full">
+          <div>
+            <label className="block mb-1 text-sm font-medium">
+              Single: {single}
+            </label>
+            <Slider
+              className="bg-gray-600 h-2 rounded-full"
+              thumbClassName="w-4 h-4 bg-yellow-500 border-2 border-yellow-500 rounded-full"
+              rangeClassName="h-2 bg-gray-400 rounded-full"
+              value={single}
+              onChange={setSingle}
+              min={0}
+              max={100}
+              step={1}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">
+              Range: {range[0]} - {range[1]}
+            </label>
+            <Slider
+              className="bg-gray-200 h-2 rounded-full"
+              thumbClassName="w-4 h-4 bg-white border-2 border-blue-500 rounded-full"
+              rangeClassName="h-2 bg-blue-500 rounded-full"
+              mode="range"
+              value={range}
+              onChange={setRange}
+              min={0}
+              max={100}
+              step={1}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Social Icons */}
+      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
+        <h1 className="text-2xl font-bold">Social Icons</h1>
+        <div className="bg-gray-800 p-5 rounded-md">
+          <SocialIcons className="hover:text-blue-700 transition duration-200 hover:cursor-pointer" />
+        </div>
+        <div className="bg-gray-800 p-5 rounded-md">
+          <SocialIcons
+            className="hover:text-blue-700 transition duration-200 hover:cursor-pointer"
+            platforms={["instagram", "discord", "facebook", "google"]}
+            color="text-blue-500"
           />
         </div>
+      </div>
 
-        {/*  demo with links */}
-        <div className="w-full max-w-xl mx-auto p-6 shadow rounded-md flex flex-col items-center justify-center">
-          <h2 className="font-semibold mb-4">📄 Page {currentPageWithLink}</h2>
+      {/* Stepper*/}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Stepper</h2>
+        <div className="flex flex-col  space-y-5 items-center justify-center relative w-full">
+          {/* basic */}
+          <Stepper
+            steps={[
+              <span>Step 1</span>,
+              <span>Step 2</span>,
+              <span>Step 3</span>,
+              <span>Step 4</span>,
+            ]}
+            activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+            completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+            stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
+            buttonStyle="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
+            nextButton={<span>Next</span>} // ✅ Custom Next button
+            prevButton={<span>Previous</span>} // ✅ Custom Previous button
+            className="flex items-center space-x-4"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
+          {/* with circles */}
+          <Stepper
+            steps={[
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+              <div className="w-4 h-4 rounded-full bg-gray-500" />,
+            ]}
+            activeStepStyle="bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
+            completedStepStyle="bg-green-500 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
+            stepStyle="bg-gray-400 w-4 h-4 rounded-full flex items-center justify-center hover:cursor-pointer"
+            className="flex items-center w-full space-x-10 justify-center"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
+          {/* with icons */}
+          <Stepper
+            steps={[
+              <User size={20} />,
+              <Truck size={20} />,
+              <CreditCard size={20} />,
+              <CheckCircle size={20} />,
+            ]}
+            activeStepStyle="bg-blue-600 text-blue-600 p-3 rounded-full hover:cursor-pointer"
+            completedStepStyle="bg-green-500 text-white p-3 rounded-full hover:cursor-pointer"
+            stepStyle="bg-gray-400 p-3 rounded-full hover:cursor-pointer"
+            className="flex items-center space-x-4"
+            currentStep={currentStep} // ✅ Syncs with stepper
+            setCurrentStep={setCurrentStep} // ✅ Updates step state
+          />
 
-          <ul className="space-y-2 mb-6 flex flex-col w-full">
-            {currentItems.map((item) => (
-              <li
-                key={item}
-                className="bg-stone-800 text-white p-1 rounded flex w-full items-center justify-center"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+          {/* with form */}
 
-          <Pagination
-            current={currentPageWithLink}
-            total={totalPagesWithLink}
-            onPageChange={updatePage}
-            visiblePages={2}
-            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
-            activePageClassName="text-white border"
-            disabledPageClassName="opacity-20 pointer-events-none"
-            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
-            renderPage={(page) => (
-              <a
-                href={`?page=${page}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  updatePage(page);
-                }}
-              >
-                {page}
-              </a>
-            )}
-            renderPrev={(disabled) => (
-              <a
-                href={`?page=${currentPageWithLink - 1}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (!disabled) updatePage(currentPageWithLink - 1);
-                }}
-              >
-                <ChevronLeft /> Prev
-              </a>
-            )}
-            renderNext={(disabled) => (
-              <a
-                href={`?page=${currentPageWithLink + 1}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (!disabled) updatePage(currentPageWithLink + 1);
-                }}
-              >
-                Next <ChevronRight />
-              </a>
-            )}
+          <div className="w-full flex flex-col items-center">
+            <Stepper
+              steps={steps.map((step) => (
+                <span>{step}</span>
+              ))}
+              activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+              completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
+              stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
+              currentStep={currentStep} // ✅ Syncs with stepper
+              setCurrentStep={setCurrentStep} // ✅ Updates step state
+            />
+
+            {/* ✅ Pass state and handlers to `FormStepper` */}
+            <FormStepper
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              name={name}
+              setName={setName}
+              address={address}
+              setAddress={setAddress}
+              cardNumber={cardNumber}
+              setCardNumber={setCardNumber}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Switch */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Switch</h2>
+        <div className="flex flex-col space-y-5">
+          <Switch
+            id="terms-switch"
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
+            size="large"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
+            disabled={false}
+            onColor="blue" // ✅ Custom "on" color
+            offColor="yellow" // ✅ Custom "off" color
+          />
+          <Switch
+            id="terms-switch"
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
+            size="medium"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
+            disabled={false}
+            onColor="red" // ✅ Custom "on" color
+            offColor="gray" // ✅ Custom "off" color
+          />
+          <Switch
+            id="terms-switch"
+            checked={isSwitchChecked}
+            onChange={setIsSwitchChecked}
+            size="small"
+            onLabel="I Agree to Terms and Conditions"
+            offLabel="I Agree to Terms and Conditions"
+            disabled={false}
+            onColor="green" // ✅ Custom "on" color
+            offColor="blue" // ✅ Custom "off" color
+          />
+        </div>
+      </div>
+
+      {/* Tab */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Tab</h2>
+        <div className="flex flex-col space-y-5 w-[350px]">
+          <Tabs
+            tabs={myTabs}
+            variant="underlined"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex"
+            underlineStyle="bg-blue-500"
+          />
+
+          <Tabs
+            tabs={myTabs}
+            variant="solid"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex"
+            solidStyle="bg-gray-800 rounded-lg border"
+          />
+
+          <Tabs
+            tabs={myTabs}
+            variant="solid"
+            activeTab={selectedTab} // ✅ Controlled tab state
+            onTabChange={setSelectedTab} // ✅ Updates state when clicked
+            currentTabStyle="text-blue-500 font-semibold"
+            inactiveTabStyle=" hover:opacity-50"
+            className="flex border rounded-lg p-2"
+            solidStyle="bg-gray-800 rounded-lg border my-2 -mx-2"
+          />
+        </div>
+      </div>
+
+      {/* table */}
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+        <h2 className="text-xl font-bold mb-5">table</h2>
+        <div className="flex space-x-5">
+          <div className="flex h-fit w-fit">
+            <Table
+              data={invoices}
+              columns={columns}
+              caption="A list of your recent invoices."
+              footer="Total billed: $1,200.00"
+              striping="column"
+              headerClassName="bg-gray-700"
+              rowClassName="hover:bg-blue-600 cursor-pointer"
+              strippedClassName="bg-blue-600 text-black"
+            />
+          </div>
+
+          <div className="flex flex-col h-fit w-fit">
+            <Table
+              data={members}
+              columns={memberColumns}
+              caption="Team members and their roles."
+              sortable
+              striping="row"
+              selectionMode="multiple"
+              rowClassName="hover:bg-blue-600 cursor-pointer"
+              strippedClassName="bg-stone-50 text-black"
+              rowId={(row) => row.id}
+              selectedRowIds={selectedIds}
+              onSelectionChange={(ids) => setSelectedIds(ids as number[])}
+              renderSelectionAction={(selected) => (
+                <div className="flex justify-between items-center p-4 border-t bg-stone-50">
+                  <span className="text-sm text-stone-600">
+                    Selected: {selected.length}
+                  </span>
+                  <button
+                    onClick={() =>
+                      alert(
+                        `Messaging: ${selected.map((m) => m.name).join(", ")}`
+                      )
+                    }
+                    className="rounded bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700"
+                  >
+                    Message Selected Members
+                  </button>
+                </div>
+              )}
+            />
+            <div className="flex space-x-1 text-sm text-stone-700 mt-2">
+              {selectedMembers ? (
+                selectedMembers.map((member) => <span>{member.name}</span>)
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonial */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Testimonial</h2>
+        <div className="grid gap-12 text-center md:grid-cols-2">
+          <Testimonial
+            name="Anna Morian"
+            review="Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut perspiciatis unde omnis."
+            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(22).jpg"
+            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            rating={4}
+          />
+
+          <Testimonial
+            name="Teresa May"
+            review="Neque cupiditate assumenda in maiores repudiandae mollitia architecto elit sed adipiscing elit."
+            avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(19).jpg"
+            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            rating={5}
+          />
+        </div>
+      </div>
+
+      {/* Textarea */}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Textarea</h2>
+        <div className="flex flex-col space-y-5 w-[350px]">
+          <Textarea
+            value={text}
+            onChange={setText}
+            rows={2}
+            placeholder="Type your message..."
+            className="flex w-full bg-gray-800 text-blue-500 border border-stone-200 text-sm py-2 px-2.5  hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none rounded-lg "
           />
         </div>
       </div>
@@ -2332,113 +2406,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* table */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
-        <h2 className="text-xl font-bold mb-5">table</h2>
-        <div className="flex space-x-5">
-          <div className="flex h-fit w-fit">
-            <Table
-              data={invoices}
-              columns={columns}
-              caption="A list of your recent invoices."
-              footer="Total billed: $1,200.00"
-              striping="column"
-              headerClassName="bg-gray-700"
-              rowClassName="hover:bg-blue-600 cursor-pointer"
-              strippedClassName="bg-blue-600 text-black"
-            />
-          </div>
-
-          <div className="flex flex-col h-fit w-fit">
-            <Table
-              data={members}
-              columns={memberColumns}
-              caption="Team members and their roles."
-              sortable
-              striping="row"
-              selectionMode="multiple"
-              rowClassName="hover:bg-blue-600 cursor-pointer"
-              strippedClassName="bg-stone-50 text-black"
-              rowId={(row) => row.id}
-              selectedRowIds={selectedIds}
-              onSelectionChange={(ids) => setSelectedIds(ids as number[])}
-              renderSelectionAction={(selected) => (
-                <div className="flex justify-between items-center p-4 border-t bg-stone-50">
-                  <span className="text-sm text-stone-600">
-                    Selected: {selected.length}
-                  </span>
-                  <button
-                    onClick={() =>
-                      alert(
-                        `Messaging: ${selected.map((m) => m.name).join(", ")}`
-                      )
-                    }
-                    className="rounded bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700"
-                  >
-                    Message Selected Members
-                  </button>
-                </div>
-              )}
-            />
-            <div className="flex space-x-1 text-sm text-stone-700 mt-2">
-              {selectedMembers ? (
-                selectedMembers.map((member) => <span>{member.name}</span>)
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* number input */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
-        <h2 className="text-xl font-bold mb-5">Number Input</h2>
-        <div className="max-w-sm space-y-4">
-          <NumberInput
-            label="Amount"
-            value={amount}
-            onChange={(val) => setAmount(val)}
-            placeholder="0.00"
-            allowDecimals
-            min={0}
-            max={9999}
-            variant="bordered"
-          />
-          <NumberInput
-            label="Amount"
-            value={amount}
-            onChange={(val) => setAmount(val)}
-            placeholder="0.00"
-            allowDecimals
-            min={0}
-            max={9999}
-            variant="faded"
-          />
-          <NumberInput
-            label="Amount"
-            value={amount}
-            onChange={(val) => setAmount(val)}
-            placeholder="0.00"
-            allowDecimals
-            min={0}
-            max={9999}
-            variant="flat"
-          />
-          <NumberInput
-            label="Amount"
-            value={amount}
-            onChange={(val) => setAmount(val)}
-            placeholder="0.00"
-            allowDecimals
-            min={0}
-            max={9999}
-            variant="underlined"
-          />
-          <p className="text-sm text-gray-600">Typed value: {amount}</p>
-        </div>
-      </div>
-
       {/* time input */}
       <div className="rounded-lg text-center h-fit w-[300px] border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Time Input</h2>
@@ -2476,36 +2443,76 @@ const Home = () => {
         </div>
       </div>
 
-      {/* slider */}
-      <div className="rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center m-5 p-5">
-        <h2 className="text-xl font-bold mb-5">Slider</h2>
+      {/* Toast*/}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Toast</h2>
 
-        <div className="flex flex-col w-full">
-          <div>
-            <label className="block mb-1 text-sm font-medium">
-              Single: {single}
-            </label>
-            <Slider
-              value={single}
-              onChange={setSingle}
-              min={0}
-              max={100}
-              step={1}
-            />
-          </div>
-          <div>
-            <label className="block mb-1 text-sm font-medium">
-              Range: {range[0]} - {range[1]}
-            </label>
-            <Slider
-              mode="range"
-              value={range}
-              onChange={setRange}
-              min={0}
-              max={100}
-              step={1}
-            />
-          </div>
+        {/* Trigger a success toast */}
+        <button
+          onClick={() =>
+            showToast("Success! Your action was completed.", "success")
+          }
+          className="px-4 py-2 border-white bg-green-500 text-white rounded-lg hover:cursor-pointer hover:bg-green-600 transition"
+        >
+          Show Success Toast
+        </button>
+
+        {/* Trigger an error toast */}
+        <button
+          onClick={() => showToast("Error! Something went wrong.", "error")}
+          className="mt-3 px-4 py-2 bg-red-500 text-white rounded-lg hover:cursor-pointer hover:bg-red-600 transition"
+        >
+          Show Error Toast
+        </button>
+
+        {/* Trigger an info toast */}
+        <button
+          onClick={() => showToast("Info! Display some info.", "info")}
+          className="mt-3 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:cursor-pointer hover:bg-yellow-600 transition"
+        >
+          Show Info Toast
+        </button>
+      </div>
+
+      {/* Tooltip*/}
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+        <h2 className="text-xl font-bold mb-5">Tooltip</h2>
+        <div className="flex  space-x-5 relative w-full">
+          <Tooltip
+            content="Tooltip on top"
+            placement="top"
+            offset={10}
+            triggerContent={<span>Top</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on bottom"
+            placement="bottom"
+            offset={10}
+            triggerContent={<span>Bottom</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on right"
+            placement="right"
+            offset={10}
+            triggerContent={<span>Right</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
+
+          <Tooltip
+            content="Tooltip on left"
+            placement="left"
+            offset={10}
+            triggerContent={<span>Left</span>}
+            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+          />
         </div>
       </div>
     </div>
