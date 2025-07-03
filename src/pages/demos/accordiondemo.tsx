@@ -12,16 +12,16 @@ const installCommands = {
 const codeExample = `
 import { Accordion, AccordionItem } from "../../components/accordion";
 
-<Accordion bgColor="black" textColor="white">
-  <AccordionItem title="What is this UI kit?" bgColor="black" textColor="white">
+<Accordion className="bg-black text-white">
+  <AccordionItem title="What is this UI kit?" >
     This UI kit is a set of reusable components built with Tailwind CSS and React,
     designed to be fully customizable and accessible.
   </AccordionItem>
-  <AccordionItem title="Is it mobile-friendly?" bgColor="black" textColor="white">
+  <AccordionItem title="Is it mobile-friendly?" >
     Absolutely. All components are responsive by default and support
     mobile-first interaction patterns.
   </AccordionItem>
-  <AccordionItem title="Can I use it in production?" bgColor="black" textColor="white">
+  <AccordionItem title="Can I use it in production?" >
     Yes, these components are built for real-world apps. Customize
     colors, animations, and behaviors easily.
   </AccordionItem>
@@ -76,34 +76,21 @@ export default function AccordionDemo() {
       {/* Display Area */}
       <div className="flex w-full h-fit min-h-[350px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <Accordion bgColor="black" textColor="white">
-            <AccordionItem
-              title="What is this UI kit?"
-              bgColor="black"
-              textColor="white"
-            >
+          <Accordion className="bg-black text-white">
+            <AccordionItem title="What is this UI kit?">
               This UI kit is a set of reusable components built with Tailwind
               CSS and React, designed to be fully customizable and accessible.
             </AccordionItem>
-            <AccordionItem
-              title="Is it mobile-friendly?"
-              bgColor="black"
-              textColor="white"
-            >
+            <AccordionItem title="Is it mobile-friendly?">
               Absolutely. All components are responsive by default and support
               mobile-first interaction patterns.
             </AccordionItem>
-            <AccordionItem
-              title="Can I use it in production?"
-              bgColor="black"
-              textColor="white"
-            >
+            <AccordionItem title="Can I use it in production?">
               Yes, these components are built for real-world apps. Customize
               colors, animations, and behaviors easily.
             </AccordionItem>
           </Accordion>
         ) : (
-          //   <pre className=" font-semibold">{codeExample}</pre>
           <CodeSnippet code={codeExample} />
         )}
       </div>
@@ -128,8 +115,7 @@ export default function AccordionDemo() {
           ))}
         </div>
 
-        <div className="flex w-full bg-stone-900 rounded-lg p-4 text-white text-sm">
-          {/* <pre>{installCommands[activeTool]}</pre> */}
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>

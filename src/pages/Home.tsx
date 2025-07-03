@@ -236,16 +236,12 @@ const Home = () => {
       {/* Accordion Component */}
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Accordion</h2>
-        <Accordion bgColor="black" textColor="white">
-          <AccordionItem title="Section 1" bgColor="black" textColor="white">
+        <Accordion className="bg-black text-white">
+          <AccordionItem title="Section 1">
             This is the first section
           </AccordionItem>
-          <AccordionItem title="Section 2" bgColor="black" textColor="white">
-            More content here
-          </AccordionItem>
-          <AccordionItem title="Section 3" bgColor="black" textColor="white">
-            Final section details
-          </AccordionItem>
+          <AccordionItem title="Section 2">More content here</AccordionItem>
+          <AccordionItem title="Section 3">Final section details</AccordionItem>
         </Accordion>
       </div>
 

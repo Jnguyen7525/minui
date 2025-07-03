@@ -4,22 +4,11 @@ import { ChevronDownIcon } from "lucide-react";
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
-  bgColor?: string;
-  textColor?: string;
 };
 
-const Accordion: React.FC<AccordionProps> = ({
-  children,
-  className = "",
-  bgColor = "bg-white",
-  textColor = "text-black",
-}) => {
+const Accordion: React.FC<AccordionProps> = ({ children, className }) => {
   return (
-    <div
-      className={`rounded-md shadow-md  ${bgColor} ${textColor} ${className}`}
-    >
-      {children}
-    </div>
+    <div className={`rounded-md shadow-md   ${className}`}>{children}</div>
   );
 };
 
@@ -27,18 +16,12 @@ type AccordionItemProps = {
   title: string;
   children: React.ReactNode;
   className?: string;
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
 };
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
   children,
-  className = "",
-  bgColor = "bg-white",
-  borderColor = "border-gray-500",
-  textColor = "text-black",
+  className,
 }) => {
   const [open, setOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -51,9 +34,9 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   }, [open]);
 
   return (
-    <div className={`border-b ${borderColor} ${className}`}>
+    <div className={`border-b  ${className}`}>
       <button
-        className={`flex justify-between w-full p-4 text-left text-sm font-medium rounded-md hover:opacity-70 transition-all hover:cursor-pointer ${bgColor} ${textColor}`}
+        className={`flex justify-between w-full p-4 text-left text-sm font-medium rounded-md hover:opacity-70 transition-all hover:cursor-pointer `}
         onClick={() => setOpen(!open)}
       >
         {title}
@@ -66,10 +49,10 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
       <div
         ref={contentRef}
-        className={`overflow-hidden transition-[height] duration-200 ease-in-out ${bgColor} ${textColor}`}
+        className={`overflow-hidden transition-[height] duration-200 ease-in-out `}
         style={{ height }}
       >
-        <div className={`p-4 text-sm ${bgColor} ${textColor}`}>{children}</div>
+        <div className={`p-4 text-sm `}>{children}</div>
       </div>
     </div>
   );
