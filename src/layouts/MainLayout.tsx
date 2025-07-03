@@ -2,6 +2,7 @@ import React, { useContext, useState, type ReactNode } from "react";
 import { ThemeContext, ThemeSwitcher } from "../components/theme";
 import { ChevronDown, ChevronUp, Moon, Sun } from "lucide-react";
 import Sidebar from "../components/sidebar";
+import { Link } from "react-router-dom";
 
 /* Header Component */
 function Header() {
@@ -46,7 +47,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     <div className="h-screen overflow-hidden scrollbar-hide flex flex-col relative">
       <Header />
       <div className="flex h-full">
-        <div className="w-[200px]  px-4 flex flex-col space-y-1 items-start">
+        <div className="w-fit px-4 flex flex-col space-y-1 items-start">
           <Sidebar
             isOpen={openMainSidebar}
             onOpenChange={setOpenMainSidebar}
@@ -126,17 +127,26 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 "Toast",
                 "Tooltip",
               ].map((component) => (
-                <button
+                // <button
+                //   key={component}
+                //   className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex"
+                // >
+                //   {component}
+                // </button>
+                <Link
                   key={component}
+                  to={`/component/${component
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
                   className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex"
                 >
                   {component}
-                </button>
+                </Link>
               ))}
             </aside>
           </Sidebar>
         </div>
-        <main className={`overflow-y-auto py-10`}>{children}</main>
+        <main className={`overflow-y-auto py-10 w-full`}>{children}</main>
       </div>
     </div>
   );
