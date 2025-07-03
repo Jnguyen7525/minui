@@ -1,6 +1,6 @@
 import React, { useContext, useState, type ReactNode } from "react";
 import { ThemeContext, ThemeSwitcher } from "../components/theme";
-import { ChevronDown, ChevronUp, Moon, Sun } from "lucide-react";
+import { ChevronDown, ChevronUp, Coffee, Moon, Sun } from "lucide-react";
 import Sidebar from "../components/sidebar";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,15 @@ function Header() {
 
   return (
     <header className="py-2 px-7 flex items-center justify-between shadow-md border-b border-gray-600  shadow-white">
-      <h1 className="text-xl font-semibold ">MyUI</h1>
+      <Link
+        to={"/"}
+        className="text-xl font-semibold flex items-center justify-center relative hover:opacity-80"
+      >
+        <Coffee size={50} strokeWidth={1} color="gray" />{" "}
+        <span className="absolute bottom-1 text-sm font-semibold tracking-widest text-white">
+          coffeeui
+        </span>
+      </Link>
       <ThemeSwitcher
         triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 "
         triggerContent={triggerContent}
@@ -90,6 +98,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 "Checkbox",
                 "Checkbox Group",
                 "Circular Progress",
+                "Code Snippet",
                 "Collapsible",
                 "Combobox",
                 "Context Menu",

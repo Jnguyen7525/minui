@@ -1,5 +1,6 @@
 import { Accordion, AccordionItem } from "../../components/accordion";
 import { useState } from "react";
+import CodeSnippet from "../../components/codesnippet";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -26,6 +27,21 @@ import { Accordion, AccordionItem } from "../../components/accordion";
   </AccordionItem>
 </Accordion>
   `;
+
+const usageExample = `import { Accordion, AccordionItem } from "@your-org/ui-kit";
+
+function Example() {
+  return (
+    <Accordion>
+      <AccordionItem title="First item">
+        This is the first item's content.
+      </AccordionItem>
+      <AccordionItem title="Second item">
+        This is the second item's content.
+      </AccordionItem>
+    </Accordion>
+  );
+}`;
 
 export default function AccordionDemo() {
   const [activeView, setActiveView] = useState<"preview" | "code">("preview");
@@ -87,7 +103,8 @@ export default function AccordionDemo() {
             </AccordionItem>
           </Accordion>
         ) : (
-          <pre className=" font-semibold">{codeExample}</pre>
+          //   <pre className=" font-semibold">{codeExample}</pre>
+          <CodeSnippet code={codeExample} />
         )}
       </div>
 
@@ -112,7 +129,8 @@ export default function AccordionDemo() {
         </div>
 
         <div className="flex w-full bg-stone-900 rounded-lg p-4 text-white text-sm">
-          <pre>{installCommands[activeTool]}</pre>
+          {/* <pre>{installCommands[activeTool]}</pre> */}
+          <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
 
@@ -120,22 +138,7 @@ export default function AccordionDemo() {
         <span className="text-xl">Usage</span>
 
         <div className="flex w-full h-fit bg-stone-900 rounded-lg p-5">
-          <pre>
-            {`import { Accordion, AccordionItem } from "@your-org/ui-kit";
-
-function Example() {
-  return (
-    <Accordion>
-      <AccordionItem title="First item">
-        This is the first item's content.
-      </AccordionItem>
-      <AccordionItem title="Second item">
-        This is the second item's content.
-      </AccordionItem>
-    </Accordion>
-  );
-}`}
-          </pre>
+          <CodeSnippet code={usageExample} />
         </div>
       </div>
     </div>
