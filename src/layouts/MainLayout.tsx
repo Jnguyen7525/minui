@@ -146,7 +146,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                   key={component}
                   to={`/component/${component
                     .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
+                    .replace(/\s+/g, " ")}`}
                   className="p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex"
                 >
                   {component}

@@ -24,7 +24,8 @@ export default function CodeSnippet({ code }: CodeSnippetProps) {
 // 🧠 Basic JSX-aware syntax highlighting
 function highlightLine(line: string): JSX.Element {
   // const segments = line.split(/(\s+|<|>|\/|=|".*?"|'.*?')/g);
-  const segments = line.split(/(\s+|<\/|<|>|\/|=|".*?"|'.*?')/g);
+  // const segments = line.split(/(\s+|<\/|<|>|\/|=|".*?"|'.*?')/g);
+  const segments = line.split(/(\s+|<\/|<|>|\/|=|,|\[|\]|\(|\)|".*?"|'.*?')/g);
 
   return (
     <>
@@ -57,7 +58,7 @@ function highlightLine(line: string): JSX.Element {
         }
 
         // Keywords and declarations
-        if (/^(const|let|var|export|type)$/.test(seg)) {
+        else if (/^(const|let|var|export|type)$/.test(seg)) {
           color = "text-green-400";
         }
         // Object keys (we assume camelCase or kebab-case)
@@ -72,10 +73,27 @@ function highlightLine(line: string): JSX.Element {
         else if (/^["'][^"']*["']$/.test(seg)) {
           color = "text-yellow-300";
         }
-        // Function or variable names
-        // else if (/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(seg)) {
-        //   color = "text-blue-300";
-        // }
+
+        // Find index of declaration keyword in current line
+        const declarationIndex = segments.findIndex((seg) =>
+          /^(const|let|var)$/.test(seg)
+        );
+
+        // Find index of first "=" after the declaration
+        const assignmentIndex = segments.findIndex(
+          (seg, i) => i > declarationIndex && seg === "="
+        );
+
+        // Highlight all identifiers between declaration and assignment
+        if (
+          /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(seg) &&
+          declarationIndex !== -1 &&
+          assignmentIndex !== -1 &&
+          i > declarationIndex &&
+          i < assignmentIndex
+        ) {
+          color = "text-cyan-400";
+        }
 
         // Highlight attribute names (if followed by "=")
         if (segments[i + 1] === "=" && /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(seg)) {

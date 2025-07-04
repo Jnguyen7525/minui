@@ -4,9 +4,6 @@ type AlertProps = {
   children: React.ReactNode;
   className?: string;
   variant?: "default" | "destructive" | "success" | "warning";
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
   icon?: React.ReactNode;
 };
 

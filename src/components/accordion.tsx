@@ -34,7 +34,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   }, [open]);
 
   return (
-    <div className={`border-b  ${className}`}>
+    <div className={`border-b `}>
       <button
         className={`flex justify-between w-full p-4 text-left text-sm font-medium rounded-md hover:opacity-70 transition-all hover:cursor-pointer `}
         onClick={() => setOpen(!open)}
@@ -49,10 +49,10 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
       <div
         ref={contentRef}
-        className={`overflow-hidden transition-[height] duration-200 ease-in-out `}
+        className={`overflow-hidden transition-[height] duration-200 ease-in-out ${className}`}
         style={{ height }}
       >
-        <div className={`p-4 text-sm `}>{children}</div>
+        <div className={`p-4`}>{children}</div>
       </div>
     </div>
   );

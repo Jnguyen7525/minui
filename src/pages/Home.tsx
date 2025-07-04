@@ -237,11 +237,15 @@ const Home = () => {
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Accordion</h2>
         <Accordion className="bg-black text-white">
-          <AccordionItem title="Section 1">
+          <AccordionItem title="Section 1" className="text-sm">
             This is the first section
           </AccordionItem>
-          <AccordionItem title="Section 2">More content here</AccordionItem>
-          <AccordionItem title="Section 3">Final section details</AccordionItem>
+          <AccordionItem title="Section 2" className="text-sm">
+            More content here
+          </AccordionItem>
+          <AccordionItem title="Section 3" className="text-sm">
+            Final section details
+          </AccordionItem>
         </Accordion>
       </div>
 
@@ -300,21 +304,31 @@ const Home = () => {
           <AlertDialog
             isOpen={openAlertDialog}
             onClose={() => setOpenAlertDialog(false)}
-            bgColor=""
-            overlayColor="/60"
+            className="bg-black"
           >
-            <AlertDialogTitle>Confirm Action</AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogTitle className="text-lg font-semibold ">
+              Confirm Action
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-sm ">
               Are you sure you want to proceed?
             </AlertDialogDescription>
+
             <AlertDialogActions
               onConfirm={() => {
-                setShowSuccessAlert(true); // Show success Alert instead of alert()
-                setOpenAlertDialog(false); // Close the Alert Dialog
+                setShowSuccessAlert(true);
+                setOpenAlertDialog(false);
               }}
               onCancel={() => setOpenAlertDialog(false)}
-              cancelColor="bg-red-500"
-              confirmColor="bg-blue-500"
+              cancelButton={
+                <button className="px-4 py-2 rounded bg-red-500 text-white hover:cursor-pointer">
+                  Cancel
+                </button>
+              }
+              confirmButton={
+                <button className="px-4 py-2 rounded bg-blue-500 text-white hover:cursor-pointer">
+                  Confirm
+                </button>
+              }
             />
           </AlertDialog>
 
@@ -347,51 +361,7 @@ const Home = () => {
               { label: "Grapes", key: "grapes" },
             ]}
             placeholder="Pick a fruit..."
-            bgColor=""
-            borderColor="border-blue-500"
-            variant="flat"
-          />
-
-          <Autocomplete
-            items={[
-              { label: "Apple", key: "apple" },
-              { label: "Banana", key: "banana" },
-              { label: "Cherry", key: "cherry" },
-              { label: "Date", key: "date" },
-              { label: "Grapes", key: "grapes" },
-            ]}
-            placeholder="Pick a fruit..."
-            bgColor=""
-            borderColor="border-blue-500"
-            variant="bordered"
-          />
-
-          <Autocomplete
-            items={[
-              { label: "Apple", key: "apple" },
-              { label: "Banana", key: "banana" },
-              { label: "Cherry", key: "cherry" },
-              { label: "Date", key: "date" },
-              { label: "Grapes", key: "grapes" },
-            ]}
-            placeholder="Pick a fruit..."
-            bgColor=""
-            borderColor="border-blue-500"
-            variant="underlined"
-          />
-
-          <Autocomplete
-            items={[
-              { label: "Apple", key: "apple" },
-              { label: "Banana", key: "banana" },
-              { label: "Cherry", key: "cherry" },
-              { label: "Date", key: "date" },
-              { label: "Grapes", key: "grapes" },
-            ]}
-            placeholder="Pick a fruit..."
-            bgColor="bg-blue-500"
-            borderColor="border-blue-500"
-            variant="faded"
+            className="border-blue-500 bg-black border-b rounded-none"
           />
         </div>
       </div>
@@ -403,33 +373,22 @@ const Home = () => {
           <Avatar
             src={firstAvatar}
             size="xl"
-            bgColor=""
-            borderColor="border-black"
-            className="border-2"
+            className="border-2 border-blue-600"
           />
           <Avatar
             src={secondAvatar}
             size="lg"
-            bgColor="bg-gray-100"
-            borderColor="border-blue-500"
-            textColor="text-red-500"
-            className="border-2"
+            className="border-2 border-red-600"
           />
           <Avatar
             src={thirdAvatar}
             size="md"
-            bgColor=""
-            borderColor="border-blue-500"
-            textColor="text-red-500"
-            className="border-2"
+            className="border-2 bg-red-500 border-blue-500"
           />
           <Avatar
             name="John"
             size="sm"
-            bgColor="bg-blue-300"
-            borderColor="border-red-300"
-            textColor="text-red-300"
-            className="border-2"
+            className="border-2 text-yellow-500 bg-gray-600"
           />
         </div>
       </div>
@@ -457,8 +416,8 @@ const Home = () => {
             <Avatar
               src={firstAvatar}
               size="xl"
-              bgColor=""
-              borderColor="border-black"
+              // bgColor=""
+              // borderColor="border-black"
               className="border-2"
             />
           </Badge>
@@ -472,9 +431,9 @@ const Home = () => {
             <Avatar
               src={secondAvatar}
               size="lg"
-              bgColor="bg-gray-100"
-              borderColor="border-blue-500"
-              textColor="text-red-500"
+              // bgColor="bg-gray-100"
+              // borderColor="border-blue-500"
+              // textColor="text-red-500"
               className="border-2"
             />
           </Badge>
@@ -483,9 +442,9 @@ const Home = () => {
             <Avatar
               src={thirdAvatar}
               size="md"
-              bgColor=""
-              borderColor="border-blue-500"
-              textColor="text-red-500"
+              // bgColor=""
+              // borderColor="border-blue-500"
+              // textColor="text-red-500"
               className="border-2"
             />
           </Badge>
@@ -498,9 +457,9 @@ const Home = () => {
             <Avatar
               name="John"
               size="sm"
-              bgColor="bg-blue-300"
-              borderColor="border-red-300"
-              textColor="text-red-300"
+              // bgColor="bg-blue-300"
+              // borderColor="border-red-300"
+              // textColor="text-red-300"
               className="border-2"
             />
           </Badge>

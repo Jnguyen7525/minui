@@ -11,33 +11,13 @@ type AutocompleteProps = {
   items: AutocompleteItem[];
   placeholder?: string;
   className?: string;
-  variant?: "flat" | "bordered" | "underlined" | "faded"; // NEW: Style variants
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
   onSelectionChange?: (selectedKey: string | null) => void;
-};
-
-// Apply the user's styles dynamically inside variants
-const variantStyles = {
-  flat: (bgColor: string, borderColor: string, textColor: string) =>
-    `border-none rounded-md ${bgColor} ${borderColor} ${textColor}`,
-  bordered: (bgColor: string, borderColor: string, textColor: string) =>
-    `border rounded-md ${bgColor} ${borderColor} ${textColor}`,
-  underlined: (bgColor: string, borderColor: string, textColor: string) =>
-    `border-b rounded-none ${bgColor} ${borderColor} ${textColor}`,
-  faded: (bgColor: string, borderColor: string, textColor: string) =>
-    `border opacity-50 ${bgColor} ${borderColor} ${textColor}`,
 };
 
 const Autocomplete: React.FC<AutocompleteProps> = ({
   items,
   placeholder = "Search...",
-  className = "",
-  variant = "bordered", // Default variant
-  bgColor = "bg-white",
-  borderColor = "border-gray-300",
-  textColor = "",
+  className,
   onSelectionChange,
 }) => {
   const [inputValue, setInputValue] = useState("");
@@ -78,13 +58,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       {/* Input Field */}
-      <div
-        className={`flex items-center p-2 ${variantStyles[variant](
-          bgColor,
-          borderColor,
-          textColor
-        )} ${bgColor} ${borderColor} ${textColor}`}
-      >
+      <div className={`flex items-center p-2 ${className}`}>
         <input
           type="text"
           value={inputValue}
@@ -108,13 +82,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
       {/* Dropdown Suggestions */}
       {isOpen && (
         <ul
-          className={`absolute w-full border rounded-md mt-2 shadow-lg z-50 ${variantStyles[
-            variant
-          ](
-            bgColor,
-            borderColor,
-            textColor
-          )} ${bgColor} ${borderColor} ${textColor} `}
+          className={`absolute w-full border rounded-md mt-2 shadow-lg z-50 ${className} `}
         >
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (

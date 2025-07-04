@@ -6,9 +6,6 @@ type AvatarProps = {
   name?: string; // User's name (for fallback)
   className?: string;
   size?: "sm" | "md" | "lg" | "xl"; // NEW: Size variants
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
 };
 
 const sizeStyles = {
@@ -22,17 +19,14 @@ const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = "User Avatar",
   name = "",
-  className = "",
+  className,
   size = "md", // Default size
-  bgColor = "bg-gray-300",
-  borderColor = "border-gray-500",
-  textColor = "text-gray-700",
 }) => {
   const fallbackLetter = name ? name.charAt(0).toUpperCase() : "?"; // Show first letter or "?"
 
   return (
     <div
-      className={`relative flex shrink-0 overflow-hidden rounded-full hover:cursor-pointer ${sizeStyles[size]} ${bgColor} ${borderColor} ${className}`}
+      className={`relative flex shrink-0 overflow-hidden rounded-full hover:cursor-pointer ${sizeStyles[size]}  ${className}`}
     >
       {src ? (
         <img
@@ -42,14 +36,12 @@ const Avatar: React.FC<AvatarProps> = ({
         />
       ) : name ? (
         <div
-          className={`flex size-full items-center justify-center font-bold ${bgColor} ${textColor}`}
+          className={`flex size-full items-center justify-center font-bold `}
         >
           {fallbackLetter}
         </div>
       ) : (
-        <div
-          className={`flex size-full items-center justify-center ${bgColor} ${textColor}`}
-        >
+        <div className={`flex size-full items-center justify-center`}>
           <svg
             aria-hidden="true"
             fill="none"
