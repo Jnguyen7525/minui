@@ -53,7 +53,7 @@ export default function AlertDemo() {
     useState<keyof typeof installCommands>("cli");
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col w-full">
       <h1 className="text-2xl font-semibold">Alert</h1>
       <p className="text-gray-600">
         Alerts are used to convey important feedback messages to users, such as

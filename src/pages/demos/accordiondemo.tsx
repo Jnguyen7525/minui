@@ -49,7 +49,7 @@ export default function AccordionDemo() {
     useState<keyof typeof installCommands>("cli");
 
   return (
-    <div className="  space-y-5">
+    <div className="flex flex-col w-full space-y-5">
       <h1 className="text-2xl font-semibold">Accordion</h1>
       <p className="text-gray-600">
         Accordions allow users to toggle the visibility of content sections.

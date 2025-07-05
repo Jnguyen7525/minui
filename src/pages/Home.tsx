@@ -394,13 +394,48 @@ const Home = () => {
       </div>
 
       {/* back to top */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
-        <h1 className="text-2xl font-bold">Scroll Down to See the Button</h1>
-        <p className="mt-5">
-          Keep scrolling, and the button will appear at bottom right!
+
+      <div className="w-[300px] relative  border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Back To Top Demo
+        </h2>
+        <p className="text-sm text-gray-300 mb-8 text-center">
+          Scroll down to see the BackToTop button appear at the bottom right.
         </p>
-        <BackToTop />
+
+        {/* Scroll-triggering filler content */}
+        <div className="text-sm text-gray-400 leading-relaxed h-[300px] overflow-y-auto scrollbar-hide">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+            odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
+            quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+            mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
+            Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos.
+            Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
+            Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem
+            at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut
+            ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel,
+            suscipit quis, luctus non, massa. Fusce ac turpis quis ligula
+            lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel,
+            tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+            per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non
+            tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante
+            quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc
+            feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin
+            quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.
+            Sed lectus. Integer euismod lacus luctus magna. Quisque cursus,
+            metus vitae pharetra auctor, sem massa mattis sem, at interdum magna
+            augue eget diam. Vestibulum ante ipsum primis in faucibus orci
+            luctus et ultrices posuere cubilia curae.
+          </p>
+          {/* BackToTop positioned within scrollable ancestor */}
+          <BackToTop className="bg-blue-500 text-white" />
+        </div>
       </div>
+
+      <BackToTop className="bg-blue-500 text-white hover:cursor-pointer hover:bg-red-700" />
 
       {/* Badge Component */}
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
@@ -410,67 +445,40 @@ const Home = () => {
             content="1"
             placement="top-right"
             size="lg"
-            bgColor=""
+            className="bg-blue-500 "
             onClick={() => alert("hi")}
           >
-            <Avatar
-              src={firstAvatar}
-              size="xl"
-              // bgColor=""
-              // borderColor="border-black"
-              className="border-2"
-            />
+            <Avatar src={firstAvatar} size="xl" className="border-2" />
           </Badge>
 
           <Badge
             placement="bottom-right"
             size="lg"
-            bgColor="bg-red-500"
+            className="bg-red-500"
             onClick={() => alert("i'm batman")}
           >
-            <Avatar
-              src={secondAvatar}
-              size="lg"
-              // bgColor="bg-gray-100"
-              // borderColor="border-blue-500"
-              // textColor="text-red-500"
-              className="border-2"
-            />
+            <Avatar src={secondAvatar} size="lg" className="border-2" />
           </Badge>
 
-          <Badge content="" placement="bottom-right" bgColor="bg-green-500">
-            <Avatar
-              src={thirdAvatar}
-              size="md"
-              // bgColor=""
-              // borderColor="border-blue-500"
-              // textColor="text-red-500"
-              className="border-2"
-            />
+          <Badge content="" placement="bottom-right" className="bg-green-500">
+            <Avatar src={thirdAvatar} size="md" className="border-2" />
           </Badge>
 
           <Badge
             content={<span>🔥</span>}
             placement="top-left"
-            bgColor="bg-transparent"
+            className="bg-transparent"
+            offsetY={6}
           >
-            <Avatar
-              name="John"
-              size="sm"
-              // bgColor="bg-blue-300"
-              // borderColor="border-red-300"
-              // textColor="text-red-300"
-              className="border-2"
-            />
+            <Avatar name="John" size="sm" className="border-2" />
           </Badge>
 
           <Badge
             content={"2"}
             placement="top-right"
-            bgColor="bg-blue-500"
-            borderColor="border-red-600"
-            offsetX="translate-x-[6px]"
-            offsetY="-translate-y-[6px]"
+            className="bg-blue-500"
+            offsetX={6}
+            offsetY={6}
           >
             <ShoppingBag className="size-8 text-white" />
           </Badge>

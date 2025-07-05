@@ -44,7 +44,7 @@ export default function AutocompleteDemo() {
     useState<keyof typeof installCommands>("cli");
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col w-full">
       <h1 className="text-2xl font-semibold">Autocomplete</h1>
       <p className="text-gray-600">
         Autocomplete provides real-time suggestions based on user input. Great
@@ -71,7 +71,7 @@ export default function AutocompleteDemo() {
       {/* Demo Area */}
       <div className="flex w-full h-fit min-h-[250px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="flex flex-col space-y-5 w-full max-w-md">
+          <div className="flex flex-col space-y-5 w-full max-w-md border-b">
             <Autocomplete
               items={[
                 { label: "Apple", key: "apple" },
@@ -81,7 +81,7 @@ export default function AutocompleteDemo() {
                 { label: "Grapes", key: "grapes" },
               ]}
               placeholder="Pick a fruit..."
-              className="border-blue-500 bg-black border-b rounded-none"
+              className="border-stone-500 bg-black  rounded-md"
             />
           </div>
         ) : (

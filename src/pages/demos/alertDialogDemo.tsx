@@ -107,7 +107,7 @@ export default function AlertDialogDemo() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col w-full">
       <h1 className="text-2xl font-semibold">Alert Dialog</h1>
       <p className="text-gray-600">
         Alert dialogs are modal prompts that ask users to confirm a critical

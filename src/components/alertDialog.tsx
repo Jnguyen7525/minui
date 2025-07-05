@@ -15,7 +15,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-200 ease-in-out ${
+      className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-200 ease-in-out bg-black/50 ${
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       } `}
       onClick={onClose}
@@ -23,7 +23,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
       <div
         className={`relative p-6 rounded-lg shadow-lg border transition-transform duration-200 ease-in-out ${
           isOpen ? "scale-100 opacity-100" : "scale-90 opacity-0"
-        }  ${className}`}
+        }   ${className}`}
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
       >
         {children}

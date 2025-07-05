@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Badge from "../../components/badge";
 import Avatar from "../../components/avatar";
 import CodeSnippet from "../../components/codesnippet";
+import { ShoppingBag } from "lucide-react";
 import firstAvatar from "../../assets/scared-cartoon-people-scared-face-clip-art-black-and-white--m2i8H7b1d3d3A0Z5.jpg";
 import secondAvatar from "../../assets/batman_hero_avatar_comics-512.webp";
 import thirdAvatar from "../../assets/avatar-icon-512x512-nktgi1ew.png";
@@ -13,53 +15,60 @@ const installCommands = {
 };
 
 const codeExample = `
-<Avatar
-  src={firstAvatar}
-  size="xl"
-  className="border-2 border-blue-600"
-/>
-<Avatar
-  src={secondAvatar}
-  size="lg"
-  className="border-2 border-red-600"
-/>
-<Avatar
-  src={thirdAvatar}
-  size="md"
-  className="border-2 bg-red-500 border-blue-500"
-/>
-<Avatar
-  name="John"
-  size="sm"
-  className="border-2 text-yellow-500 bg-gray-600"
-/>
+<Badge content="1" placement="top-right" size="lg" className="bg-blue-500" onClick={() => alert("hi")}>
+  <Avatar src={firstAvatar} size="xl" className="border-2" />
+</Badge>
+
+<Badge placement="bottom-right" size="lg" className="bg-red-500" onClick={() => alert("i'm batman")}>
+  <Avatar src={secondAvatar} size="lg" className="border-2" />
+</Badge>
+
+<Badge content="" placement="bottom-right" className="bg-green-500">
+  <Avatar src={thirdAvatar} size="md" className="border-2" />
+</Badge>
+
+<Badge content={<span>🔥</span>} placement="top-left" className="bg-transparent" offsetY={6}>
+  <Avatar name="John" size="sm" className="border-2" />
+</Badge>
+
+<Badge content={"2"} placement="top-right" className="bg-blue-500" offsetX={6} offsetY={6}>
+  <ShoppingBag className="size-8 text-white" />
+</Badge>
 `;
 
-const usageExample = `import Avatar from "@your-org/ui-kit";
+const usageExample = `import { Badge, Avatar } from "@your-org/ui-kit";
+import { ShoppingBag } from "lucide-react";
 
 function Example() {
   return (
     <div className="flex space-x-4">
-      <Avatar src="/avatars/avatar1.png" size="xl" />
-      <Avatar src="/avatars/avatar2.png" size="lg" />
-      <Avatar src="/avatars/avatar3.png" size="md" />
-      <Avatar name="John" size="sm" />
+      <Badge content="3">
+        <Avatar src="/avatars/avatar1.png" size="lg" />
+      </Badge>
+
+      <Badge content={<span>🔥</span>} placement="top-left">
+        <Avatar name="Ava" size="sm" />
+      </Badge>
+
+      <Badge content="9+" placement="bottom-right">
+        <ShoppingBag className="size-8" />
+      </Badge>
     </div>
   );
 }
 `;
 
-export default function AvatarDemo() {
+export default function BadgeDemo() {
   const [activeView, setActiveView] = useState<"preview" | "code">("preview");
   const [activeTool, setActiveTool] =
     useState<keyof typeof installCommands>("cli");
 
   return (
     <div className="space-y-5 flex flex-col w-full">
-      <h1 className="text-2xl font-semibold">Avatar</h1>
+      <h1 className="text-2xl font-semibold">Badge</h1>
       <p className="text-gray-600">
-        Avatar components display user profile images or initials. They're used
-        in team lists, comment sections, and anywhere identity matters.
+        Badges are small markers used to show alerts, counts, or status
+        indicators. Wrap avatars, icons, or buttons to draw extra attention.
       </p>
 
       {/* View Switcher */}
@@ -83,26 +92,47 @@ export default function AvatarDemo() {
       <div className="flex w-full h-fit min-h-[250px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="flex h-full w-full space-x-5 items-center justify-center">
-            <Avatar
-              src={firstAvatar}
-              size="xl"
-              className="border-2 border-blue-600"
-            />
-            <Avatar
-              src={secondAvatar}
+            <Badge
+              content="1"
+              placement="top-right"
               size="lg"
-              className="border-2 border-red-600"
-            />
-            <Avatar
-              src={thirdAvatar}
-              size="md"
-              className="border-2 bg-red-500 border-blue-500"
-            />
-            <Avatar
-              name="John"
-              size="sm"
-              className="border-2 text-yellow-500 bg-gray-600"
-            />
+              className="bg-blue-500"
+              onClick={() => alert("hi")}
+            >
+              <Avatar src={firstAvatar} size="xl" className="border-2" />
+            </Badge>
+
+            <Badge
+              placement="bottom-right"
+              size="lg"
+              className="bg-red-500"
+              onClick={() => alert("i'm batman")}
+            >
+              <Avatar src={secondAvatar} size="lg" className="border-2" />
+            </Badge>
+
+            <Badge content="" placement="bottom-right" className="bg-green-500">
+              <Avatar src={thirdAvatar} size="md" className="border-2" />
+            </Badge>
+
+            <Badge
+              content={<span>🔥</span>}
+              placement="top-left"
+              className="bg-transparent"
+              offsetY={6}
+            >
+              <Avatar name="John" size="sm" className="border-2" />
+            </Badge>
+
+            <Badge
+              content={"2"}
+              placement="top-right"
+              className="bg-blue-500"
+              offsetX={6}
+              offsetY={6}
+            >
+              <ShoppingBag className="size-8 text-white" />
+            </Badge>
           </div>
         ) : (
           <CodeSnippet code={codeExample} />
