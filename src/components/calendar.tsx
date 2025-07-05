@@ -6,7 +6,6 @@ export type CalendarProps = {
   onDateSelect?: (dates: Date[]) => void;
   selectionType?: "single" | "range";
   className?: string;
-  // containerClassName?: string;
 };
 
 const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
@@ -177,69 +176,45 @@ const Calendar: React.FC<CalendarProps> = ({
             ? "rounded-r-full"
             : "rounded-none";
 
-          // const highlightClass = (() => {
-          //   if (!dayDate) return "";
-          //   else if (isToday && isMidRange)
-          //     return `text-white bg-blue-600 font-extrabold z-50 ${roundedEdge}`;
-          //   else if (isToday) return "border rounded-full font-extrabold z-50";
-          //   else if (isMidRange && isFirstDayOfMonth)
-          //     return "bg-blue-600 font-bold rounded-l-full z-50";
-          //   else if (isMidRange && isLastDayOfMonth)
-          //     return `${"bg-blue-600  font-bold"} rounded-r-full z-50`;
-          //   else if (isStart)
-          //     return `${"bg-blue-500 text-white font-bold "} rounded-full z-50`;
-          //   else if (isEnd)
-          //     return `${"bg-blue-500 text-white font-bold"} rounded-full z-50`;
-          //   else if (inPreview)
-          //     return `${"bg-blue-900 text-blue-800 font-medium transition-colors duration-200"} ${roundedEdge}`;
-          //   else if (isMidRange)
-          //     return `${"bg-blue-600 text-blue-800 font-medium"} ${roundedEdge}`;
-          //   else if (isOnlySelected)
-          //     return `${"bg-blue-500 text-white font-bold"} rounded-full`;
-
-          //   return "";
-          // })();
-
           const highlightClass = (() => {
             if (!dayDate) return "";
 
             if (activeHandle && hoverDate) {
-              // In preview mode: apply preview-only styles
               const isPreviewStart =
                 dayDate?.getTime() === previewStart?.getTime();
               const isPreviewEnd = dayDate?.getTime() === previewEnd?.getTime();
 
               if (isToday && inPreview)
-                return `text-white bg-blue-600 font-extrabold z-50 ${roundedEdge}`;
+                return `opacity-70 font-extrabold z-50 ${roundedEdge}`;
 
               if (isPreviewStart)
-                return "bg-blue-900 text-white font-bold rounded-l-full z-50";
+                return "opacity-70 font-bold rounded-full z-50 border";
 
               if (isPreviewEnd)
-                return "bg-blue-900 text-white font-bold rounded-r-full z-50";
+                return "opacity-70 font-bold rounded-full z-50 border";
 
               if (inPreview)
-                return `bg-blue-900 text-blue-800 font-medium transition-colors duration-200 ${roundedEdge}`;
+                return `opacity-40 font-medium transition-opacity duration-200 ${roundedEdge}`;
             }
 
-            // Regular selection logic (only used when not previewing)
+            // Regular selection logic
             if (isMidRange && isFirstDayOfMonth && !activeHandle)
-              return "bg-blue-600 font-bold rounded-l-full z-50";
+              return "opacity-40 font-bold rounded-l-full z-50";
 
             if (isMidRange && isLastDayOfMonth && !activeHandle)
-              return "bg-blue-600 font-bold rounded-r-full z-50";
+              return "opacity-40 font-bold rounded-r-full z-50";
 
             if (isStart && !activeHandle)
-              return "bg-blue-500 text-white font-bold rounded-full z-50";
+              return "opacity-80 font-extrabold rounded-full z-50 border";
 
             if (isEnd && !activeHandle)
-              return "bg-blue-500 text-white font-bold rounded-full z-50";
+              return "opacity-80 font-extrabold rounded-full z-50 border";
 
             if (isMidRange && !activeHandle)
-              return `bg-blue-600 text-blue-800 font-medium ${roundedEdge}`;
+              return `opacity-40 font-bold ${roundedEdge} `;
 
             if (isOnlySelected && !activeHandle)
-              return "bg-blue-500 text-white font-bold rounded-full";
+              return "opacity-80 font-bold rounded-full ";
 
             if (isToday && !activeHandle)
               return "border rounded-full font-extrabold z-50";
@@ -250,18 +225,26 @@ const Calendar: React.FC<CalendarProps> = ({
           return (
             <div
               key={index}
-              className={`relative flex items-center justify-center h-10 w-10 ${
-                isStart &&
-                rangeSelection.length > 1 &&
-                !isLastDayOfMonth &&
-                "bg-blue-600 rounded-l-full"
-              } ${isEnd && !isFirstDayOfMonth && "bg-blue-600 rounded-r-full"}
-              `}
+              className={`relative flex items-center justify-center h-10 w-10 
+    ${
+      isStart &&
+      rangeSelection.length > 1 &&
+      !isLastDayOfMonth &&
+      !activeHandle &&
+      "opacity-60 rounded-l-full"
+    } 
+    ${
+      isEnd &&
+      !isFirstDayOfMonth &&
+      !activeHandle &&
+      "opacity-60 rounded-r-full"
+    }
+  `}
             >
               <button
                 key={index}
                 disabled={!day}
-                className={` flex justify-center  items-center h-10 w-10 transition-colors duration-150 hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500 ${highlightClass}`}
+                className={` flex justify-center  items-center h-10 w-10 transition-colors duration-150 hover:cursor-pointer hover:opacity-60 hover:font-bold  ${highlightClass}`}
                 onClick={() =>
                   day &&
                   handleDateClick(
