@@ -587,11 +587,12 @@ const Home = () => {
             selectedDates={selectedCalendarDate}
             onDateSelect={setSelectedCalendarDate}
             selectionType="range"
-            containerClassName="p-3 rounded-lg  shadow-md shadow-gray-700"
-            headerClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            monthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            dayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
-            dayDisabledClassName=""
+            // containerClassName="p-3 rounded-lg  shadow-md shadow-gray-700"
+            // headerClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
+            // monthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
+            // dayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
+            // dayDisabledClassName=""
+            // className="p-3 rounded-lg bg-gray-900"
           />
 
           {selectedCalendarDate && (
