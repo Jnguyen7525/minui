@@ -121,6 +121,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 "Rating",
                 "Resizable",
                 "Resizable Grid",
+                "Scrollbox",
                 "Sidebar",
                 "Slider",
                 "Social Icons",

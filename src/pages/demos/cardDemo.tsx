@@ -10,6 +10,7 @@ import CodeSnippet from "../../components/codesnippet";
 import { Heart, Play, ShoppingCart, SkipBack, SkipForward } from "lucide-react";
 import cardImgOne from "../../assets/musical-notes-frame-with-text-space_1017-32857.avif";
 import cardImgTwo from "../../assets/photo-1559181567-c3190ca9959b.jpeg";
+import ScrollBox from "../../components/scrollbox";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -53,62 +54,62 @@ const codeExample = `
     </p>
     </CardAction>
 </Card>
-            <Card
-              shadow="md"
-              radius="lg"
-              className="relative w-[300px] h-[200px] p-4 text-white overflow-hidden bg-gray-900"
-            >
-              <img
-                src={cardImgOne}
-                alt="Album Art"
-                className="absolute inset-0 w-full h-full object-cover opacity-50"
-              />
-              <button className="absolute top-4 right-4 text-white hover:text-red-500 hover:cursor-pointer z-50">
-                <Heart size={24} />
-              </button>
-              <div className="relative z-10 flex flex-col items-center p-4">
-                <CardHeader className="flex items-center gap-3 w-full justify-center">
-                  <div className="text-center">
-                    <p className="font-bold text-lg">DailyMix</p>
-                    <p className="text-gray-300 text-sm">Radio</p>
-                  </div>
-                </CardHeader>
-                <CardAction className="flex items-center justify-between mt-4 w-full px-4">
-                  <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
-                    <SkipBack size={24} />
-                  </button>
-                  <button className="text-white px-4 py-2 rounded-full hover:opacity-50 hover:cursor-pointer">
-                    <Play size={24} />
-                  </button>
-                  <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
-                    <SkipForward size={24} />
-                  </button>
-                </CardAction>
-              </div>
-            </Card>
-            <Card
-              shadow="lg"
-              radius="md"
-              className="bg-gray-900 p-4 w-[300px] h-[300px] flex flex-col"
-              onClick={() => console.log("Cherry Card Pressed")}
-            >
-              <CardContent className="flex flex-col items-center">
-                <img
-                  src={cardImgTwo}
-                  alt="Nike Shoes"
-                  className="rounded-md w-[200px] h-[200px]"
-                />
-                <div className="flex w-full justify-between items-center mt-2">
-                  <p className="text-gray-300 font-semibold">Cherry</p>
-                  <p className="text-gray-600 font-bold">$9.99</p>
-                </div>
-              </CardContent>
-              <CardAction className="w-full flex justify-center mt-1">
-                <button className="text-white px-2 py-1 hover:text-blue-600 hover:cursor-pointer">
-                  <ShoppingCart size={20} />
-                </button>
-              </CardAction>
-            </Card>
+<Card
+    shadow="md"
+    radius="lg"
+    className="relative w-[300px] h-[200px] p-4 text-white overflow-hidden bg-gray-900"
+>
+    <img
+    src={cardImgOne}
+    alt="Album Art"
+    className="absolute inset-0 w-full h-full object-cover opacity-50"
+    />
+    <button className="absolute top-4 right-4 text-white hover:text-red-500 hover:cursor-pointer z-50">
+    <Heart size={24} />
+    </button>
+    <div className="relative z-10 flex flex-col items-center p-4">
+    <CardHeader className="flex items-center gap-3 w-full justify-center">
+        <div className="text-center">
+        <p className="font-bold text-lg">DailyMix</p>
+        <p className="text-gray-300 text-sm">Radio</p>
+        </div>
+    </CardHeader>
+    <CardAction className="flex items-center justify-between mt-4 w-full px-4">
+        <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
+        <SkipBack size={24} />
+        </button>
+        <button className="text-white px-4 py-2 rounded-full hover:opacity-50 hover:cursor-pointer">
+        <Play size={24} />
+        </button>
+        <button className="text-white text-xl hover:opacity-50 hover:cursor-pointer">
+        <SkipForward size={24} />
+        </button>
+    </CardAction>
+    </div>
+</Card>
+<Card
+    shadow="lg"
+    radius="md"
+    className="bg-gray-900 p-4 w-[300px] h-[300px] flex flex-col"
+    onClick={() => console.log("Cherry Card Pressed")}
+>
+    <CardContent className="flex flex-col items-center">
+    <img
+        src={cardImgTwo}
+        alt="Nike Shoes"
+        className="rounded-md w-[200px] h-[200px]"
+    />
+    <div className="flex w-full justify-between items-center mt-2">
+        <p className="text-gray-300 font-semibold">Cherry</p>
+        <p className="text-gray-600 font-bold">$9.99</p>
+    </div>
+    </CardContent>
+    <CardAction className="w-full flex justify-center mt-1">
+    <button className="text-white px-2 py-1 hover:text-blue-600 hover:cursor-pointer">
+        <ShoppingCart size={20} />
+    </button>
+    </CardAction>
+</Card>
 `;
 
 const usageExample = `
@@ -140,7 +141,7 @@ export default function CardDemo() {
     useState<keyof typeof installCommands>("cli");
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col w-full">
       <h1 className="text-2xl font-semibold">Card</h1>
       <p className="text-gray-600">
         Cards organize content into structured panels. Use headers, footers,
@@ -166,9 +167,9 @@ export default function CardDemo() {
       </div>
 
       {/* Demo Area */}
-      <div className="flex w-full items-center justify-center border rounded-lg p-5 overflow-auto  bg-black text-white">
+      <div className="flex w-full  items-center justify-center border rounded-lg p-5 overflow-auto">
         {activeView === "preview" ? (
-          <div className="flex space-x-5 items-center justify-center">
+          <div className="flex flex-wrap gap-5 items-center justify-center">
             {/* Login Card */}
             <Card
               shadow="lg"
@@ -266,7 +267,11 @@ export default function CardDemo() {
             </Card>
           </div>
         ) : (
-          <CodeSnippet code={codeExample} />
+          <div className="flex w-full bg-stone-900 rounded-lg ">
+            <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+              <CodeSnippet code={codeExample} className="p-5" />
+            </ScrollBox>
+          </div>
         )}
       </div>
 
@@ -298,8 +303,11 @@ export default function CardDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="flex w-full bg-stone-900 rounded-lg p-5">
-          <CodeSnippet code={usageExample.trim()} />
+        <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
+          {/* <CodeSnippet code={usageExample.trim()} /> */}
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+            <CodeSnippet code={usageExample.trim()} className="p-5" />
+          </ScrollBox>
         </div>
       </div>
     </div>
