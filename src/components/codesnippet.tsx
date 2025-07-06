@@ -28,7 +28,7 @@ function highlightLine(line: string): JSX.Element {
   const segments = line.split(/(\s+|<\/|<|>|\/|=|,|\[|\]|\(|\)|".*?"|'.*?')/g);
 
   return (
-    <>
+    <div className="overflow-auto flex w-full h-full">
       {segments.map((seg, i) => {
         let color = "";
 
@@ -106,6 +106,6 @@ function highlightLine(line: string): JSX.Element {
           </span>
         );
       })}
-    </>
+    </div>
   );
 }
