@@ -11,7 +11,6 @@ const installCommands = {
 };
 
 const codeExample = `
-<div className="space-y-3">
   <Alert variant="warning" icon={<AlertTriangle className="size-5 text-yellow-600" />}>
     <AlertTitle>Heads Up!</AlertTitle>
     <AlertDescription>Something needs your attention.</AlertDescription>
@@ -31,7 +30,6 @@ const codeExample = `
     <AlertTitle>Success!</AlertTitle>
     <AlertDescription>Everything went smoothly.</AlertDescription>
   </Alert>
-</div>
 `;
 
 const usageExample = `import { Alert, AlertTitle, AlertDescription } from "@your-org/ui-kit";

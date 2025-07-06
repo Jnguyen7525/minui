@@ -10,18 +10,12 @@ const installCommands = {
 };
 
 const codeExample = `
-<div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg m-5">
-  <h2 className="text-xl font-bold">Button</h2>
-
-  <div className="flex flex-wrap justify-center space-x-5 mt-5">
     <Button label="Default" variant="default" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-    <Button label="Destructive" variant="destructive" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-    <Button label="Outline" variant="outline" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-    <Button label="Secondary" variant="secondary" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-    <Button label="Ghost" variant="ghost" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-    <Button label="Link" variant="link" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
-  </div>
-</div>
+<Button label="Destructive" variant="destructive" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
+<Button label="Outline" variant="outline" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
+<Button label="Secondary" variant="secondary" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
+<Button label="Ghost" variant="ghost" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
+<Button label="Link" variant="link" size="default" className="border rounded-sm flex items-center hover:cursor-pointer" />
 `;
 
 const usageExample = `

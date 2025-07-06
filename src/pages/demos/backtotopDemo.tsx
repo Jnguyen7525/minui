@@ -10,20 +10,13 @@ const installCommands = {
 };
 
 const codeExample = `
-<div className="w-[300px] relative border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
-  <h2 className="text-2xl font-bold mb-4 text-center">Back To Top Demo</h2>
-  <p className="text-sm text-gray-300 mb-8 text-center">
-    Scroll down to see the BackToTop button appear at the bottom right.
-  </p>
-
-  <div className="text-sm text-gray-400 leading-relaxed h-[300px] overflow-y-auto scrollbar-hide">
+<div className="text-sm text-gray-400 leading-relaxed h-[300px] overflow-y-auto scrollbar-hide">
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
       Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum...
     </p>
     <BackToTop className="bg-blue-500 text-white" />
   </div>
-</div>
 `;
 
 const usageExample = `

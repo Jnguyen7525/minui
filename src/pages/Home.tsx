@@ -121,6 +121,7 @@ const images = [lightboxone, lightboxtwo, lightboxthree];
 const Home = () => {
   const [openAlertDialog, setOpenAlertDialog] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  // @ts-ignore
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState("Shoes");
   const [selectedCalendarDate, setSelectedCalendarDate] = useState<
     Date[] | undefined
@@ -486,7 +487,7 @@ const Home = () => {
       </div>
 
       {/* breadcrumb */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[500px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Breadcrumb</h2>
         <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
           <Breadcrumbs
@@ -495,7 +496,6 @@ const Home = () => {
                 label: "Home",
                 href: "/",
                 onClick: () => setCurrentBreadcrumb("Home"),
-                isCurrent: currentBreadcrumb === "Home",
               },
               {
                 label: "Products",
@@ -523,14 +523,8 @@ const Home = () => {
                 onClick: () => setCurrentBreadcrumb("Misc"),
               },
             ]}
-            itemStyle="underline hover:text-blue-300 hover:cursor-pointer"
-            itemsBeforeCollapse={2}
-            itemsAfterCollapse={2}
-            separatorStyle="text-gray-500 text-lg"
-            className="bg-gradient-to-l from-blue-800 to-purple-600 text-white p-2 rounded-md"
-            currentItemStyle="text-blue-600 font-bold"
-            dropDownMenuStyle="bg-gradient-to-l from-blue-800 to-purple-600 text-white flex flex-col space-y-2 p-5 border rounded-md"
-            onAction={(item) => setCurrentBreadcrumb(item)}
+            separator={<ChevronRight className="w-4 h-4 text-gray-400" />}
+            className="bg-gradient-to-l from-blue-800 to-purple-600 text-white p-2 rounded-md flex w-full"
           />
         </div>
       </div>

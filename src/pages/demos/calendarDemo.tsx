@@ -10,9 +10,6 @@ const installCommands = {
 };
 
 const codeExample = `
-<div className="p-5 rounded-lg text-center h-fit w-[300px] border shadow-lg m-5 underline-offset-2">
-  <h2 className="text-xl font-bold mb-5">Calendar</h2>
-  <div className="flex flex-col h-full w-full space-y-5 items-center justify-center">
     <Calendar
       selectedDates={selectedCalendarDate}
       onDateSelect={setSelectedCalendarDate}
@@ -26,8 +23,6 @@ const codeExample = `
           : \`Selected Dates: \${selectedCalendarDate[0].toDateString()} – \${selectedCalendarDate[1].toDateString()}\`}
       </p>
     )}
-  </div>
-</div>
 `;
 
 const usageExample = `
