@@ -5,8 +5,8 @@ type DrawerProps = {
   placement?: "left" | "right" | "top" | "bottom";
   onClose: () => void;
   children: React.ReactNode;
-  size?: { width?: string; height?: string }; // ✅ Customizable width & height
-  drawerStyle?: string; // ✅ Custom styles for drawer
+  size?: { width?: string; height?: string };
+  drawerStyle?: string;
 };
 
 const Drawer: React.FC<DrawerProps> = ({
@@ -19,7 +19,6 @@ const Drawer: React.FC<DrawerProps> = ({
 }) => {
   return (
     <>
-      {/* Background overlay (click to close) */}
       <div
         className={`fixed inset-0 transition-opacity duration-300 ${
           isOpen ? "opacity-50" : "opacity-0 pointer-events-none"
@@ -27,7 +26,6 @@ const Drawer: React.FC<DrawerProps> = ({
         onClick={onClose}
       ></div>
 
-      {/* Drawer Content (fully customizable size) */}
       <div
         className={`fixed  transition-transform duration-500 ${drawerStyle} ${
           placement === "left"

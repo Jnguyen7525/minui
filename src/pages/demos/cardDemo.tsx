@@ -295,7 +295,7 @@ export default function CardDemo() {
             </button>
           ))}
         </div>
-        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 py-2 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
