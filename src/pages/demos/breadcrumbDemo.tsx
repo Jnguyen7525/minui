@@ -3,6 +3,7 @@ import { useState } from "react";
 import CodeSnippet from "../../components/codesnippet";
 import { ChevronRight } from "lucide-react";
 import Breadcrumbs from "../../components/breadcrumb";
+import ScrollBox from "../../components/scrollbox";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -105,7 +106,7 @@ export default function BreadcrumbsDemo() {
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState("Home");
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 flex flex-col w-full">
       <h1 className="text-2xl font-semibold">Breadcrumbs</h1>
       <p className="text-gray-600">
         Breadcrumbs help users navigate hierarchical structures. Use icons,
@@ -176,7 +177,11 @@ export default function BreadcrumbsDemo() {
             </div>
           </div>
         ) : (
-          <CodeSnippet code={codeExample.trim()} />
+          <div className="flex w-full h-[400px] bg-stone-900 rounded-lg">
+            <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+              <CodeSnippet code={codeExample} className="p-5" />
+            </ScrollBox>
+          </div>
         )}
       </div>
 
@@ -200,7 +205,7 @@ export default function BreadcrumbsDemo() {
             </button>
           ))}
         </div>
-        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 py-2 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
@@ -208,8 +213,10 @@ export default function BreadcrumbsDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="flex w-full bg-stone-900 rounded-lg p-5">
-          <CodeSnippet code={usageExample.trim()} />
+        <div className="flex w-full h-[400px] bg-stone-900 rounded-lg p-5 text-white">
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+            <CodeSnippet code={usageExample} className="p-5" />
+          </ScrollBox>
         </div>
       </div>
     </div>

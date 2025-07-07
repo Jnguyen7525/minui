@@ -6,6 +6,7 @@ import { ShoppingBag } from "lucide-react";
 import firstAvatar from "../../assets/scared-cartoon-people-scared-face-clip-art-black-and-white--m2i8H7b1d3d3A0Z5.jpg";
 import secondAvatar from "../../assets/batman_hero_avatar_comics-512.webp";
 import thirdAvatar from "../../assets/avatar-icon-512x512-nktgi1ew.png";
+import ScrollBox from "../../components/scrollbox";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -135,7 +136,11 @@ export default function BadgeDemo() {
             </Badge>
           </div>
         ) : (
-          <CodeSnippet code={codeExample} />
+          <div className="flex w-full h-full bg-stone-900 rounded-lg">
+            <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+              <CodeSnippet code={codeExample} className="p-5" />
+            </ScrollBox>
+          </div>
         )}
       </div>
 
@@ -159,7 +164,7 @@ export default function BadgeDemo() {
             </button>
           ))}
         </div>
-        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 py-2 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
@@ -167,8 +172,10 @@ export default function BadgeDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="flex w-full h-fit bg-stone-900 rounded-lg p-5">
-          <CodeSnippet code={usageExample} />
+        <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+            <CodeSnippet code={usageExample} className="p-5" />
+          </ScrollBox>
         </div>
       </div>
     </div>

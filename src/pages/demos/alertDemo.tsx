@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert, AlertTitle, AlertDescription } from "../../components/alert";
 import { AlertTriangle, Info, XCircle, CheckCircle } from "lucide-react";
 import CodeSnippet from "../../components/codesnippet";
+import ScrollBox from "../../components/scrollbox";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -116,7 +117,11 @@ export default function AlertDemo() {
             </Alert>
           </div>
         ) : (
-          <CodeSnippet code={codeExample} />
+          <div className="flex w-full bg-stone-900 rounded-lg ">
+            <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+              <CodeSnippet code={codeExample} className="p-5" />
+            </ScrollBox>
+          </div>
         )}
       </div>
 
@@ -141,7 +146,7 @@ export default function AlertDemo() {
           ))}
         </div>
 
-        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 py-2 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
@@ -149,8 +154,10 @@ export default function AlertDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="flex w-full h-fit bg-stone-900 rounded-lg p-5">
-          <CodeSnippet code={usageExample} />
+        <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+            <CodeSnippet code={usageExample} className="p-5" />
+          </ScrollBox>
         </div>
       </div>
     </div>

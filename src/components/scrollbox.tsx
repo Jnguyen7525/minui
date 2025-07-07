@@ -9,8 +9,6 @@ type ScrollBoxProps = {
 
 export default function ScrollBox({
   children,
-  height = "500px",
-  width = "100%",
   className = "",
 }: ScrollBoxProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -117,7 +115,7 @@ export default function ScrollBox({
   }, [dragAxis]);
 
   return (
-    <div className={`relative `} style={{ height, width }}>
+    <div className={`flex  w-full h-full  relative`}>
       {/* 📦 Scrollable content */}
       <div
         ref={scrollRef}

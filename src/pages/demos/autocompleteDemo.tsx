@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Autocomplete from "../../components/autocomplete";
 import CodeSnippet from "../../components/codesnippet";
+import ScrollBox from "../../components/scrollbox";
 
 const installCommands = {
   cli: "npx create-ui-app",
@@ -69,7 +70,7 @@ export default function AutocompleteDemo() {
       </div>
 
       {/* Demo Area */}
-      <div className="flex w-full h-fit min-h-[250px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
+      <div className="flex w-full h-fit min-h-[300px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="flex flex-col space-y-5 w-full max-w-md border-b">
             <Autocomplete
@@ -85,7 +86,11 @@ export default function AutocompleteDemo() {
             />
           </div>
         ) : (
-          <CodeSnippet code={codeExample} />
+          <div className="flex w-full h-fit bg-stone-900 rounded-lg">
+            <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+              <CodeSnippet code={codeExample} className="p-5" />
+            </ScrollBox>
+          </div>
         )}
       </div>
 
@@ -109,7 +114,7 @@ export default function AutocompleteDemo() {
             </button>
           ))}
         </div>
-        <div className="flex w-full bg-stone-900 rounded-lg px-4 text-white text-sm">
+        <div className="flex w-full bg-stone-900 rounded-lg px-4 py-2 text-white text-sm">
           <CodeSnippet code={installCommands[activeTool]} />
         </div>
       </div>
@@ -117,8 +122,10 @@ export default function AutocompleteDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="flex w-full h-fit bg-stone-900 rounded-lg p-5">
-          <CodeSnippet code={usageExample} />
+        <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
+            <CodeSnippet code={usageExample} className="p-5" />
+          </ScrollBox>
         </div>
       </div>
     </div>

@@ -267,7 +267,7 @@ export default function CardDemo() {
             </Card>
           </div>
         ) : (
-          <div className="flex w-full bg-stone-900 rounded-lg ">
+          <div className="flex w-full h-[400px] bg-stone-900 rounded-lg ">
             <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
               <CodeSnippet code={codeExample} className="p-5" />
             </ScrollBox>
@@ -304,9 +304,8 @@ export default function CardDemo() {
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
         <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
-          {/* <CodeSnippet code={usageExample.trim()} /> */}
           <ScrollBox className="w-2 rounded-full bg-stone-700 h-2 ">
-            <CodeSnippet code={usageExample.trim()} className="p-5" />
+            <CodeSnippet code={usageExample} className="p-5" />
           </ScrollBox>
         </div>
       </div>
