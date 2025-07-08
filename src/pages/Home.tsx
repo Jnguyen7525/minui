@@ -62,8 +62,7 @@ import Jumbotron from "../components/jumbotron";
 import DateInput from "../components/dateinput";
 import DateRangePicker from "../components/daterangepicker";
 import Dropdown from "../components/dropdown";
-import Combobox from "../components/combobox";
-import ContextMenu from "../components/contextmenu";
+
 import Drawer from "../components/drawer";
 import Lightbox from "../components/lightbox";
 import Dialog from "../components/dialog";
@@ -121,6 +120,12 @@ import {
 import NumberInput from "../components/numberinput";
 import TimeInput from "../components/timeinput";
 import Slider from "../components/slider";
+import {
+  Combobox,
+  ComboboxDropdown,
+  ComboboxTrigger,
+} from "../components/combobox";
+import { ContextMenu, ContextMenuPanel } from "../components/contextmenu";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -978,10 +983,11 @@ const Home = () => {
       </div>
 
       {/* Combobox */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
-        <h2 className="text-xl font-bold mb-5 ">Combobox</h2>
+      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+        <h2 className="text-xl font-bold mb-5">Combobox</h2>
 
         <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
+
         <Combobox
           options={[
             { key: "next.js", label: "Next.js" },
@@ -990,14 +996,19 @@ const Home = () => {
             { key: "remix", label: "Remix" },
             { key: "astro", label: "Astro" },
           ]}
-          onSelect={(key: string, label: string) => {
+          onSelect={(key, label) => {
             alert(`You selected: ${label} (${key})`);
           }}
           className="w-64"
-          triggerStyle="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white"
-          inputStyle="mt-2  border rounded-md shadow-lg p-2"
-          optionsStyle="flex items-center justify-between w-full p-2 hover:bg-gray-500 hover:cursor-pointer"
-        />
+        >
+          {/* Trigger */}
+          <ComboboxTrigger className="flex items-center justify-between w-full p-2 border rounded-md bg-gray-800 text-white">
+            <ChevronsUpDown className="opacity-50 inline-block ml-2 hover:cursor-pointer" />
+          </ComboboxTrigger>
+
+          {/* Dropdown Panel */}
+          <ComboboxDropdown className="w-full mt-2 z-50 rounded-md shadow-lg bg-black" />
+        </Combobox>
       </div>
 
       {/* context menu */}
@@ -1008,7 +1019,6 @@ const Home = () => {
           <h1 className="text-lg font-bold mb-4">
             Right-click on the box below
           </h1>
-
           <ContextMenu
             menuItems={[
               { label: "Back", action: () => console.log("Back clicked!") },
@@ -1016,19 +1026,14 @@ const Home = () => {
                 label: "Forward",
                 action: () => console.log("Forward clicked!"),
               },
-              {
-                label: "Reload",
-                action: () => console.log("Reload clicked!"),
-              },
-              {
-                label: "Delete",
-                action: () => console.log("Delete clicked!"),
-              },
+              { label: "Reload", action: () => console.log("Reload clicked!") },
+              { label: "Delete", action: () => console.log("Delete clicked!") },
             ]}
-            menuStyle="bg-gray-900 text-white p-2 flex flex-col space-y-5 items-center justify-center w-[150px] h-fit rounded-md border border-gray-800" // ✅ Custom menu styling
-            menuItemStyle="hover:cursor-pointer hover:bg-gray-600 border-b border-gray-600 pb-1 w-full flex  " // ✅ Custom item styling
           >
-            <span className="text-gray-600">Right-click here to see menu</span>
+            <div className="w-64 h-32 border flex items-center justify-center text-gray-600 rounded-md">
+              Right-click here to see menu
+            </div>
+            <ContextMenuPanel className="bg-gray-900 text-white p-2 flex flex-col space-y-2 items-center justify-center w-[150px] h-fit rounded-md border border-gray-800" />
           </ContextMenu>
         </div>
       </div>
