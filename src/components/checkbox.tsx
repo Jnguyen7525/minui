@@ -32,7 +32,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   };
 
   return (
-    <label htmlFor={id} className="flex items-center  cursor-pointer">
+    <label htmlFor={id} className="flex items-center cursor-pointer">
       <div
         id={id}
         role="checkbox"

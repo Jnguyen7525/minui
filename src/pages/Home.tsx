@@ -817,21 +817,20 @@ const Home = () => {
       {/* checkbox group */}
       <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox Group</h2>
-        <div>
-          <h3 className="text-lg font-bold mb-4">Preferences</h3>
-          <CheckboxGroup
-            options={[
-              { id: "news", label: "Subscribe to newsletter" },
-              { id: "offers", label: "Receive special offers" },
-              { id: "updates", label: "Get product updates" },
-            ]}
-            selectedValues={selectedCheckboxGroup}
-            onChange={setCheckboxGroupSelected}
-          />
-          <p className="mt-4 text-sm">
-            Selected: {selectedCheckboxGroup.join(", ") || "None"}
-          </p>
-        </div>
+
+        <h3 className="text-lg font-bold mb-4">Preferences</h3>
+        <CheckboxGroup
+          options={[
+            { id: "news", label: "Subscribe to newsletter" },
+            { id: "offers", label: "Receive special offers" },
+            { id: "updates", label: "Get product updates" },
+          ]}
+          selectedValues={selectedCheckboxGroup}
+          onChange={setCheckboxGroupSelected}
+        />
+        <p className="mt-4 text-sm">
+          Selected: {selectedCheckboxGroup.join(", ") || "None"}
+        </p>
       </div>
 
       {/* Circular Progress */}
@@ -847,7 +846,7 @@ const Home = () => {
             <CircularProgress
               size={30}
               borderWidth={2}
-              borderColor="border-blue-500"
+              className="border-blue-500"
             />
 
             {/* Custom Colors */}
@@ -855,25 +854,25 @@ const Home = () => {
               size={40}
               speed="1s"
               borderWidth={4}
-              borderColor="border-red-500"
+              className="border-red-500"
             />
             <CircularProgress
               size={50}
               speed="2s"
               borderWidth={6}
-              borderColor="border-green-500"
+              className="border-green-500"
             />
             <CircularProgress
               size={60}
               speed="3s"
               borderWidth={8}
-              borderColor="border-yellow-500"
+              className="border-yellow-500"
             />
             <CircularProgress
               size={70}
               speed="4s"
               borderWidth={10}
-              borderColor="border-purple-500"
+              className="border-purple-500"
             />
           </div>
           <div
@@ -881,10 +880,7 @@ const Home = () => {
         "
           >
             {/* Indeterminate Progress */}
-            <CircularProgress
-              borderColor="border-blue-500"
-              label="Loading..."
-            />
+            <CircularProgress label="Loading..." className="border-blue-600" />
 
             {/* Progress Tracking */}
             <CircularProgress
@@ -892,8 +888,7 @@ const Home = () => {
               progress={circularprogress}
               label="Downloading..."
               size={80}
-              valueTopPosition={"top-10"}
-              borderColor="stroke-blue-600"
+              className="stroke-blue-600"
               borderWidth={10}
             />
 
@@ -903,6 +898,7 @@ const Home = () => {
                 showValueLabel
                 progress={progress}
                 label="Downloading..."
+                className="stroke-blue-600"
               />
 
               {/* Update Progress buttons */}

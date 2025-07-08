@@ -27,7 +27,7 @@ const Drawer: React.FC<DrawerProps> = ({
       ></div>
 
       <div
-        className={`fixed  transition-transform duration-500 ${drawerStyle} ${
+        className={`fixed z-50 transition-transform duration-500 ${drawerStyle} ${
           placement === "left"
             ? "top-0 left-0 -translate-x-full"
             : placement === "right"
