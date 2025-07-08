@@ -48,7 +48,13 @@ import {
 } from "../components/card";
 import Checkbox from "../components/checkbox";
 import { CheckboxGroup } from "../components/checkboxgroup";
-import Collapsible from "../components/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleHeader,
+  CollapsibleItem,
+  CollapsibleTrigger,
+} from "../components/collapsible";
 import CircularProgress from "../components/circularprogress";
 import ProgressBar from "../components/progressbar";
 import Carousel from "../components/carousel";
@@ -924,28 +930,50 @@ const Home = () => {
       </div>
 
       {/* collapsible */}
-      <div className=" p-5 rounded-lg  h-fit w-[500px] border shadow-lg m-5">
+      <div className="p-5 rounded-lg h-fit w-[500px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
-        <div className="flex flex-col items-center justify-center w-full  ">
+
+        <div className="flex flex-col items-center justify-center w-full">
           <Collapsible
-            items={["Fruits", "Veggies", "Meats", "Dairy"]}
-            trigger={<ChevronsUpDown />}
+            defaultOpen={false}
             selectedItem={selectedCollapsedItem}
             onSelectItem={setSelectedCollapsedItem}
-            className="flex flex-col w-1/2 space-y-2"
-            headerStyle="flex w-full justify-between text-gray-500 font-semibold"
-            triggerStyle="text-gray-500 hover:opacity-80"
-            collapsedContentStyle="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 hover:text-white"
-          />
-
-          {/* Display Selected Item Outside Collapsible */}
-          <p
-            className={`${
-              selectedCollapsedItem ? "mt-4  text-gray-500 flex" : "hidden"
-            }`}
+            className="w-[300px]"
           >
-            Selected Item: {selectedCollapsedItem || "None"}
-          </p>
+            {/* Header with trigger */}
+            <CollapsibleHeader className="flex w-full justify-between text-gray-500 font-semibold">
+              <div>Foods</div>
+              <CollapsibleTrigger className="text-gray-500 hover:opacity-80">
+                <ChevronsUpDown />
+              </CollapsibleTrigger>
+            </CollapsibleHeader>
+
+            {/* Selected item always visible */}
+            <CollapsibleItem
+              item={selectedCollapsedItem}
+              className="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 "
+            />
+
+            {/* Remaining items rendered below */}
+            <CollapsibleContent>
+              {["Fruits", "Veggies", "Meats", "Dairy"]
+                .filter((item) => item !== selectedCollapsedItem)
+                .map((item) => (
+                  <CollapsibleItem
+                    key={item}
+                    item={item}
+                    className="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 "
+                  />
+                ))}
+            </CollapsibleContent>
+          </Collapsible>
+
+          {/* Display Selected Item */}
+          {selectedCollapsedItem && (
+            <p className="mt-4 text-gray-500 flex">
+              Selected Item: {selectedCollapsedItem}
+            </p>
+          )}
         </div>
       </div>
 
