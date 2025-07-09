@@ -2,21 +2,27 @@ import React, { useState } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 import Calendar from "./calendar"; // Import the custom calendar component
 
+type DateInputLabelProps = {
+  label?: React.ReactNode;
+  className?: string;
+};
+
+export const DateInputLabel: React.FC<DateInputLabelProps> = ({
+  label,
+  className = "",
+}) => {
+  if (!label) return null;
+
+  return <div className={className}>{label}</div>;
+};
+
 type DateInputProps = {
-  label?: string;
-  labelStyle?: string;
+  label?: React.ReactNode;
   value?: string;
   onChange?: (date: string) => void;
   placeholder?: string;
   variant?: "flat" | "bordered" | "underlined" | "faded";
   className?: string;
-  calendarContainerClassName?: string;
-  calendarHeaderClassName?: string;
-  calendarMonthButtonClassName?: string;
-  calendarSelectedDateClassName?: string;
-  calendarDateInRangeClassName?: string;
-  calendarDayDisabledClassName?: string;
-  calendarDayClassName?: string;
 };
 
 const variantStyles = {
@@ -28,20 +34,11 @@ const variantStyles = {
 
 const DateInput: React.FC<DateInputProps> = ({
   label,
-  labelStyle,
   value,
   onChange,
   placeholder = "YYYY-MM-DD",
   variant = "bordered",
   className = "",
-  // calendarStyles = {}, // Default empty object
-  calendarContainerClassName,
-  calendarHeaderClassName,
-  calendarMonthButtonClassName,
-  calendarSelectedDateClassName,
-  calendarDateInRangeClassName,
-  calendarDayDisabledClassName,
-  calendarDayClassName,
 }) => {
   const [internalValue, setInternalValue] = useState(value || "");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -71,7 +68,8 @@ const DateInput: React.FC<DateInputProps> = ({
 
   return (
     <div className={`flex flex-col gap-2 w-full relative`}>
-      {label && <label className={` ${labelStyle}`}>{label}</label>}
+      <DateInputLabel label={label} />
+
       <div className="relative flex items-center">
         <input
           type="text" // Keep it text to prevent browser picker
@@ -92,7 +90,7 @@ const DateInput: React.FC<DateInputProps> = ({
       </div>
 
       {showCalendar && (
-        <div className="absolute z-50 top-10 ">
+        <div className="absolute z-50 top-14 ">
           <Calendar
             selectedDates={internalValue ? [new Date(internalValue)] : []}
             onDateSelect={(dates) => {
@@ -101,13 +99,7 @@ const DateInput: React.FC<DateInputProps> = ({
               setShowCalendar(false);
             }}
             selectionType="single" // Ensure single-date selection
-            containerClassName={calendarContainerClassName}
-            monthButtonClassName={calendarMonthButtonClassName}
-            headerClassName={calendarHeaderClassName}
-            selectedDateClassName={calendarSelectedDateClassName}
-            dateInRangeClassName={calendarDateInRangeClassName}
-            dayClassName={calendarDayClassName}
-            dayDisabledClassName={calendarDayDisabledClassName}
+            className={`p-3 rounded-lg  ${className}`}
           />
         </div>
       )}

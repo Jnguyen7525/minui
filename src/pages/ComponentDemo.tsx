@@ -6,9 +6,13 @@ const ComponentDemo = () => {
   const { component } = useParams();
   const key = `${component?.replace(/\s+/g, "")}Demo`.toLowerCase();
 
-  const matched = Object.entries(demos).find(([path]) =>
-    path.toLowerCase().includes(key)
-  );
+  // const matched = Object.entries(demos).find(([path]) =>
+  //   path.toLowerCase().includes(key)
+  // );
+  const matched = Object.entries(demos).find(([path]) => {
+    const baseName = path.split("/").pop()?.replace(".tsx", "").toLowerCase();
+    return baseName === key;
+  });
 
   const DemoComponent = (matched?.[1] as { default: () => React.ReactNode })
     ?.default;

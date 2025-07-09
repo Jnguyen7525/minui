@@ -1044,55 +1044,51 @@ const Home = () => {
         <div className="flex flex-col space-y-10 w-[250px] h-full justify-center items-center">
           {/* Uncontrolled DateInput */}
           <DateInput
-            label="Uncontrolled Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Uncontrolled Date</span>
+              </span>
+            }
             placeholder="Select a date..."
             variant="flat"
             className="text-white text-md bg-gray-700 "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
 
           {/* Controlled DateInput */}
           <DateInput
-            label="Controlled Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Controlled Date</span>
+              </span>
+            }
             value={dateInput}
             onChange={(e) => setDateInput(e)}
             variant="bordered"
             className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
 
           {/* Underlined Variant */}
           <DateInput
-            label="Underlined Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Underlined Date</span>
+              </span>
+            }
             placeholder="Pick a date..."
             variant="underlined"
-            className="text-md "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
+            className="text-md"
           />
 
           {/* Faded Variant */}
           <DateInput
-            label="Faded Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Faded Date</span>
+              </span>
+            }
             placeholder="YYYY-MM-DD"
             variant="faded"
             className="text-black text-md rounded-sm bg-white  "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
         </div>
       </div>
@@ -1103,50 +1099,46 @@ const Home = () => {
         <div className="flex flex-col space-y-10 w-[300px] h-full justify-center items-center">
           {/* Uncontrolled Date Range Picker  */}
           <DateRangePicker
-            label="Uncontrolled Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Uncontrolled Date</span>
+              </span>
+            }
             variant="flat"
             className="text-white text-md bg-gray-700 "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
 
           {/* Controlled Date Range Picker  */}
           <DateRangePicker
-            label="Controlled Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Controlled Date</span>
+              </span>
+            }
             variant="bordered"
             className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
 
           {/* Underlined Date Range Picker  */}
           <DateRangePicker
-            label="Underlined Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Underlined Date</span>
+              </span>
+            }
             variant="underlined"
             className=" text-md "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
 
           {/* Faded Variant Date Range Picker  */}
           <DateRangePicker
-            label="Faded Date"
-            labelStyle="text-sm text-gray-600 flex w-full absolute -bottom-6"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Faded Date</span>
+              </span>
+            }
             variant="faded"
             className="text-black text-md rounded-sm bg-white  "
-            calendarContainerClassName="p-3 rounded-lg  shadow-md shadow-gray-700 bg-black"
-            calendarHeaderClassName="p-3 -m-3 mb-[0.5px] rounded-lg bg-gray-900 text-gray-500 font-bold"
-            calendarMonthButtonClassName="text-gray-500  hover:rounded-full hover:cursor-pointer"
-            calendarDayClassName=" hover:cursor-pointer hover:text-blue-300 hover:font-bold text-gray-500"
           />
         </div>
       </div>
@@ -1157,7 +1149,7 @@ const Home = () => {
 
         <div className="p-5">
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
             onClick={() => setIsDialogOpen(true)}
           >
             Open Dialog
@@ -1171,19 +1163,20 @@ const Home = () => {
             footer={
               <div className="flex gap-3">
                 <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer"
                   onClick={() => setIsDialogOpen(false)}
                 >
                   Cancel
                 </button>
-                <button className="bg-green-500 text-white px-4 py-2 rounded">
+                <button
+                  className="bg-green-500 text-white px-4 py-2 rounded cursor-pointer"
+                  onClick={() => setIsDialogOpen(false)}
+                >
                   Confirm
                 </button>
               </div>
             }
-            bgColor=""
-            overlayColor="/60" // ✅ Keeps background semi-transparent
-            className=""
+            className="bg-white"
           />
         </div>
       </div>
