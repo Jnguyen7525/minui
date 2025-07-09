@@ -187,7 +187,7 @@ export default function CarouselDemo() {
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
         <div className="flex w-full bg-stone-900 rounded-lg p-5 text-white">
-          <ScrollBox className="w-full">
+          <ScrollBox className="w-2 rounded-full bg-stone-700 h-2">
             <CodeSnippet code={usageExample} className="p-5" />
           </ScrollBox>
         </div>
