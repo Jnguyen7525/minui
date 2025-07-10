@@ -58,7 +58,7 @@ const InputOTP: React.FC<InputOTPProps> = ({
           value={val}
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e)}
-          className={`${inputStyle} w-[8%] flex h-full text-center text-lg border rounded-md focus:outline-none focus:ring-2 `}
+          className={`${inputStyle} w-[15%] sm:w-[12%] md:w-[10%] lg:w-[5%] flex h-full text-center text-lg border rounded-md focus:outline-none focus:ring-2 `}
         />
       ))}
     </div>
