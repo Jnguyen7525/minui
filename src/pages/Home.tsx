@@ -61,7 +61,6 @@ import Carousel from "../components/carousel";
 import Jumbotron from "../components/jumbotron";
 import DateInput from "../components/dateinput";
 import DateRangePicker from "../components/daterangepicker";
-import Dropdown from "../components/dropdown";
 
 import Drawer from "../components/drawer";
 import Lightbox from "../components/lightbox";
@@ -126,6 +125,10 @@ import {
   ComboboxTrigger,
 } from "../components/combobox";
 import { ContextMenu, ContextMenuPanel } from "../components/contextmenu";
+import Dropdown, {
+  DropdownMenu,
+  DropdownTrigger,
+} from "../components/dropdown";
 
 const images = [lightboxone, lightboxtwo, lightboxthree];
 
@@ -1198,7 +1201,7 @@ const Home = () => {
             isOpen={isLeftDrawerOpen}
             placement="left"
             onClose={() => setIsLeftDrawerOpen(false)}
-            drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1223,7 +1226,7 @@ const Home = () => {
             isOpen={isRightDrawerOpen}
             placement="right"
             onClose={() => setIsRightDrawerOpen(false)}
-            drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg bg-gray-800 border-l border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1248,7 +1251,7 @@ const Home = () => {
             isOpen={isTopDrawerOpen}
             placement="top"
             onClose={() => setIsTopDrawerOpen(false)}
-            drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1273,7 +1276,7 @@ const Home = () => {
             isOpen={isBottomDrawerOpen}
             placement="bottom"
             onClose={() => setIsBottomDrawerOpen(false)}
-            drawerStyle="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1292,23 +1295,26 @@ const Home = () => {
         <h2 className="text-xl font-bold mb-5 ">Dropdown</h2>
 
         <div className="p-5">
-          <Dropdown
-            triggerLabel="Open Menu"
-            placement="bottom"
-            options={[
-              { key: "new", label: "New file" },
-              { key: "copy", label: "Copy link" },
-              { key: "edit", label: "Edit file" },
-              {
-                key: "delete",
-                label: "Delete file",
-                action: () => alert("Deleted!"),
-              },
-            ]}
-            triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
-            menuStyle="w-48 bg-gray-800 border border-gray-600 rounded-md shadow-lg "
-            menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer"
-          />
+          <Dropdown placement="bottom">
+            <DropdownTrigger className="px-4 py-2 bg-blue-500 text-white rounded hover:cursor-pointer">
+              Open Menu
+            </DropdownTrigger>
+            <DropdownMenu
+              options={[
+                {
+                  key: "profile",
+                  label: "Profile",
+                  action: () => console.log("Profile"),
+                },
+                {
+                  key: "logout",
+                  label: "Logout",
+                  action: () => console.log("Logout"),
+                },
+              ]}
+              className="bg-black border w-full rounded p-3 flex flex-col space-y-2 items-start"
+            />
+          </Dropdown>
         </div>
       </div>
 
@@ -1318,32 +1324,28 @@ const Home = () => {
         <div className="flex flex-col space-y-5 w-full h-full justify-center items-center">
           <Input
             placeholder="Flat style"
-            bgColor=""
-            borderColor="border-blue-500"
+            className="text-white text-md bg-gray-700 "
             variant="flat"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
           />
           <Input
             placeholder="Bordered style"
-            bgColor=""
-            borderColor="border-blue-500"
+            className="text-white bg-gray-700 border-gray-400 text-md rounded-lg"
             variant="bordered"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
           />
           <Input
             placeholder="Underlined style"
-            bgColor=""
-            borderColor="border-blue-500"
+            className="text-md"
             variant="underlined"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
           />
           <Input
             placeholder="Faded style"
-            bgColor="bg-blue-500"
-            borderColor="border-blue-500"
+            className="text-black text-md rounded-sm bg-white  "
             variant="faded"
             value={inputValue}
             onChange={(val) => setInputValue(val)}
@@ -1355,8 +1357,7 @@ const Home = () => {
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Input OTP</h2>
         <InputOTP
-          className="flex gap-2"
-          inputStyle="w-12 h-12 text-center text-lg border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex gap-2 justify-center items-center h-14"
           maxLength={6}
           onComplete={(otp) => setOtp(otp)}
         />

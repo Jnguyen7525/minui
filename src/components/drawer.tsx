@@ -6,7 +6,7 @@ type DrawerProps = {
   onClose: () => void;
   children: React.ReactNode;
   size?: { width?: string; height?: string };
-  drawerStyle?: string;
+  className?: string;
 };
 
 const Drawer: React.FC<DrawerProps> = ({
@@ -15,7 +15,7 @@ const Drawer: React.FC<DrawerProps> = ({
   onClose,
   children,
   size,
-  drawerStyle,
+  className,
 }) => {
   return (
     <>
@@ -27,7 +27,7 @@ const Drawer: React.FC<DrawerProps> = ({
       ></div>
 
       <div
-        className={`fixed z-50 transition-transform duration-500 ${drawerStyle} ${
+        className={`fixed z-50 transition-transform duration-500 ${className} ${
           placement === "left"
             ? "top-0 left-0 -translate-x-full"
             : placement === "right"

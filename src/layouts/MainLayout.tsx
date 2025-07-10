@@ -155,10 +155,11 @@ function Header({ onMobileMenuClick }: HeaderProps) {
         </button>
 
         <ThemeSwitcher
-          triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 "
+          // triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 "
           triggerContent={triggerContent}
-          menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer hover:rounded-md"
-          menuStyle="w-fit bg-gray-800 border border-gray-600 rounded-md shadow-lg flex flex-col "
+          // menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer hover:rounded-md"
+          // menuStyle="w-fit bg-gray-800 border border-gray-600 rounded-md shadow-lg flex flex-col "
+          className=""
         />
       </div>
     </header>
@@ -177,7 +178,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         placement="left"
         onClose={() => setMobileDrawerOpen(false)}
         size={{ width: "250px" }}
-        drawerStyle="bg-gray-900 overflow-y-auto p-4 scrollbar-hide"
+        className="bg-gray-900 overflow-y-auto p-4 scrollbar-hide"
       >
         <SidebarMenu />
       </Drawer>

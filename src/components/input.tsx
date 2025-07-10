@@ -4,43 +4,27 @@ type InputProps = {
   placeholder?: string;
   className?: string;
   variant?: "flat" | "bordered" | "underlined" | "faded"; // Styling variants
-  bgColor?: string;
-  borderColor?: string;
-  textColor?: string;
   value: string; // ✅ Controlled value
   onChange: (value: string) => void;
 };
 
 // Apply the user's styles dynamically inside variants
 const variantStyles = {
-  flat: (bgColor: string, borderColor: string, textColor: string) =>
-    `border-none rounded-md ${bgColor} ${borderColor} ${textColor}`,
-  bordered: (bgColor: string, borderColor: string, textColor: string) =>
-    `border rounded-md ${bgColor} ${borderColor} ${textColor}`,
-  underlined: (bgColor: string, borderColor: string, textColor: string) =>
-    `border-b rounded-none ${bgColor} ${borderColor} ${textColor}`,
-  faded: (bgColor: string, borderColor: string, textColor: string) =>
-    `border opacity-50 ${bgColor} ${borderColor} ${textColor}`,
+  flat: "border-none rounded-md ",
+  bordered: "border rounded-md ",
+  underlined: "border-b",
+  faded: "border opacity-50",
 };
 
 const Input: React.FC<InputProps> = ({
   placeholder = "Enter text...",
   className = "",
   variant = "bordered",
-  bgColor = "bg-white",
-  borderColor = "border-gray-300",
-  textColor = "",
   value,
   onChange,
 }) => {
   return (
-    <div
-      className={`relative w-full ${className} ${variantStyles[variant](
-        bgColor,
-        borderColor,
-        textColor
-      )} ${bgColor} ${borderColor} ${textColor}`}
-    >
+    <div className={`relative w-full ${className} ${variantStyles[variant]}`}>
       {/* Input Field */}
       <input
         type="text"
