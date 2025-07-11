@@ -66,7 +66,6 @@ export default function ButtonDemo() {
       <div className="flex w-full h-fit min-h-[250px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg m-5">
-            <h2 className="text-xl font-bold">Button</h2>
             <div className="flex flex-wrap justify-center space-x-5 mt-5">
               <Button
                 label="Default"

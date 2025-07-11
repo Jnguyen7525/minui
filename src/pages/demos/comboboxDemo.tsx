@@ -102,7 +102,6 @@ export default function ComboboxDemo() {
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white min-h-[250px]">
         {activeView === "preview" ? (
           <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center pb-10">
-            <h2 className="text-xl font-bold mb-5">Combobox</h2>
             <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
             <Combobox
               options={[

@@ -129,8 +129,6 @@ export default function CircularProgressDemo() {
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="flex flex-col space-y-8 items-center p-5 w-fit">
-            <h2 className="text-xl font-bold">Circular Progress</h2>
-
             {/* Row of Spinners */}
             <div className="flex space-x-5">
               <CircularProgress

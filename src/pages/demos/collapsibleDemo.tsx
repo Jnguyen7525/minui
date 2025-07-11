@@ -123,7 +123,6 @@ export default function CollapsibleDemo() {
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="p-5 rounded-lg h-fit w-[500px] border shadow-lg">
-            <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
             <div className="flex flex-col items-center w-full">
               <Collapsible
                 defaultOpen={false}

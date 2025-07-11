@@ -1412,9 +1412,13 @@ const Home = () => {
       {/* number input */}
       <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Number Input</h2>
-        <div className="max-w-sm space-y-4">
+        <div className="max-w-sm space-y-10">
           <NumberInput
-            label="Amount"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Amount</span>
+              </span>
+            }
             value={amount}
             onChange={(val) => setAmount(val)}
             placeholder="0.00"
@@ -1424,7 +1428,11 @@ const Home = () => {
             variant="bordered"
           />
           <NumberInput
-            label="Amount"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Amount</span>
+              </span>
+            }
             value={amount}
             onChange={(val) => setAmount(val)}
             placeholder="0.00"
@@ -1434,7 +1442,11 @@ const Home = () => {
             variant="faded"
           />
           <NumberInput
-            label="Amount"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Amount</span>
+              </span>
+            }
             value={amount}
             onChange={(val) => setAmount(val)}
             placeholder="0.00"
@@ -1444,7 +1456,11 @@ const Home = () => {
             variant="flat"
           />
           <NumberInput
-            label="Amount"
+            label={
+              <span className="text-sm text-gray-600 flex w-full absolute -bottom-6">
+                <span>Amount</span>
+              </span>
+            }
             value={amount}
             onChange={(val) => setAmount(val)}
             placeholder="0.00"
@@ -1475,13 +1491,8 @@ const Home = () => {
             current={currentPage}
             total={totalPages}
             onPageChange={setCurrentPage}
-            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
-            activePageClassName="text-white border"
-            disabledPageClassName="opacity-20 pointer-events-none"
-            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
+            className="bg-blue-500 !rounded-full"
             visiblePages={2} // show 2 page buttons on each side of current
-            // other props...
-
             renderPrev={() => (
               <span className="flex items-center gap-1">
                 <ChevronLeft /> <span>Prev</span>
@@ -1528,10 +1539,6 @@ const Home = () => {
             total={totalPagesWithLink}
             onPageChange={updatePage}
             visiblePages={2}
-            pageClassName="text-white hover:text-stone-800 hover:cursor-pointer"
-            activePageClassName="text-white border"
-            disabledPageClassName="opacity-20 pointer-events-none"
-            baseButtonClasses="inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-100 ease-in select-none"
             renderPage={(page) => (
               <a
                 href={`?page=${page}`}
@@ -1574,34 +1581,14 @@ const Home = () => {
         <h2 className="text-xl font-bold mb-5 ">Placeholder</h2>
 
         <div className="flex flex-col space-y-4 w-full ">
-          <Placeholder
-            width="w-full"
-            height="h-10"
-            rounded="rounded-lg"
-            color="bg-purple-300"
-          />
+          <Placeholder className="bg-purple-300 rounded-lg w-full h-10" />
           <div className="flex flex-col space-y-2 w-full">
-            <Placeholder
-              width="w-[75%]"
-              height="h-4"
-              rounded="rounded-lg"
-              color="bg-neutral-300"
-            />
-            <Placeholder
-              width="w-[75%]"
-              height="h-4"
-              rounded="rounded-lg"
-              color="bg-neutral-300"
-            />
+            <Placeholder className="rounded-lg bg-neutral-300 h-4 w-[75%]" />
+            <Placeholder className="rounded-lg bg-neutral-300 h-4 w-[75%]" />
           </div>
 
           <div className="flex w-full justify-center">
-            <Placeholder
-              width="w-full"
-              height="h-2"
-              rounded="rounded-lg"
-              color="bg-blue-300"
-            />
+            <Placeholder className="rounded-lg bg-blue-300 h-2 w-full" />
           </div>
         </div>
       </div>
@@ -1987,19 +1974,9 @@ const Home = () => {
           <div className="p-5 ">
             <h1>Main Content</h1>
             <div className="flex flex-col space-y-4 w-full h-full mt-5">
-              <Placeholder
-                width="w-full"
-                height="h-3/5"
-                rounded="rounded-lg"
-                color="bg-stone-800"
-              />
+              <Placeholder className="bg-stone-800 rounded-lg h-3/5 w-full" />
 
-              <Placeholder
-                width="w-full"
-                height="h-1/5"
-                rounded="rounded-lg"
-                color="bg-stone-800"
-              />
+              <Placeholder className="bg-stone-800 rounded-lg h-1/5 w-full" />
             </div>
           </div>
         </div>

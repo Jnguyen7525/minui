@@ -1,72 +1,3 @@
-// type PaginationProps = {
-//   current: number;
-//   total: number;
-//   onPageChange: (page: number) => void;
-
-//   renderPrev?: (disabled: boolean) => React.ReactNode;
-//   renderNext?: (disabled: boolean) => React.ReactNode;
-//   renderPage?: (page: number, isActive: boolean) => React.ReactNode;
-
-//   pageClassName?: string;
-//   activePageClassName?: string;
-//   disabledPageClassName?: string;
-//   baseButtonClasses?: string;
-// };
-
-// export function Pagination({
-//   current,
-//   total,
-//   onPageChange,
-//   renderPrev,
-//   renderNext,
-//   renderPage,
-//   pageClassName = "bg-transparent text-stone-800 border-transparent hover:bg-stone-800/5 hover:border-stone-800/5",
-//   activePageClassName = "bg-stone-800 text-stone-50 border-stone-800 hover:bg-stone-700 hover:border-stone-700 shadow-sm hover:shadow-md",
-//   disabledPageClassName = "opacity-50 cursor-not-allowed",
-//   baseButtonClasses = "inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-200 ease-in border select-none",
-// }: PaginationProps) {
-//   const pages = Array.from({ length: total }, (_, i) => i + 1);
-
-//   const getClass = (isActive: boolean, isDisabled: boolean) => {
-//     if (isDisabled) return `${baseButtonClasses} ${disabledPageClassName}`;
-//     if (isActive) return `${baseButtonClasses} ${activePageClassName}`;
-//     return `${baseButtonClasses} ${pageClassName}`;
-//   };
-
-//   return (
-//     <nav className="flex items-center gap-1" aria-label="Pagination">
-//       <button
-//         onClick={() => onPageChange(current - 1)}
-//         disabled={current === 1}
-//         className={getClass(false, current === 1)}
-//       >
-//         {renderPrev ? renderPrev(current === 1) : "Previous"}
-//       </button>
-
-//       {pages.map((page) => {
-//         const isActive = page === current;
-//         return (
-//           <button
-//             key={page}
-//             onClick={() => onPageChange(page)}
-//             className={getClass(isActive, false)}
-//           >
-//             {renderPage ? renderPage(page, isActive) : page}
-//           </button>
-//         );
-//       })}
-
-//       <button
-//         onClick={() => onPageChange(current + 1)}
-//         disabled={current === total}
-//         className={getClass(false, current === total)}
-//       >
-//         {renderNext ? renderNext(current === total) : "Next"}
-//       </button>
-//     </nav>
-//   );
-// }
-
 import { type ReactNode } from "react";
 
 type PaginationProps = {
@@ -80,10 +11,7 @@ type PaginationProps = {
   renderFirst?: (disabled: boolean) => ReactNode;
   renderLast?: (disabled: boolean) => ReactNode;
 
-  pageClassName?: string;
-  activePageClassName?: string;
-  disabledPageClassName?: string;
-  baseButtonClasses?: string;
+  className?: string;
 
   visiblePages?: number; // Number of pages to show on either side of the current page
 };
@@ -97,18 +25,17 @@ export function Pagination({
   renderPage,
   renderFirst,
   renderLast,
-  pageClassName = "text-stone-800 border-transparent hover:bg-stone-800/5 hover:border-stone-800/5",
-  activePageClassName = "bg-stone-800 text-white border-stone-800 hover:bg-stone-700 hover:border-stone-700 shadow",
-  disabledPageClassName = "opacity-40 pointer-events-none",
-  baseButtonClasses = "inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none",
+  className = "",
   visiblePages = 1, // Default fallback
 }: PaginationProps) {
   const range = getVisiblePages(current, total, visiblePages);
 
   const getClass = (isActive: boolean, isDisabled: boolean) => {
-    if (isDisabled) return `${baseButtonClasses} ${disabledPageClassName}`;
-    if (isActive) return `${baseButtonClasses} ${activePageClassName}`;
-    return `${baseButtonClasses} ${pageClassName}`;
+    if (isDisabled)
+      return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none opacity-40 pointer-events-none ${className}`;
+    if (isActive)
+      return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none hover:opacity-60 hover:cursor-pointer shadow ${className}`;
+    return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in select-none hover:border hover:cursor-pointer opacity-90 ${className}`;
   };
 
   const renderBtn = (page: number, isActive: boolean, isDisabled = false) => (
@@ -144,10 +71,7 @@ export function Pagination({
 
       {range.map((p, idx) =>
         p === "..." ? (
-          <span
-            key={`ellipsis-${idx}`}
-            className={`${baseButtonClasses} text-stone-400 select-none`}
-          >
+          <span key={`ellipsis-${idx}`} className={`select-none`}>
             …
           </span>
         ) : (

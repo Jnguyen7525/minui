@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
+type NumberInputLabelProps = {
+  label?: React.ReactNode;
+  className?: string;
+};
+
+export const NumberInputLabel: React.FC<NumberInputLabelProps> = ({
+  label,
+  className = "",
+}) => {
+  if (!label) return null;
+
+  return <div className={className}>{label}</div>;
+};
+
 type NumberInputProps = {
-  label?: string;
-  labelStyle?: string;
+  label?: React.ReactNode;
+  // labelStyle?: string;
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -24,7 +38,7 @@ const variantStyles = {
 
 const NumberInput: React.FC<NumberInputProps> = ({
   label,
-  labelStyle,
+  // labelStyle,
   value,
   onChange,
   placeholder = "Enter number",
@@ -75,8 +89,9 @@ const NumberInput: React.FC<NumberInputProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      {label && <label className={labelStyle}>{label}</label>}
+    <div className="flex flex-col gap-2 w-full relative">
+      {/* {label && <label className={labelStyle}>{label}</label>} */}
+      <NumberInputLabel label={label} />
       <div className="relative flex items-center">
         <input
           type="text"
@@ -92,14 +107,14 @@ const NumberInput: React.FC<NumberInputProps> = ({
           <button
             type="button"
             onClick={increment}
-            className="text-gray-500 hover:text-gray-700 disabled:opacity-30"
+            className=" hover:opacity-60 cursor-pointer disabled:opacity-30"
           >
             <ChevronUp size={16} />
           </button>
           <button
             type="button"
             onClick={decrement}
-            className="text-gray-500 hover:text-gray-700 disabled:opacity-30"
+            className=" hover:opacity-60 cursor-pointer disabled:opacity-30"
           >
             <ChevronDown size={16} />
           </button>

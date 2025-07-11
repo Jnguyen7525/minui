@@ -134,7 +134,6 @@ export default function BreadcrumbsDemo() {
       <div className="flex w-full min-h-[100px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="p-5 rounded-lg text-center h-fit w-[500px] border shadow-lg m-5">
-            <h2 className="text-xl font-bold mb-5">Breadcrumb</h2>
             <div className="flex flex-col h-full w-full space-y-5 items-center justify-center">
               <Breadcrumbs
                 items={[

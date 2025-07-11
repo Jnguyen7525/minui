@@ -70,9 +70,6 @@ export default function BackToTopDemo() {
       <div className="flex w-full h-fit  items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="w-[300px] relative  border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
-            <h2 className="text-2xl font-bold mb-4 text-center">
-              Back To Top Demo
-            </h2>
             <p className="text-sm text-gray-300 mb-8 text-center">
               Scroll down to see the BackToTop button appear at the bottom
               right.

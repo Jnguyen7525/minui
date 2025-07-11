@@ -104,7 +104,6 @@ export default function DialogDemo() {
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
           <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center">
-            <h2 className="text-xl font-bold mb-5">Dialog</h2>
             <div className="p-5">
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
