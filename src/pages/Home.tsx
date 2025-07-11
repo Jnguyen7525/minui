@@ -1367,22 +1367,24 @@ const Home = () => {
       {/* jumbotron */}
       <div className="flex flex-col items-center  p-5 rounded-lg  w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
         <h2 className="text-xl font-bold  mb-5">Jumbotron</h2>
-        <Jumbotron
-          backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
-          className="h-[400px] rounded-lg p-12"
-          overlayColor="bg-gray-900" // ✅ Customize overlay darkness
-          overlayOpacity="opacity-60"
-        >
-          <div className="relative flex flex-col items-center justify-center h-full w-full">
-            <h2 className="mb-4 text-4xl font-semibold text-white">Heading</h2>
-            <h4 className="mb-6 text-xl font-semibold text-white">
-              Subheading
-            </h4>
-            <button className="bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition">
-              Call to action
-            </button>
-          </div>
-        </Jumbotron>
+        <div className="flex w-full h-full flex-1 rounded-lg overflow-hidden">
+          <Jumbotron
+            backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"
+            className=" bg-gray-900 opacity-60"
+          >
+            <div className="relative flex flex-col items-center justify-center h-full w-full">
+              <h2 className="mb-4 text-4xl font-semibold text-white">
+                Heading
+              </h2>
+              <h4 className="mb-6 text-xl font-semibold text-white">
+                Subheading
+              </h4>
+              <button className="bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition">
+                Call to action
+              </button>
+            </div>
+          </Jumbotron>
+        </div>
       </div>
 
       {/* lightbox */}

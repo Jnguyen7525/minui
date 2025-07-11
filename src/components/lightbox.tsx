@@ -1,16 +1,12 @@
+import { X } from "lucide-react";
 import { useState } from "react";
 
 type LightboxProps = {
   images: string[];
   className?: string;
-  //   imagesStyle?: string;
 };
 
-const Lightbox: React.FC<LightboxProps> = ({
-  images,
-  className,
-  //   imagesStyle="",
-}) => {
+const Lightbox: React.FC<LightboxProps> = ({ images, className }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
@@ -39,15 +35,15 @@ const Lightbox: React.FC<LightboxProps> = ({
             className="absolute top-5 right-5 text-white text-2xl"
             onClick={() => setSelectedImage(null)}
           >
-            ✖
+            <X className="cursor-pointer hover:opacity-60 " />
           </button>
 
           {/* Full-page container */}
-          <div className="w-screen h-screen flex items-center justify-center p-20">
+          <div className="w-screen h-screen flex items-center justify-center ">
             <img
               src={selectedImage}
               alt="Enlarged"
-              className="object-contain max-w-screen max-h-screen animate-fade-scale"
+              className="object-contain max-w-screen max-h-screen animate-fade-scale p-32"
             />
           </div>
         </div>
