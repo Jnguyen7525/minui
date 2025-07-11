@@ -1400,14 +1400,11 @@ const Home = () => {
       {/* Navbar */}
       <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Navbar</h2>
-        <div className="flex flex-col space-y-5 =">
+        <div className="flex flex-col space-y-5 w-fit">
           <Navbar
             items={navbarItems}
             logo={<Menu size={24} />}
-            className="space-x-5"
-            navbarItemClassName="hover:opacity-50"
-            submenuClassName="bg-black flex flex-col items-start space-y-2 mt-2 p-4 border rounded-md"
-            subMenuItemClassName="hover:opacity-50"
+            className="bg-black border p-4 gap-5  rounded-md"
           />
         </div>
       </div>

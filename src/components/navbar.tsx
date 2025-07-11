@@ -12,18 +12,9 @@ type NavbarProps = {
   items: NavbarItem[];
   logo?: React.ReactNode;
   className?: string;
-  navbarItemClassName?: string;
-  submenuClassName?: string;
-  subMenuItemClassName?: string;
 };
 
-const Navbar: React.FC<NavbarProps> = ({
-  items,
-  className,
-  navbarItemClassName,
-  submenuClassName,
-  subMenuItemClassName,
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ items, className }) => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const handleDropdownToggle = (label: string) => {
@@ -33,15 +24,13 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav className={`flex items-center justify-between  `}>
       {/* ✅ Navbar Items */}
-      <ul className={`flex ${className}`}>
+      <ul className={`flex h-full w-full justify-between ${className} `}>
         {items.map(({ label, href, icon, submenu }) => (
           <li key={label} className="relative group">
             {submenu ? (
               <button
                 onClick={() => handleDropdownToggle(label)}
-                onMouseEnter={() => setOpenDropdown(label)} // ✅ Open submenu on hover
-                onMouseLeave={() => setOpenDropdown(null)} // ✅ Close submenu when leaving
-                className={`flex items-center gap-2 hover:cursor-pointer ${navbarItemClassName}`}
+                className={`flex items-center gap-2 hover:cursor-pointer hover:opacity-50`}
               >
                 {icon} {label}{" "}
                 <ChevronDown
@@ -55,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <a
                 href={href ?? "#"}
-                className={`flex items-center gap-2 ${navbarItemClassName}`}
+                className={`flex items-center gap-2 hover:opacity-50`}
               >
                 {icon} {label}
               </a>
@@ -64,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({
             {/* ✅ Dropdown Menu */}
             {submenu && openDropdown === label && (
               <ul
-                className={`absolute left-0 z-50 transition-all duration-300 ease-in-out ${submenuClassName} 
+                className={` ${className} absolute left-0 z-50 transition-all duration-300 ease-in-out flex flex-col !gap-2 items-start border !mt-2 !p-4 w-full 
               ${
                 openDropdown === label
                   ? "opacity-100 scale-y-100"
@@ -72,7 +61,11 @@ const Navbar: React.FC<NavbarProps> = ({
               } origin-top`}
               >
                 {submenu.map((item) => (
-                  <li key={item.label} className={`${subMenuItemClassName}`}>
+                  <li
+                    key={item.label}
+                    className={`hover:opacity-50`}
+                    onClick={() => setOpenDropdown(null)}
+                  >
                     <a href={item.href} className="">
                       {item.label}
                     </a>
