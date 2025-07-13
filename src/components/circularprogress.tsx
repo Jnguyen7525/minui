@@ -2,7 +2,6 @@ import React from "react";
 
 type CircularProgressProps = {
   size?: number; // Adjust width & height
-  borderColor?: string; // Customizable border color
   borderWidth?: number; // Adjusts border thickness
   speed?: string; // Animation speed
   className?: string; // Additional styles
@@ -13,7 +12,6 @@ type CircularProgressProps = {
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
   size = 60,
-  // borderColor = "stroke-blue-500",
   borderWidth = 6,
   speed = "1.5s",
   className = "",
@@ -48,7 +46,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       <div className="relative">
         {!isIndeterminate && (
           <svg
-            className={`rotate-[-90deg] ${className} `}
+            className={`rotate-[-90deg]  `}
             width={size}
             height={size}
             viewBox={`0 0 ${size} ${size}`}
@@ -59,7 +57,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               cy={size / 2}
               r={radius}
               strokeWidth={borderWidth}
-              className="stroke-gray-300 fill-none"
+              className="fill-none"
             />
 
             {/* Progress Circle (Now Properly Fills Up) */}

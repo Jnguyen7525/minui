@@ -5,8 +5,20 @@ type RadioOption = {
   value: string;
   label?: string;
 };
+type RadioColor =
+  | "gray"
+  | "blue"
+  | "green"
+  | "yellow"
+  | "red"
+  | "purple"
+  | "orange"
+  | "black"
+  | "white"
+  | "pink";
 
 type RadioGroupProps = {
+  className?: string;
   name: string;
   options: RadioOption[];
   checkedValue?: string;
@@ -14,8 +26,8 @@ type RadioGroupProps = {
   onChange?: (value: string) => void;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
-  onColor?: "gray" | "blue" | "green" | "yellow" | "red";
-  offColor?: "gray" | "blue" | "green" | "yellow" | "red";
+  onColor?: RadioColor;
+  offColor?: RadioColor;
 };
 
 const sizeMap = {
@@ -25,27 +37,33 @@ const sizeMap = {
 };
 // ✅ Separate color maps for ON and OFF states
 const colorMapOn = {
-  //   gray: "checked:before:bg-gray-500 checked:after:border-gray-600",
-  //   blue: "checked:before:bg-blue-500 checked:after:border-blue-500",
-  //   green: "checked:before:bg-green-500 checked:after:border-green-500",
-  //   yellow: "checked:before:bg-yellow-500 checked:after:border-yellow-500",
-  //   red: "checked:before:bg-red-500 checked:after:border-red-500",
   gray: "border-gray-300 checked:bg-gray-600 checked:border-gray-600",
   blue: "border-blue-300 checked:bg-blue-500 checked:border-blue-500",
   green: "border-green-300 checked:bg-green-500 checked:border-green-500",
   yellow: "border-yellow-300 checked:bg-yellow-500 checked:border-yellow-500",
   red: "border-red-300 checked:bg-red-500 checked:border-red-500",
+  purple: "border-purple-300 checked:bg-purple-500 checked:border-purple-500",
+  orange: "border-orange-300 checked:bg-orange-500 checked:border-orange-500",
+  black: "border-gray-900 checked:bg-black checked:border-black",
+  white: "border-white checked:bg-white checked:border-white",
+  pink: "border-pink-300 checked:bg-pink-500 checked:border-pink-500",
 };
 
 const colorMapOff = {
-  gray: "bg-gray-500 ",
-  blue: "bg-blue-500 ",
-  green: "bg-green-500 ",
-  yellow: "bg-yellow-500 ",
-  red: "bg-red-500 ",
+  gray: "bg-gray-500",
+  blue: "bg-blue-500",
+  green: "bg-green-500",
+  yellow: "bg-yellow-500",
+  red: "bg-red-500",
+  purple: "bg-purple-500",
+  orange: "bg-orange-500",
+  black: "bg-black",
+  white: "bg-white border border-gray-300", // helps visibility on white bg
+  pink: "bg-pink-500",
 };
 
 const RadioGroup: React.FC<RadioGroupProps> = ({
+  className = "flex flex-col gap-3",
   name,
   options,
   checkedValue,
@@ -66,7 +84,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className={`${className}`}>
       {options.map(({ id, value, label }) => (
         <div key={id} className="flex items-center gap-3">
           <input

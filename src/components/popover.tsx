@@ -6,7 +6,7 @@ type PopoverProps = {
   isOpen: boolean; // ✅ Controlled state
   onToggle: (state: boolean) => void; // ✅ Parent state handler
   trigger: React.ReactNode; // ✅ Allows any element as the trigger
-  popoverStyle?: string;
+  className?: string;
 };
 
 const Popover: React.FC<PopoverProps> = ({
@@ -15,7 +15,7 @@ const Popover: React.FC<PopoverProps> = ({
   isOpen,
   onToggle,
   trigger, // ✅ Custom trigger element
-  popoverStyle = "bg-white text-black p-2 rounded shadow-md z-50",
+  className = "bg-white text-black p-2 rounded shadow-md z-50",
 }) => {
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLDivElement | null>(null);
@@ -53,7 +53,7 @@ const Popover: React.FC<PopoverProps> = ({
       {isOpen && (
         <div
           ref={popoverRef}
-          className={`absolute z-40 ${popoverStyle} transform transition duration-200 ${
+          className={`absolute z-40 ${className} transform transition duration-200 ${
             placement === "top"
               ? "bottom-full mb-2 left-1/2 -translate-x-1/2"
               : placement === "right"

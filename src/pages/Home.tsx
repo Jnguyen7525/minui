@@ -203,7 +203,7 @@ const Home = () => {
   const [cardNumber, setCardNumber] = useState("");
 
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
-  const [radioSelected, setRadioSelected] = useState("comfortable");
+  const [radioSelected, setRadioSelected] = useState("default");
   const [text, setText] = useState("");
   const [selectedTab, setSelectedTab] = useState("html");
 
@@ -1602,8 +1602,7 @@ const Home = () => {
             content="Top popover"
             isOpen={isTopPopoverOpen}
             onToggle={setIsTopPopoverOpen} // ✅ Parent controls state
-            popoverStyle="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
-            // buttonStyle="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded"
+            className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
               <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
                 Top
@@ -1618,7 +1617,7 @@ const Home = () => {
             content="Right popover"
             isOpen={isRightPopoverOpen}
             onToggle={setIsRightPopoverOpen}
-            popoverStyle="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
+            className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
               <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
                 Right
@@ -1630,7 +1629,7 @@ const Home = () => {
             content="Bottom popover"
             isOpen={isBottomPopoverOpen}
             onToggle={setIsBottomPopoverOpen}
-            popoverStyle="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
+            className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
               <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
                 Bottom
@@ -1642,7 +1641,7 @@ const Home = () => {
             content="Left popover"
             isOpen={isLeftPopoverOpen}
             onToggle={setIsLeftPopoverOpen}
-            popoverStyle="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
+            className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
               <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
                 Left
@@ -1659,12 +1658,9 @@ const Home = () => {
         {/* progress bar with buttons */}
         <ProgressBar
           startLabel={`${progress}%`}
-          // endLabel="End"
+          endLabel="100%"
           progress={progress}
-          className=""
-          labelStyles="flex w-full justify-between mb-2"
-          barColor="bg-purple-500"
-          bgColor="bg-gray-700"
+          className="bg-purple-500"
           barHeight={10}
           barWidth={300}
         />
@@ -1689,21 +1685,13 @@ const Home = () => {
           startLabel={`${autoProgress}%`}
           // endLabel="End"
           progress={autoProgress}
-          className=""
-          labelStyles="flex w-full justify-between mb-2"
-          barColor="bg-green-500"
-          bgColor="bg-gray-700"
+          className="bg-green-500"
           barHeight={10}
           barWidth={300}
         />
 
         {/* Indeterminate Progress Bar (Unknown Duration) */}
-        <ProgressBar
-          isIndeterminate
-          startLabel="Loading..."
-          barWidth={300}
-          bgColor="bg-gray-800"
-        />
+        <ProgressBar isIndeterminate startLabel="Loading..." barWidth={300} />
       </div>
 
       {/* Radio */}
@@ -1721,7 +1709,7 @@ const Home = () => {
             ]}
             size="medium"
             onColor="blue"
-            offColor="gray"
+            offColor="white"
           />
         </div>
       </div>
@@ -1735,8 +1723,10 @@ const Home = () => {
             value={rating}
             maxRating={5}
             icon={<Star />}
-            activeColor="text-yellow-500"
-            inactiveColor="text-gray-400"
+            // activeColor="text-yellow-500"
+            // inactiveColor="text-gray-400"
+            activeColor="yellow"
+            inactiveColor="gray"
             onChange={setRating} // ✅ Controlled by state
           />
           <p className="mt-4 text-gray-700">Current rating: {rating}</p>
@@ -1747,8 +1737,8 @@ const Home = () => {
             value={4} // ✅ Preset rating
             maxRating={5}
             icon={<Star />}
-            activeColor="text-yellow-500"
-            inactiveColor="text-gray-400"
+            activeColor="blue"
+            inactiveColor="white"
             readOnly
           />
           <p className="mt-4 text-gray-700">This rating is set to 4 stars.</p>
@@ -1806,75 +1796,18 @@ const Home = () => {
       <div className="rounded-lg text-center h-[800px] w-full border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Resizable Grid</h2>
         <div className="flex w-full h-full relative">
-          <ResizableGridProvider rows={4} cols={3}>
-            <GridPanel row={0} col={0} colSpan={2} rowSpan={2}>
-              <div className="flex w-full h-full relative">
-                <ResizableGridProvider rows={2} cols={2}>
-                  <GridPanel row={0} col={0}>
-                    Top Left
-                  </GridPanel>
-                  <GridPanel row={0} col={1}>
-                    Top Right
-                  </GridPanel>
-                  <GridPanel row={1} col={0}>
-                    Bottom Left
-                  </GridPanel>
-                  <GridPanel row={1} col={1}>
-                    Bottom Right
-                  </GridPanel>
-                </ResizableGridProvider>
-              </div>
+          <ResizableGridProvider rows={2} cols={2}>
+            <GridPanel row={0} col={0}>
+              Top Left
             </GridPanel>
-
-            <GridPanel row={0} col={2}>
-              right top
+            <GridPanel row={0} col={1}>
+              Top Right
             </GridPanel>
-            <GridPanel row={1} col={2}>
-              right bottom
+            <GridPanel row={1} col={0}>
+              Bottom Left
             </GridPanel>
-
-            <GridPanel row={2} col={0} colSpan={3} rowSpan={2}>
-              <ResizablePanelGroup
-                direction="vertical"
-                className="w-full  border rounded-md"
-                storageKey="my-layout"
-              >
-                {/* Header */}
-                <ResizablePanel index={0}>
-                  <div className="flex justify-center items-center h-full p-6 ">
-                    Header
-                  </div>
-                </ResizablePanel>
-                <ResizableHandle index={0} />
-
-                {/* Body */}
-                <ResizablePanel index={1}>
-                  <ResizablePanelGroup
-                    direction="horizontal"
-                    storageKey="nested-layout"
-                  >
-                    <ResizablePanel index={0}>
-                      <div className="flex justify-center items-center w-full h-full p-6 ">
-                        Sidebar
-                      </div>
-                    </ResizablePanel>
-                    <ResizableHandle index={0} />
-                    <ResizablePanel index={1}>
-                      <div className="flex justify-center items-center w-full h-full p-6 ">
-                        Main Content
-                      </div>
-                    </ResizablePanel>
-                  </ResizablePanelGroup>
-                </ResizablePanel>
-                <ResizableHandle index={1} />
-
-                {/* Footer */}
-                <ResizablePanel index={2}>
-                  <div className="flex justify-center items-center h-full p-6">
-                    Footer
-                  </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
+            <GridPanel row={1} col={1}>
+              Bottom Right
             </GridPanel>
           </ResizableGridProvider>
         </div>

@@ -82,9 +82,11 @@ export function ResizablePanelGroup({
 export function ResizablePanel({
   children,
   index,
+  className,
 }: {
   children: ReactNode;
   index: number;
+  className?: string;
 }) {
   const { panelRefs } = useContext(ResizeContext);
   const ref = useRef<HTMLDivElement>(null);
@@ -98,7 +100,7 @@ export function ResizablePanel({
   return (
     <div
       ref={ref}
-      className="overflow-hidden relative  grow"
+      className={`overflow-hidden relative grow ${className}`}
       style={{ width: "100%", height: "100%" }}
     >
       {children}
@@ -106,7 +108,13 @@ export function ResizablePanel({
   );
 }
 
-export function ResizableHandle({ index }: { index: number }) {
+export function ResizableHandle({
+  index,
+  className,
+}: {
+  index: number;
+  className?: string;
+}) {
   const { direction, panelRefs, saveSizes } = useContext(ResizeContext);
   const isHorizontal = direction === "horizontal";
 
@@ -170,7 +178,7 @@ export function ResizableHandle({ index }: { index: number }) {
     <div
       className={`${
         isHorizontal ? "w-1 cursor-ew-resize" : "h-1 cursor-ns-resize"
-      } bg-gray-300 hover:bg-gray-400 shrink-0 transition-colors`}
+      } border hover:opacity-60 shrink-0 transition-colors ${className}`}
       onMouseDown={onMouseDown}
     />
   );

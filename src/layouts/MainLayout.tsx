@@ -39,7 +39,7 @@ const components = [
   "Placeholder",
   "Popover",
   "Progress Bar",
-  "Radio",
+  "Radio Group",
   "Rating",
   "Resizable",
   "Resizable Grid",
@@ -67,7 +67,7 @@ type SidebarMenuProps = {
 
 function SidebarMenu({
   linkStyle = "p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex",
-  containerStyle = "flex flex-col flex-1 h-auto overflow-y-auto scrollbar-hide px-4 space-y-1 mt-6",
+  containerStyle = "flex flex-col flex-1 h-full overflow-y-auto scrollbar-hide  space-y-1 mt-10",
 }: SidebarMenuProps) {
   const [showComponents, setShowComponents] = useState(false);
   return (
@@ -183,7 +183,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         <SidebarMenu />
       </Drawer>
       <div className="flex h-full">
-        <div className="hidden w-fit px-4 sm:flex flex-col space-y-1 items-start border-r">
+        <div className="hidden w-fit px-10 sm:flex flex-col space-y-1 items-start border-r overflow-y-auto pb-20">
           <SidebarMenu />
         </div>
         <main className={`overflow-y-auto py-10 w-full`}>{children}</main>
