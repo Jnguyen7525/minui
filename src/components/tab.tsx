@@ -12,10 +12,6 @@ type TabsProps = {
   defaultTab?: string; // ✅ Uncontrolled state
   onTabChange?: (tabId: string) => void;
   variant?: "underlined" | "solid";
-  currentTabStyle?: string;
-  inactiveTabStyle?: string;
-  underlineStyle?: string;
-  solidStyle?: string;
   className?: string;
 };
 
@@ -26,10 +22,6 @@ const Tabs: React.FC<TabsProps> = ({
   onTabChange,
   variant = "solid",
   className,
-  currentTabStyle,
-  inactiveTabStyle,
-  underlineStyle,
-  solidStyle,
 }) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab ?? tabs[0]?.id);
 
@@ -59,17 +51,17 @@ const Tabs: React.FC<TabsProps> = ({
   return (
     <div className="relative tab-group">
       {/* Tab Headers */}
-      <div className={`flex ${className} relative`} role="tablist">
+      <div className={`flex  relative`} role="tablist">
         {/* ✅ Animated Tab Indicator */}
         {variant === "underlined" ? (
           <div
             ref={indicatorRef}
-            className={`absolute bottom-0 !h-[2px] transition-all duration-300 ${underlineStyle}`}
+            className={`absolute bottom-0 !h-[2px] transition-all duration-300 ${className}`}
           />
         ) : (
           <div
             ref={indicatorRef}
-            className={`absolute bottom-0 h-full transition-all duration-300 z-10 ${solidStyle}`}
+            className={`absolute bottom-0 h-full transition-all duration-300 z-10 ${className}`}
           />
         )}
 
@@ -80,9 +72,7 @@ const Tabs: React.FC<TabsProps> = ({
               tabRefs.current[index] = el; // ✅ Assign without returning anything
             }}
             onClick={() => handleTabClick(id)}
-            className={`text-sm inline-block py-2 px-4 z-20 ${
-              currentTab === id ? `${currentTabStyle}` : `${inactiveTabStyle}`
-            } transition-colors duration-300`}
+            className={`text-sm inline-block py-2 px-4 z-20 transition-colors duration-300`}
           >
             {label} {/* ✅ Accepts text or icons */}
           </button>

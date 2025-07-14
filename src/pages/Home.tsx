@@ -1985,13 +1985,17 @@ const Home = () => {
               <span>Step 3</span>,
               <span>Step 4</span>,
             ]}
-            activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-            completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-            stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
-            buttonStyle="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
-            nextButton={<span>Next</span>} // ✅ Custom Next button
-            prevButton={<span>Previous</span>} // ✅ Custom Previous button
-            className="flex items-center space-x-4"
+            nextButton={
+              <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+                Next
+              </span>
+            } // ✅ Custom Next button
+            prevButton={
+              <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+                Previous
+              </span>
+            } // ✅ Custom Previous button
+            className="flex items-center gap-5 !!!border-none"
             currentStep={currentStep} // ✅ Syncs with stepper
             setCurrentStep={setCurrentStep} // ✅ Updates step state
           />
@@ -2003,9 +2007,6 @@ const Home = () => {
               <div className="w-4 h-4 rounded-full bg-gray-500" />,
               <div className="w-4 h-4 rounded-full bg-gray-500" />,
             ]}
-            activeStepStyle="bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
-            completedStepStyle="bg-green-500 w-5 h-5 rounded-full flex items-center justify-center hover:cursor-pointer"
-            stepStyle="bg-gray-400 w-4 h-4 rounded-full flex items-center justify-center hover:cursor-pointer"
             className="flex items-center w-full space-x-10 justify-center"
             currentStep={currentStep} // ✅ Syncs with stepper
             setCurrentStep={setCurrentStep} // ✅ Updates step state
@@ -2018,10 +2019,7 @@ const Home = () => {
               <CreditCard size={20} />,
               <CheckCircle size={20} />,
             ]}
-            activeStepStyle="bg-blue-600 text-blue-600 p-3 rounded-full hover:cursor-pointer"
-            completedStepStyle="bg-green-500 text-white p-3 rounded-full hover:cursor-pointer"
-            stepStyle="bg-gray-400 p-3 rounded-full hover:cursor-pointer"
-            className="flex items-center space-x-4"
+            className="flex items-center gap-5"
             currentStep={currentStep} // ✅ Syncs with stepper
             setCurrentStep={setCurrentStep} // ✅ Updates step state
           />
@@ -2033,9 +2031,7 @@ const Home = () => {
               steps={steps.map((step) => (
                 <span>{step}</span>
               ))}
-              activeStepStyle="bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-              completedStepStyle="bg-green-500 text-white px-4 py-2 rounded-md hover:cursor-pointer"
-              stepStyle="px-4 py-2 border rounded text-gray-500 hover:cursor-pointer"
+              className="flex items-center gap-5"
               currentStep={currentStep} // ✅ Syncs with stepper
               setCurrentStep={setCurrentStep} // ✅ Updates step state
             />
@@ -2104,10 +2100,7 @@ const Home = () => {
             variant="underlined"
             activeTab={selectedTab} // ✅ Controlled tab state
             onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex"
-            underlineStyle="bg-blue-500"
+            className="bg-blue-500"
           />
 
           <Tabs
@@ -2115,10 +2108,7 @@ const Home = () => {
             variant="solid"
             activeTab={selectedTab} // ✅ Controlled tab state
             onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex"
-            solidStyle="bg-gray-800 rounded-lg border"
+            className="bg-blue-500"
           />
 
           <Tabs
@@ -2126,10 +2116,7 @@ const Home = () => {
             variant="solid"
             activeTab={selectedTab} // ✅ Controlled tab state
             onTabChange={setSelectedTab} // ✅ Updates state when clicked
-            currentTabStyle="text-blue-500 font-semibold"
-            inactiveTabStyle=" hover:opacity-50"
-            className="flex border rounded-lg p-2"
-            solidStyle="bg-gray-800 rounded-lg border my-2 -mx-2"
+            className="flex border rounded-lg p-2 bg-blue-500"
           />
         </div>
       </div>
