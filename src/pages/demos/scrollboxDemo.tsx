@@ -128,9 +128,11 @@ export default function ScrollBoxDemo() {
       {/* Usage Section */}
       <div className="flex flex-col space-y-5 font-semibold">
         <span className="text-xl">Usage</span>
-        <div className="bg-stone-900 p-5 rounded-lg text-white">
-          <CodeSnippet code={usageExample} className="p-5" />
-        </div>
+            <div className="bg-stone-900 p-5 rounded-lg text-white">
+               <ScrollBox className="w-2 rounded-full bg-stone-700 h-2">
+                 <CodeSnippet code={usageExample} className="p-5" />
+               </ScrollBox>
+             </div>
       </div>
     </div>
   );

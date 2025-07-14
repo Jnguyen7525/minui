@@ -2,9 +2,8 @@ import React, { type JSX } from "react";
 
 type SocialIconsProps = {
   platforms?: string[]; // ✅ Allows filtering specific icons
-  size?: string;
-  spacing?: string;
-  color?: string;
+  size?: number;
+  spacing?: number;
   className?: string;
 };
 
@@ -248,20 +247,20 @@ const availableIcons: { [key: string]: JSX.Element } = {
 
 const SocialIcons: React.FC<SocialIconsProps> = ({
   platforms = Object.keys(availableIcons), // ✅ Show all by default
-  size = "w-8 h-8",
-  spacing = "gap-4",
-  color,
+  size = 8,
+  spacing = 4,
   className = "",
 }) => {
   return (
-    <div className={`flex ${spacing}`}>
+    <div className={`flex gap-4`} style={{ gap: `${spacing}px` }}>
       {platforms.map((platform) => (
         <a
           key={platform}
           href={`https://${platform}.com`}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${size} ${color || defaultColors[platform]} ${className}`}
+          className={`${size} ${defaultColors[platform]} ${className}`}
+          style={{ width: `${size}px`, height: `${size}px` }}
         >
           {availableIcons[platform]}
         </a>

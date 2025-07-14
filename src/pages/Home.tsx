@@ -1824,7 +1824,7 @@ const Home = () => {
             minWidth={280}
             maxWidth={480}
             defaultWidth={350}
-            handleStyle=" border-stone-600 rounded-full border-2"
+            // handleStyle=" border-stone-600 rounded-full border-2"
             resizable={true}
             className="w-full "
             trigger={
@@ -1925,14 +1925,15 @@ const Home = () => {
               Single: {single}
             </label>
             <Slider
-              className="bg-gray-600 h-2 rounded-full"
-              thumbClassName="w-4 h-4 bg-yellow-500 border-2 border-yellow-500 rounded-full"
-              rangeClassName="h-2 bg-gray-400 rounded-full"
+              trackColor="gray"
+              rangeColor="white"
+              thumbColor="yellow"
               value={single}
               onChange={setSingle}
               min={0}
               max={100}
               step={1}
+              height={10}
             />
           </div>
           <div>
@@ -1940,15 +1941,16 @@ const Home = () => {
               Range: {range[0]} - {range[1]}
             </label>
             <Slider
-              className="bg-gray-200 h-2 rounded-full"
-              thumbClassName="w-4 h-4 bg-white border-2 border-blue-500 rounded-full"
-              rangeClassName="h-2 bg-blue-500 rounded-full"
+              trackColor="white"
+              rangeColor="blue"
+              thumbColor="blue"
               mode="range"
               value={range}
               onChange={setRange}
               min={0}
               max={100}
               step={1}
+              height={10}
             />
           </div>
         </div>
@@ -1958,13 +1960,15 @@ const Home = () => {
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Social Icons</h1>
         <div className="bg-gray-800 p-5 rounded-md">
-          <SocialIcons className="hover:text-blue-700 transition duration-200 hover:cursor-pointer" />
+          <SocialIcons
+            className="hover:text-blue-700  transition duration-200 hover:cursor-pointer"
+            size={30}
+          />
         </div>
         <div className="bg-gray-800 p-5 rounded-md">
           <SocialIcons
-            className="hover:text-blue-700 transition duration-200 hover:cursor-pointer"
+            className="hover:text-blue-700 text-blue-500 transition duration-200 hover:cursor-pointer"
             platforms={["instagram", "discord", "facebook", "google"]}
-            color="text-blue-500"
           />
         </div>
       </div>

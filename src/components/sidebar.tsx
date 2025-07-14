@@ -8,7 +8,6 @@ interface SidebarProps {
   defaultWidth?: number;
   isOpen?: boolean; // controlled state (optional)
   onOpenChange?: (open: boolean) => void; // handler to update state
-  handleStyle?: string;
   resizable?: boolean;
   className?: string;
 }
@@ -21,7 +20,6 @@ export default function Sidebar({
   defaultWidth = 350,
   isOpen: externalIsOpen,
   onOpenChange,
-  handleStyle,
   resizable = false, // ✅ default to false
   className,
 }: SidebarProps) {
@@ -108,8 +106,7 @@ export default function Sidebar({
 
   return (
     <div
-      // className={`flex w-full h-full relative ${className}`}
-      className={`${className}`}
+      className={`flex ${className}`}
       style={{
         width: `${!resizable && `${minWidth}px`}`,
       }}
@@ -148,7 +145,7 @@ export default function Sidebar({
       {/* handle */}
       {isOpen && resizable && (
         <div
-          className={` cursor-ew-resize ${handleStyle}`}
+          className={` cursor-ew-resize border-[1px] hover:opacity-50`}
           onMouseDown={(e) => {
             e.preventDefault(); // <--- important! This prevents the browser from initiating unintended behaviors like drag selection or content highlighting, especially on overlapping elements.
             handleMouseDown();
