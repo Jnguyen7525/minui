@@ -75,7 +75,7 @@ function SidebarMenu({
       <div className={"flex items-center justify-start w-full  "}>
         {showComponents ? (
           <button
-            className="flex items-center justify-center w-[130px] cursor-pointer shadow   hover:text-stone-600 rounded-lg font-semibold  space-x-1 "
+            className="flex items-center justify-center w-[130px] cursor-pointer   hover:text-stone-600 rounded-lg font-semibold  space-x-1 "
             onClick={() => setShowComponents(false)}
           >
             <span>Components</span>
@@ -83,7 +83,7 @@ function SidebarMenu({
           </button>
         ) : (
           <button
-            className="flex items-center justify-center w-[130px] cursor-pointer shadow   hover:text-stone-600 rounded-lg font-semibold   space-x-1"
+            className="flex items-center justify-center w-[130px] cursor-pointer    hover:text-stone-600 rounded-lg font-semibold   space-x-1"
             onClick={() => setShowComponents(true)}
           >
             <span>Components</span>
@@ -141,7 +141,7 @@ function Header({ onMobileMenuClick }: HeaderProps) {
         className="text-xl font-semibold flex items-center justify-center relative hover:opacity-80"
       >
         <Coffee size={50} strokeWidth={1} color="gray" />{" "}
-        <span className="absolute bottom-1 text-sm font-semibold tracking-widest text-white">
+        <span className="absolute bottom-1 text-sm font-semibold tracking-widest ">
           coffeeui
         </span>
       </Link>

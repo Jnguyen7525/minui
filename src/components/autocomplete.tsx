@@ -88,8 +88,8 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
             filteredItems.map((item) => (
               <li
                 key={item.key}
-                className={`p-2 hover:bg-gray-200 cursor-pointer ${
-                  selectedKey === item.key ? "bg-gray-300 font-bold" : ""
+                className={`p-2 hover:opacity-60 cursor-pointer ${
+                  selectedKey === item.key ? "font-bold" : ""
                 }`}
                 onClick={() => handleSelect(item.key, item.label)}
               >

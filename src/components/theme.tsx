@@ -78,7 +78,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
           label: themeKey.charAt(0).toUpperCase() + themeKey.slice(1),
           action: () => setTheme(themeKey), // ✅ Set selected theme and close dropdown
         }))}
-        className={`w-full items-start space-y-2 p-3  border  rounded-md shadow-lg flex flex-col ${className}`}
+        className={`w-full items-start space-y-2 p-3 z-40  border  rounded-md shadow-lg flex flex-col ${className}`}
       />
     </Dropdown>
   );

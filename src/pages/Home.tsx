@@ -145,7 +145,7 @@ const Home = () => {
   const [selectedCheckboxGroup, setCheckboxGroupSelected] = useState<string[]>(
     []
   );
-  const [selectedCollapsedItem, setSelectedCollapsedItem] = useState("");
+  const [selectedCollapsedItem, setSelectedCollapsedItem] = useState("Fruits");
   const [progress, setProgress] = useState(30);
   const [autoProgress, setAutoProgress] = useState(30);
 
@@ -319,7 +319,7 @@ const Home = () => {
           <AlertDialog
             isOpen={openAlertDialog}
             onClose={() => setOpenAlertDialog(false)}
-            className="bg-black"
+            className="bg-black text-white"
           >
             <AlertDialogTitle className="text-lg font-semibold ">
               Confirm Action
@@ -376,7 +376,7 @@ const Home = () => {
               { label: "Grapes", key: "grapes" },
             ]}
             placeholder="Pick a fruit..."
-            className="border-blue-500 bg-black border-b rounded-none"
+            className="border-blue-500 border-b bg-black text-white rounded-none"
           />
         </div>
       </div>
@@ -476,7 +476,7 @@ const Home = () => {
           </Badge>
 
           <Badge content="" placement="bottom-right" className="bg-green-500">
-            <Avatar src={thirdAvatar} size="md" className="border-2" />
+            <Avatar src={thirdAvatar} size="md" className="border-2 bg-black" />
           </Badge>
 
           <Badge
@@ -495,7 +495,7 @@ const Home = () => {
             offsetX={6}
             offsetY={6}
           >
-            <ShoppingBag className="size-8 text-white" />
+            <ShoppingBag className="size-8 " />
           </Badge>
         </div>
       </div>
@@ -595,7 +595,7 @@ const Home = () => {
             selectedDates={selectedCalendarDate}
             onDateSelect={setSelectedCalendarDate}
             selectionType="range"
-            className="p-3 rounded-lg bg-gray-900"
+            className="p-3 rounded-lg "
           />
 
           {selectedCalendarDate && selectedCalendarDate.length > 0 && (
@@ -959,7 +959,7 @@ const Home = () => {
             {/* Selected item always visible */}
             <CollapsibleItem
               item={selectedCollapsedItem}
-              className="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 "
+              className="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:text-white hover:bg-gray-900 "
             />
 
             {/* Remaining items rendered below */}
@@ -970,7 +970,7 @@ const Home = () => {
                   <CollapsibleItem
                     key={item}
                     item={item}
-                    className="border rounded-sm py-1 px-3 border-gray-500 hover:cursor-pointer hover:bg-gray-900 "
+                    className="border rounded-sm py-1 px-3 border-gray-500 hover:text-white hover:cursor-pointer hover:bg-gray-900 "
                   />
                 ))}
             </CollapsibleContent>
@@ -1010,7 +1010,7 @@ const Home = () => {
           </ComboboxTrigger>
 
           {/* Dropdown Panel */}
-          <ComboboxDropdown className="w-full mt-2 z-50 rounded-md shadow-lg bg-black" />
+          <ComboboxDropdown className="w-full mt-2 z-50 rounded-md shadow-lg bg-black text-white" />
         </Combobox>
       </div>
 
@@ -1404,7 +1404,7 @@ const Home = () => {
           <Navbar
             items={navbarItems}
             logo={<Menu size={24} />}
-            className="bg-black border p-4 gap-5  rounded-md"
+            className="bg-black text-white border p-4 gap-5  rounded-md"
           />
         </div>
       </div>
@@ -1478,7 +1478,7 @@ const Home = () => {
         <h2 className="text-xl font-bold mb-5">Pagination</h2>
 
         {/* Mock Page Content Display */}
-        <div className=" text-white mt-6 p-6 rounded-md ">
+        <div className=" mt-6 p-6 rounded-md ">
           <p className="">
             📄 You are currently viewing content for{" "}
             <strong>Page {currentPage}</strong>.
@@ -1816,7 +1816,7 @@ const Home = () => {
       {/* Sidebar */}
       <div className="rounded-lg text-center h-96 w-full border shadow-lg flex flex-col justify-start items-center m-5 pt-5">
         <h2 className="text-xl font-bold mb-5">Sidebar</h2>
-        <div className="w-full h-full grid grid-cols-[min-content_auto]  bg-black border">
+        <div className="w-full h-full grid grid-cols-[min-content_auto]  border">
           {/* <Sidebar /> */}
           <Sidebar
             isOpen={openSidebar}
@@ -1824,7 +1824,6 @@ const Home = () => {
             minWidth={280}
             maxWidth={480}
             defaultWidth={350}
-            // handleStyle=" border-stone-600 rounded-full border-2"
             resizable={true}
             className="w-full "
             trigger={
@@ -1852,7 +1851,7 @@ const Home = () => {
               </div>
 
               <div className="w-full h-max rounded p-3">
-                <ul className="flex flex-col gap-0.5 min-w-60">
+                <ul className="flex flex-col gap-0.5 min-w-60 ">
                   <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
                     <span className="grid place-items-center shrink-0 me-2.5">
                       <Inbox size={18} />
@@ -1925,9 +1924,9 @@ const Home = () => {
               Single: {single}
             </label>
             <Slider
-              trackColor="gray"
-              rangeColor="white"
-              thumbColor="yellow"
+              trackColor="white"
+              rangeColor="yellow"
+              thumbColor="black"
               value={single}
               onChange={setSingle}
               min={0}
@@ -1969,6 +1968,7 @@ const Home = () => {
           <SocialIcons
             className="hover:text-blue-700 text-blue-500 transition duration-200 hover:cursor-pointer"
             platforms={["instagram", "discord", "facebook", "google"]}
+            size={30}
           />
         </div>
       </div>
@@ -2132,7 +2132,7 @@ const Home = () => {
               caption="A list of your recent invoices."
               footer="Total billed: $1,200.00"
               striping="column"
-              className="text-stone-200"
+              className=""
               strippedColor="blue"
             />
           </div>
@@ -2187,7 +2187,7 @@ const Home = () => {
             name="Anna Morian"
             review="Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit sed ut perspiciatis unde omnis."
             avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(22).jpg"
-            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            className="p-6 shadow-lg rounded-lg border  w-[300px]"
             rating={4}
           />
 
@@ -2195,7 +2195,7 @@ const Home = () => {
             name="Teresa May"
             review="Neque cupiditate assumenda in maiores repudiandae mollitia architecto elit sed adipiscing elit."
             avatar="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(19).jpg"
-            className="p-6 shadow-md rounded-lg bg-white dark:bg-gray-800 w-[300px]"
+            className="p-6 shadow-lg border rounded-lg   w-[300px]"
             rating={5}
           />
         </div>
@@ -2226,24 +2226,20 @@ const Home = () => {
             <Timeline
               items={events}
               withLine
-              dotClassName="w-6 h-6 flex items-center justify-center rounded-full bg-stone-600 border-white"
-              lineClassName="bg-white w-px"
-              itemSpacing={"mb-8"}
-              lineSpacingOverlap="-mb-8"
+              lineColor="white"
+              spacing={20}
               renderIcon={(item) => (
-                <span className="text-white">{item.icon}</span>
+                <span className="flex items-center justify-center w-full h-full">
+                  {item.icon}
+                </span>
               )}
               renderContent={(item) => (
                 <>
                   <p className="text-base font-semibold text-stone-700">
                     {item.title}
                   </p>
-                  <small className="text-sm text-stone-500">
-                    {item.timestamp}
-                  </small>
-                  <p className="mt-1 text-sm text-stone-600">
-                    {item.description}
-                  </p>
+                  <small className="text-sm ">{item.timestamp}</small>
+                  <p className="mt-1 text-sm ">{item.description}</p>
                 </>
               )}
             />
@@ -2252,9 +2248,9 @@ const Home = () => {
             <h2 className="text-xl font-bold  mb-6">📦 Card Timeline</h2>
             <Timeline
               items={events}
-              withLine={false} // 👈 no connecting line
-              itemSpacing="mb-6" // spacing between cards
-              dotClassName="hidden" // 👈 no visible dot for cleaner card style
+              withLine={false} // 👈 no connecting line and dots
+              spacing={8}
+              lineColor="white"
               renderIcon={(item) => (
                 <span className="hidden">{item.icon}</span> // icon can go inside content
               )}
