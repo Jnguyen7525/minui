@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import CodeSnippet from "../../components/codesnippet";
 import ScrollBox from "../../components/scrollbox";
-import { CheckboxGroup } from "../../components/checkboxgroup";
+import CheckboxGroup from "../../components/checkboxgroup";
 
 const installCommands = {
   cli: "npx create-ui-app",

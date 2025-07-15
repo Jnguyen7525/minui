@@ -3,7 +3,7 @@ import { useState } from "react";
 import ScrollBox from "../../components/scrollbox";
 import CodeSnippet from "../../components/codesnippet";
 import { Bell, ShoppingCart, CreditCard } from "lucide-react";
-import { Timeline } from "../../components/timeline";
+import Timeline from "../../components/timeline";
 
 const installCommands = {
   cli: "npx create-ui-app",

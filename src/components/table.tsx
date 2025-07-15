@@ -53,7 +53,7 @@ const strippedColorMap = {
   pink: "bg-pink-500",
 };
 
-export function Table<T>({
+export default function Table<T>({
   data,
   columns,
   caption,

@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import ScrollBox from "../../components/scrollbox";
 import CodeSnippet from "../../components/codesnippet";
-import { Pagination } from "../../components/pagination";
+import Pagination from "../../components/pagination";
 
 const installCommands = {
   cli: "npx create-ui-app",

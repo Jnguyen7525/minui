@@ -44,7 +44,7 @@ const lineColorMap = {
   pink: "bg-pink-500",
 };
 
-export function Timeline({
+export default function Timeline({
   items,
   withLine = true,
   renderIcon,

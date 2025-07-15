@@ -47,7 +47,7 @@ import {
   CardHeader,
 } from "../components/card";
 import Checkbox from "../components/checkbox";
-import { CheckboxGroup } from "../components/checkboxgroup";
+import CheckboxGroup from "../components/checkboxgroup";
 import {
   Collapsible,
   CollapsibleContent,
@@ -101,10 +101,10 @@ import {
   ResizablePanelGroup,
 } from "../components/resizable";
 import { GridPanel, ResizableGridProvider } from "../components/resizablegrid";
-import { Pagination } from "../components/pagination";
+import Pagination from "../components/pagination";
 import { useSearchParams } from "react-router-dom";
-import { Timeline } from "../components/timeline";
-import { Table } from "../components/table";
+import Timeline from "../components/timeline";
+import Table from "../components/table";
 
 import {
   columns,

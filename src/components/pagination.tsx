@@ -16,7 +16,7 @@ type PaginationProps = {
   visiblePages?: number; // Number of pages to show on either side of the current page
 };
 
-export function Pagination({
+export default function Pagination({
   current,
   total,
   onPageChange,

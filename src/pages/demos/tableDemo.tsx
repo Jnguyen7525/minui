@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CreditCard, Banknote, Pen } from "lucide-react";
 import ScrollBox from "../../components/scrollbox";
 import CodeSnippet from "../../components/codesnippet";
-import { Table, type TableColumn } from "../../components/table";
+import Table, { type TableColumn } from "../../components/table";
 
 const installCommands = {
   cli: "npx create-ui-app",
