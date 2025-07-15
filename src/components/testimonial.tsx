@@ -38,8 +38,8 @@ const Testimonial: React.FC<TestimonialProps> = ({
           value={rating}
           maxRating={5}
           icon={<Star />}
-          activeColor="text-yellow-500"
-          inactiveColor="text-gray-400"
+          activeColor="yellow"
+          inactiveColor="white"
           readOnly={true} // ✅ Makes the rating non-interactive
         />
       </CardContent>

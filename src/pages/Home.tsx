@@ -2132,9 +2132,8 @@ const Home = () => {
               caption="A list of your recent invoices."
               footer="Total billed: $1,200.00"
               striping="column"
-              headerClassName="bg-gray-700"
-              rowClassName="hover:bg-blue-600 cursor-pointer"
-              strippedClassName="bg-blue-600 text-black"
+              className="text-stone-200"
+              strippedColor="blue"
             />
           </div>
 
@@ -2146,8 +2145,8 @@ const Home = () => {
               sortable
               striping="row"
               selectionMode="multiple"
-              rowClassName="hover:bg-blue-600 cursor-pointer"
-              strippedClassName="bg-stone-50 text-black"
+              className="bg-white text-black"
+              strippedColor="blue"
               rowId={(row) => row.id}
               selectedRowIds={selectedIds}
               onSelectionChange={(ids) => setSelectedIds(ids as number[])}
@@ -2211,7 +2210,7 @@ const Home = () => {
             onChange={setText}
             rows={2}
             placeholder="Type your message..."
-            className="flex w-full bg-gray-800 text-blue-500 border border-stone-200 text-sm py-2 px-2.5  hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none rounded-lg "
+            className="flex w-full bg-gray-800 text-blue-500 border border-stone-200 text-sm py-2 px-2.5  rounded-lg "
           />
         </div>
       </div>
@@ -2295,13 +2294,7 @@ const Home = () => {
             onChange={setTime}
             hourFormat={12}
             variant="bordered"
-          />
-          <TimeInput
-            label="Start Time"
-            value={time}
-            onChange={setTime}
-            hourFormat={12}
-            variant="bordered"
+            className="bg-white text-black"
           />
           <TimeInput
             label="Start Time"
@@ -2359,37 +2352,49 @@ const Home = () => {
           <Tooltip
             content="Tooltip on top"
             placement="top"
-            offset={10}
-            triggerContent={<span>Top</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+            offset={15}
+            triggerContent={
+              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+                Top
+              </span>
+            }
+            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
           />
 
           <Tooltip
             content="Tooltip on bottom"
             placement="bottom"
-            offset={10}
-            triggerContent={<span>Bottom</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+            offset={15}
+            triggerContent={
+              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+                Bottom
+              </span>
+            }
+            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
           />
 
           <Tooltip
             content="Tooltip on right"
             placement="right"
-            offset={10}
-            triggerContent={<span>Right</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+            offset={15}
+            triggerContent={
+              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+                Right
+              </span>
+            }
+            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
           />
 
           <Tooltip
             content="Tooltip on left"
             placement="left"
-            offset={10}
-            triggerContent={<span>Left</span>}
-            tooltipStyle="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
-            triggerStyle="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer"
+            offset={15}
+            triggerContent={
+              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+                Left
+              </span>
+            }
+            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
           />
         </div>
       </div>

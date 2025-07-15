@@ -47,7 +47,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   return (
     <ThemeContext.Provider value={{ theme, themes, setTheme }}>
       <div
-        className={`${themes[theme]?.background} ${themes[theme]?.text} transition-colors duration-300 min-h-screen`}
+        className={`${themes[theme]?.background} ${themes[theme]?.text} transition-colors duration-300 w-full h-full`}
       >
         {children}
       </div>
@@ -69,7 +69,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
 
   return (
     <Dropdown placement="bottom">
-      <DropdownTrigger className="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 ">
+      <DropdownTrigger className={` ${className}`}>
         {triggerContent}
       </DropdownTrigger>
       <DropdownMenu

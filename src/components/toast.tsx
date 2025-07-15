@@ -91,13 +91,6 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            // className={`px-4 py-3 rounded-md shadow-md ${
-            //   toast.type === "success"
-            //     ? "bg-green-500 text-white"
-            //     : toast.type === "error"
-            //     ? "bg-red-500 text-white"
-            //     : "bg-gray-800 text-white"
-            // }`}
             className={
               toastStyles?.[toast.type] || defaultToastStyles[toast.type]
             }
@@ -118,17 +111,3 @@ export const useToast = () => {
   }
   return context;
 };
-
-// 7️⃣ Create a button to trigger toasts (similar to `ThemeSwitcher`)
-// export const ToastTrigger = () => {
-//   const { showToast } = useToast();
-
-//   return (
-//     <button
-//       onClick={() => showToast("Success toast!", "success")}
-//       className="px-4 py-2 bg-green-500 text-white rounded"
-//     >
-//       Show Success Toast
-//     </button>
-//   );
-// };

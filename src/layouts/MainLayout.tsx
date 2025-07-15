@@ -155,11 +155,8 @@ function Header({ onMobileMenuClick }: HeaderProps) {
         </button>
 
         <ThemeSwitcher
-          // triggerStyle="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600 "
           triggerContent={triggerContent}
-          // menuItemStyle="w-full border-b border-gray-600 px-4 py-2 text-left text-white hover:bg-gray-600 hover:cursor-pointer hover:rounded-md"
-          // menuStyle="w-fit bg-gray-800 border border-gray-600 rounded-md shadow-lg flex flex-col "
-          className=""
+          className="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
         />
       </div>
     </header>

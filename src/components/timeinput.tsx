@@ -67,7 +67,7 @@ const TimeInput: React.FC<TimeInputProps> = ({
     <div className="flex flex-col gap-2 w-full">
       {label && <label className={labelStyle}>{label}</label>}
       <div
-        className={`relative flex items-center px-2 ${variantStyles[variant]}`}
+        className={`relative flex items-center px-2 ${variantStyles[variant]} ${className}`}
       >
         <Clock className="text-gray-500 size-5 mr-2" strokeWidth={1.5} />
         <input
@@ -76,7 +76,7 @@ const TimeInput: React.FC<TimeInputProps> = ({
           value={currentValue}
           onChange={handleChange}
           placeholder={placeholder}
-          className={`w-[60px] text-start outline-none bg-transparent ${className}`}
+          className={`w-[60px] text-start outline-none bg-transparent`}
           autoComplete="off"
         />
         {hourFormat === 12 && (

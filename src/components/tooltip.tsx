@@ -5,8 +5,7 @@ type TooltipProps = {
   placement?: "top" | "right" | "bottom" | "left"; // ✅ Tooltip position
   offset?: number; // ✅ Distance from trigger
   triggerContent: React.ReactNode; // ✅ What the button displays
-  triggerStyle?: string; // ✅ Button styles
-  tooltipStyle?: string; // ✅ Tooltip styles
+  className?: string;
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -14,8 +13,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   placement = "top",
   offset = 10,
   triggerContent,
-  triggerStyle,
-  tooltipStyle,
+  className,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -46,7 +44,6 @@ const Tooltip: React.FC<TooltipProps> = ({
       {/* Tooltip Trigger */}
       <button
         ref={triggerRef}
-        className={triggerStyle}
         onMouseEnter={showTooltip}
         onMouseLeave={hideTooltip}
       >
@@ -57,7 +54,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`absolute z-50 ${placementClasses[placement]} ${tooltipStyle}`}
+          className={`absolute z-50 ${placementClasses[placement]} ${className}`}
           style={offsetStyles[placement]} // ✅ Apply offset dynamically
         >
           {content}

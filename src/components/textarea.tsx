@@ -30,7 +30,7 @@ const Textarea: React.FC<TextareaProps> = ({
       className={`w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none 
          ring-transparent  transition-all ease-in 
         disabled:opacity-50 disabled:pointer-events-none select-none  ring shadow-sm  
-        duration-100 ${className}`}
+        duration-100 hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none  ${className}`}
     />
   );
 };

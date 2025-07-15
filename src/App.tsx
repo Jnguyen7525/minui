@@ -22,7 +22,7 @@ export default function App() {
           light: { background: "bg-white", text: "text-black" },
           dark: { background: "bg-black", text: "text-white" },
           blue: { background: "bg-blue-600", text: "text-white" },
-          sepia: { background: "bg-yellow-800", text: "text-black" },
+          pink: { background: "bg-pink-200", text: "text-black" },
         }}
         defaultTheme="dark"
       >
