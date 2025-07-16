@@ -116,7 +116,7 @@ export default function ProgressBarDemo() {
       </div>
 
       {/* Demo Area */}
-      <div className="flex w-full justify-center items-center border border-stone-600 rounded-lg bg-black text-white p-6">
+      <div className="flex w-full justify-center items-center border-stone-600 rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
           <div className="flex flex-col space-y-5 items-center p-5 rounded-lg h-fit w-fit border shadow-lg m-5">
             <ProgressBar

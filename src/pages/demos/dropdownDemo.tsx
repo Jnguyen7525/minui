@@ -86,7 +86,7 @@ export default function DropdownDemo() {
       {/* Demo Area */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center pb-10">
+          <div className="p-5 rounded-lg text-center h-fit w-fit  shadow-lg flex flex-col justify-start items-center pb-10">
             <div className="p-5">
               <Dropdown placement="bottom">
                 <DropdownTrigger className="px-4 py-2 bg-blue-500 text-white rounded hover:cursor-pointer">

@@ -82,7 +82,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
       {/* Dropdown Suggestions */}
       {isOpen && (
         <ul
-          className={`absolute w-full border rounded-md mt-2 shadow-lg z-50 ${className} `}
+          className={`absolute w-full border rounded-md mt-2 shadow-lg z-20 ${className} `}
         >
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (

@@ -217,7 +217,7 @@ const Calendar: React.FC<CalendarProps> = ({
               return "opacity-80 font-bold rounded-full ";
 
             if (isToday && !activeHandle)
-              return "border rounded-full font-extrabold z-50";
+              return "border rounded-full font-extrabold z-20";
 
             return "";
           })();

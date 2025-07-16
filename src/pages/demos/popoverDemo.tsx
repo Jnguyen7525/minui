@@ -112,7 +112,7 @@ export default function PopoverDemo() {
       {/* Demo Panel */}
       <div className="flex w-full justify-center items-center border border-stone-600 rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
-          <div className="flex space-x-5  p-10">
+          <div className="flex text-sm sm:text-base gap-1 sm:gap-3  p-10">
             <Popover
               placement="top"
               content="Top popover"

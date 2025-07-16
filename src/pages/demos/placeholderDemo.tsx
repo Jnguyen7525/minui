@@ -73,7 +73,7 @@ export default function PlaceholderDemo() {
       {/* Demo Section */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center">
+          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-[500px] shadow-lg flex flex-col justify-start items-center">
             <div className="flex flex-col space-y-4 w-full">
               <Placeholder className="bg-purple-300 rounded-lg w-full h-10" />
               <div className="flex flex-col space-y-2 w-full">

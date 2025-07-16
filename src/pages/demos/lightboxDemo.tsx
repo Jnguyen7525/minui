@@ -80,7 +80,7 @@ export default function LightboxDemo() {
       {/* Demo Area */}
       <div className="flex w-full justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center">
+          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-[500px] shadow-lg flex flex-col justify-start items-center">
             <Lightbox
               images={sampleImages}
               className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center"

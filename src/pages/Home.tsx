@@ -265,7 +265,7 @@ const Home = () => {
       </div>
 
       {/* Alert Component */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold ">Alerts</h2>
         <div className="flex flex-col justify-center space-y-3 mt-5">
           <Alert
@@ -305,7 +305,7 @@ const Home = () => {
       </div>
 
       {/* Alert Dialog Component */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[160px] border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Alert Dialog</h2>
         <div className="flex w-full h-full justify-center items-center">
           <Button
@@ -410,7 +410,7 @@ const Home = () => {
 
       {/* back to top */}
 
-      <div className="w-[300px] relative  border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
+      <div className="w-[300px] h-[400px] relative  border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Back To Top Demo
         </h2>
@@ -419,7 +419,7 @@ const Home = () => {
         </p>
 
         {/* Scroll-triggering filler content */}
-        <div className="text-sm text-gray-400 leading-relaxed h-[300px] overflow-y-auto scrollbar-hide">
+        <div className="text-sm text-gray-400 leading-relaxed h-[200px] overflow-y-auto scrollbar-hide">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
             odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
@@ -501,7 +501,7 @@ const Home = () => {
       </div>
 
       {/* breadcrumb */}
-      <div className="p-2  sm:p-5 rounded-lg  text-center h-fit text-sm sm:text-base w-[400px] sm:w-[500px] border shadow-lg m-5">
+      <div className="p-2  sm:p-5 rounded-lg text-center h-fit text-sm w-[410px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Breadcrumb</h2>
         <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
           <Breadcrumbs
@@ -544,10 +544,10 @@ const Home = () => {
       </div>
 
       {/* Button Component */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[250px] border shadow-lg m-5">
         <h2 className="text-xl font-bold ">Button</h2>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
+        <div className="flex flex-wrap items-center justify-center gap-1 mt-5">
           <Button
             label="Default"
             variant="default"
@@ -771,7 +771,7 @@ const Home = () => {
       </div>
 
       {/* checkbox */}
-      <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
+      <div className=" p-5 rounded-lg  h-fit w-[280px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox</h2>
 
         <div className="flex flex-col gap-6">
@@ -829,7 +829,7 @@ const Home = () => {
       </div>
 
       {/* checkbox group */}
-      <div className=" p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
+      <div className=" p-5 rounded-lg  h-fit w-[220px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Checkbox Group</h2>
 
         <h3 className="text-lg font-bold mb-4">Preferences</h3>
@@ -938,7 +938,7 @@ const Home = () => {
       </div>
 
       {/* collapsible */}
-      <div className="p-5 rounded-lg h-fit w-[500px] border shadow-lg m-5">
+      <div className="p-5 rounded-lg h-fit w-[320px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5 text-center">Collapsible</h2>
 
         <div className="flex flex-col items-center justify-center w-full">
@@ -986,7 +986,7 @@ const Home = () => {
       </div>
 
       {/* Combobox */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+      <div className="p-5 rounded-lg text-center h-fit w-[280px] border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
         <h2 className="text-xl font-bold mb-5">Combobox</h2>
 
         <h1 className="text-lg font-bold mb-4">Select a Framework</h1>
@@ -1015,7 +1015,7 @@ const Home = () => {
       </div>
 
       {/* context menu */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center ">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[280px] border shadow-lg flex flex-col justify-start items-center ">
         <h2 className="text-xl font-bold mb-5 ">context menu</h2>
 
         <div className="p-5">
@@ -1147,7 +1147,7 @@ const Home = () => {
       </div>
 
       {/* dialog */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[200px] border shadow-lg flex flex-col justify-start items-center ">
         <h2 className="text-xl font-bold mb-5 ">Dialog</h2>
 
         <div className="p-5">
@@ -1185,16 +1185,16 @@ const Home = () => {
       </div>
 
       {/* Drawer */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-screen border shadow-lg flex flex-col justify-start items-center">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[300px] text-sm border shadow-lg flex flex-col justify-start items-center">
         <h1 className="text-lg font-bold mb-4">Drawer Component</h1>
-        <div className="flex space-x-3">
+        <div className="flex gap-1">
           {/* left drawer */}
           {/* Buttons to open drawer */}
           <button
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsLeftDrawerOpen(true)}
           >
-            Open Left Drawer
+            Left Drawer
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1219,7 +1219,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsRightDrawerOpen(true)}
           >
-            Open Right Drawer
+            Right Drawer
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1244,7 +1244,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsTopDrawerOpen(true)}
           >
-            Open Top Drawer
+            Top Drawer
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1269,7 +1269,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsBottomDrawerOpen(true)}
           >
-            Open Bottom Drawer
+            Bottom Drawer
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1291,7 +1291,7 @@ const Home = () => {
       </div>
 
       {/* dropdown */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[180px] border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
         <h2 className="text-xl font-bold mb-5 ">Dropdown</h2>
 
         <div className="p-5">
@@ -1365,7 +1365,7 @@ const Home = () => {
       </div>
 
       {/* jumbotron */}
-      <div className="flex flex-col items-center  p-5 rounded-lg  w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
+      <div className="flex flex-col items-center  p-5 rounded-lg  w-[300px] h-[400px] m-5 border shadow-lg space-y-5">
         <h2 className="text-xl font-bold  mb-5">Jumbotron</h2>
         <div className="flex w-full h-full flex-1 rounded-lg overflow-hidden">
           <Jumbotron
@@ -1388,7 +1388,7 @@ const Home = () => {
       </div>
 
       {/* lightbox */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[400px] border shadow-lg flex flex-col justify-start items-center ">
         <h2 className="text-xl font-bold mb-5 ">Lightbox</h2>
 
         <Lightbox
@@ -1474,7 +1474,7 @@ const Home = () => {
       </div>
 
       {/* pagination */}
-      <div className="rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+      <div className="rounded-lg text-center h-fit w-[360px]  border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Pagination</h2>
 
         {/* Mock Page Content Display */}
@@ -1577,7 +1577,7 @@ const Home = () => {
       </div>
 
       {/* Placeholder */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[500px] border shadow-lg flex flex-col justify-start items-center ">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[300px] border shadow-lg flex flex-col justify-start items-center ">
         <h2 className="text-xl font-bold mb-5 ">Placeholder</h2>
 
         <div className="flex flex-col space-y-4 w-full ">
@@ -1596,7 +1596,7 @@ const Home = () => {
       {/* Popover */}
       <div className=" p-2  sm:p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Popover</h1>
-        <div className="flex gap-3 justify-between">
+        <div className="flex gap-1 justify-between">
           <Popover
             placement="top"
             content="Top popover"
@@ -1652,7 +1652,7 @@ const Home = () => {
       </div>
 
       {/* Progressbar */}
-      <div className="flex flex-col space-y-5 items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
+      <div className="flex flex-col space-y-5 items-center  p-5 rounded-lg  h-fit w-[300px] border shadow-lg m-5">
         <h2 className="text-xl font-bold">Progress Bar</h2>
 
         {/* progress bar with buttons */}
@@ -1662,7 +1662,7 @@ const Home = () => {
           progress={progress}
           className="bg-purple-500"
           barHeight={10}
-          barWidth={300}
+          barWidth={250}
         />
         {/* Update Progress buttons */}
         <div className="flex w-full justify-between text-sm">
@@ -1687,11 +1687,11 @@ const Home = () => {
           progress={autoProgress}
           className="bg-green-500"
           barHeight={10}
-          barWidth={300}
+          barWidth={250}
         />
 
         {/* Indeterminate Progress Bar (Unknown Duration) */}
-        <ProgressBar isIndeterminate startLabel="Loading..." barWidth={300} />
+        <ProgressBar isIndeterminate startLabel="Loading..." barWidth={250} />
       </div>
 
       {/* Radio */}
@@ -1715,7 +1715,7 @@ const Home = () => {
       </div>
 
       {/* Rating */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[280px] border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Rating</h2>
         <div className="p-5 space-y-5">
           <h2 className="text-xl font-bold">Interactive Star Rating</h2>
@@ -2126,7 +2126,7 @@ const Home = () => {
       <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5  sm:p-5">
         <h2 className="text-xl font-bold mb-5">table</h2>
         <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-          <div className="flex h-fit w-fit text-xs sm:text-base">
+          <div className="flex h-fit w-[410px] sm:w-[500px] text-xs sm:text-base">
             <Table
               data={invoices}
               columns={columns}
@@ -2138,7 +2138,7 @@ const Home = () => {
             />
           </div>
 
-          <div className="flex flex-col h-fit w-fit text-sm sm:text-base">
+          <div className="flex flex-col h-fit w-[410px] sm:w-[420px] text-sm sm:text-base">
             <Table
               data={members}
               columns={memberColumns}

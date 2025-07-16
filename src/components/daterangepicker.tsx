@@ -124,19 +124,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
       {/* Calendar Popover */}
       {showCalendar && (
-        <div className="absolute z-50 top-14 ">
-          {/* <Calendar
-            selectedDates={selectedDates}
-            onDateSelect={handleDateSelect} // Updates & hides calendar once range is picked
-            selectionType="range"
-            containerClassName={calendarContainerClassName}
-            monthButtonClassName={calendarMonthButtonClassName}
-            headerClassName={calendarHeaderClassName}
-            selectedDateClassName={calendarSelectedDateClassName}
-            dateInRangeClassName={calendarDateInRangeClassName}
-            dayClassName={calendarDayClassName}
-            dayDisabledClassName={calendarDayDisabledClassName}
-          /> */}
+        <div className="absolute z-20 top-14 ">
           <Calendar
             selectedDates={selectedDates}
             onDateSelect={handleDateSelect} // Updates & hides calendar once range is picked

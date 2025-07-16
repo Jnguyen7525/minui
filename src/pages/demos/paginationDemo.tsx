@@ -121,7 +121,7 @@ export default function PaginationDemo() {
 
   // Basic pagination
   const [currentPage, setCurrentPage] = useState(7);
-  const totalPages = 12;
+  const totalPages = 7;
 
   // Link-enabled pagination
   const [params, setParams] = useSearchParams();
@@ -169,7 +169,7 @@ export default function PaginationDemo() {
       {/* Demo Panel */}
       <div className="flex w-full items-center justify-center border border-stone-600 rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
-          <div className="rounded-lg text-center h-fit w-full shadow-lg flex flex-col justify-start items-center m-5 p-5 space-y-10">
+          <div className="rounded-lg text-center h-fit w-full shadow-lg flex flex-col justify-center items-center m-5 p-5 space-y-10">
             {/* Basic Demo */}
             <div className="text-white p-6 rounded-md">
               <p>
@@ -177,21 +177,21 @@ export default function PaginationDemo() {
                 <strong>Page {currentPage}</strong>.
               </p>
             </div>
-            <div className="mx-auto py-10 px-4 border-b">
+            <div className="sm:mx-auto py-10 sm:px-4 border-b flex items-center justify-center">
               <Pagination
                 current={currentPage}
                 total={totalPages}
                 onPageChange={setCurrentPage}
-                className="bg-blue-500 !rounded-full"
+                className="bg-blue-500 !gap-0 w-8 h-8 !p-0  !rounded-full flex items-center justify-center"
                 visiblePages={2}
                 renderPrev={() => (
                   <span className="flex items-center gap-1">
-                    <ChevronLeft /> Prev
+                    <ChevronLeft />
                   </span>
                 )}
                 renderNext={() => (
                   <span className="flex items-center gap-1">
-                    Next <ChevronRight />
+                    <ChevronRight />
                   </span>
                 )}
                 renderFirst={() => (

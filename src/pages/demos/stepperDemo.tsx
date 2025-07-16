@@ -250,7 +250,7 @@ export default function StepperDemo() {
       {/* Preview/Code Section */}
       <div className="border border-stone-600 p-6 rounded-lg bg-black text-white flex justify-center">
         {activeView === "preview" ? (
-          <div className="p-10 flex flex-col justify-start items-center  space-y-5">
+          <div className="p-10 flex flex-col justify-start items-center text-sm sm:text-base space-y-5">
             {/* Basic Stepper */}
             <Stepper
               steps={[
@@ -262,12 +262,12 @@ export default function StepperDemo() {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               nextButton={
-                <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+                <span className="p-2 bg-gray-700 text-white rounded hover:bg-gray-600">
                   Next
                 </span>
               }
               prevButton={
-                <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+                <span className="p-2 bg-gray-700 text-white rounded hover:bg-gray-600">
                   Previous
                 </span>
               }

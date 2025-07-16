@@ -112,7 +112,7 @@ export default function NumberInputDemo() {
       {/* Demo Panel */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+          <div className="rounded-lg text-center h-fit w-fit shadow-lg flex flex-col justify-start items-center m-5 p-5">
             <div className="max-w-sm space-y-10">
               <NumberInput
                 label={

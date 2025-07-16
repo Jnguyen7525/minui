@@ -90,7 +90,7 @@ const DateInput: React.FC<DateInputProps> = ({
       </div>
 
       {showCalendar && (
-        <div className="absolute z-50 top-14 ">
+        <div className="absolute z-20 top-14 ">
           <Calendar
             selectedDates={internalValue ? [new Date(internalValue)] : []}
             onDateSelect={(dates) => {

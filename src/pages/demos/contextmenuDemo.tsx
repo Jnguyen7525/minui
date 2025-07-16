@@ -87,7 +87,7 @@ export default function ContextMenuDemo() {
       {/* Demo Area */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white min-h-[250px]">
         {activeView === "preview" ? (
-          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center">
+          <div className="p-5 m-5 pb-10 rounded-lg text-center h-fit w-fit shadow-lg flex flex-col justify-start items-center">
             <div className="p-5">
               <h1 className="text-lg font-bold mb-4">
                 Right-click on the box below

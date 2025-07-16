@@ -137,8 +137,8 @@ export default function TabsDemo() {
       {/* Demo */}
       <div className="flex w-full justify-center items-center border border-stone-600 rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
-          <div className="p-5 rounded-lg text-center h-fit w-fit border flex flex-col justify-start items-center">
-            <div className="flex flex-col space-y-5 w-[350px]">
+          <div className="p-5 rounded-lg text-center h-fit w-full flex flex-col justify-start items-center">
+            <div className="flex flex-col space-y-5 w-[200px]">
               <Tabs
                 tabs={myTabs}
                 variant="underlined"

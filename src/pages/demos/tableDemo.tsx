@@ -446,9 +446,9 @@ export default function TableDemo() {
       </div>
 
       {/* Demo Block */}
-      <div className="flex w-full items-center justify-center border border-stone-600 rounded-lg bg-black text-white p-6">
+      <div className="flex w-full items-center justify-center rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
-          <div className="flex items-center space-x-5">
+          <div className="flex flex-col sm:flex-row items-center gap-5 text-xs sm:text-base">
             <div className="flex h-fit w-fit">
               <Table
                 data={invoices}

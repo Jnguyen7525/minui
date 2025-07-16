@@ -76,7 +76,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         {/* Progress Value Label (Centered Inside) */}
         {showValueLabel && !isIndeterminate && (
           <span
-            className={`absolute top-1/2 left-1/2 text-lg font-bold z-50`}
+            className={`absolute top-1/2 left-1/2 text-lg font-bold z-20`}
             style={{
               transform: "translate(-50%, -50%)",
             }}

@@ -183,9 +183,9 @@ export default function SidebarDemo() {
               <Sidebar
                 isOpen={openSidebar}
                 onOpenChange={setOpenSidebar}
-                minWidth={280}
+                minWidth={150}
                 maxWidth={480}
-                defaultWidth={350}
+                defaultWidth={150}
                 // handleStyle=" border-stone-600 rounded-full border-2"
                 resizable={true}
                 className="w-full "
@@ -206,7 +206,7 @@ export default function SidebarDemo() {
                   </div>
                 }
               >
-                <div className="w-full h-full flex flex-col border-r  overflow-hidden">
+                <div className="sm:w-full h-full flex flex-col border-r  overflow-hidden">
                   <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
                     <p className="font-sans antialiased text-base text-current font-semibold">
                       Sidebar

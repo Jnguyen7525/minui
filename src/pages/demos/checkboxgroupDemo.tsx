@@ -83,7 +83,7 @@ export default function CheckboxGroupDemo() {
       {/* Demo Area */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="p-5 rounded-lg h-fit w-[300px] border shadow-lg space-y-6">
+          <div className="p-5 rounded-lg h-fit w-[300px] shadow-lg space-y-6">
             <h3 className="text-lg font-bold">Preferences</h3>
             <CheckboxGroup
               options={[

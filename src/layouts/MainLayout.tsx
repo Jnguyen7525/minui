@@ -172,7 +172,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         placement="left"
         onClose={() => setMobileDrawerOpen(false)}
         size={{ width: "250px" }}
-        className="bg-gray-900 overflow-y-auto p-4 scrollbar-hide"
+        className="bg-gray-900 z-50 overflow-y-auto p-4 scrollbar-hide"
       >
         <SidebarMenu />
       </Drawer>

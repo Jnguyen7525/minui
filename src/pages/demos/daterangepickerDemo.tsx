@@ -83,7 +83,7 @@ export default function DateRangePickerDemo() {
       {/* Demo Area */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+          <div className=" p-5 rounded-lg  text-center h-fit w-fit shadow-lg flex flex-col justify-start items-center m-5 pb-10">
             <div className="flex flex-col space-y-10 w-[300px] h-full justify-center items-center">
               {/* Uncontrolled Date Range Picker  */}
               <DateRangePicker

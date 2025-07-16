@@ -84,7 +84,7 @@ export default function JumbotronDemo() {
       {/* Demo Area */}
       <div className="flex w-full items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className="flex flex-col items-center p-5 rounded-lg w-[500px] h-[400px] m-5 border shadow-lg space-y-5">
+          <div className="flex flex-col items-center p-5 rounded-lg w-[500px] h-[400px] m-5 shadow-lg space-y-5">
             <div className="flex w-full h-full flex-1 rounded-lg overflow-hidden">
               <Jumbotron
                 backgroundImage="https://tecdn.b-cdn.net/img/new/slides/041.webp"

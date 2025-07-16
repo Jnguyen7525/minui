@@ -107,7 +107,7 @@ export default function NavbarDemo() {
               <Navbar
                 items={navbarItems}
                 logo={<Menu size={24} />}
-                className="bg-black border p-4 gap-5 rounded-md"
+                className="bg-black  p-4 gap-3 rounded-md"
               />
             </div>
           </div>
