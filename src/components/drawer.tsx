@@ -39,7 +39,7 @@ const Drawer: React.FC<DrawerProps> = ({
         style={{
           width:
             placement === "left" || placement === "right"
-              ? size?.width || "25%"
+              ? size?.width || "fit"
               : "100%",
           height:
             placement === "top" || placement === "bottom"

@@ -245,7 +245,7 @@ const Home = () => {
 
   return (
     <div
-      className="flex flex-1 flex-wrap p-10 items-center justify-center
+      className="flex flex-1 flex-wrap p-10 items-center justify-center overflow-hidden 
   "
     >
       {/* Accordion Component */}
@@ -501,7 +501,7 @@ const Home = () => {
       </div>
 
       {/* breadcrumb */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-[500px] border shadow-lg m-5">
+      <div className="p-2  sm:p-5 rounded-lg  text-center h-fit text-sm sm:text-base w-[400px] sm:w-[500px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Breadcrumb</h2>
         <div className="flex flex-col h-full w-full space-y-5 items-center justify-center ">
           <Breadcrumbs
@@ -547,7 +547,7 @@ const Home = () => {
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg m-5">
         <h2 className="text-xl font-bold ">Button</h2>
 
-        <div className="flex flex-wrap justify-center space-x-5 mt-5">
+        <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
           <Button
             label="Default"
             variant="default"
@@ -1179,13 +1179,13 @@ const Home = () => {
                 </button>
               </div>
             }
-            className="bg-white"
+            className="bg-white text-black"
           />
         </div>
       </div>
 
       {/* Drawer */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-screen border shadow-lg flex flex-col justify-start items-center">
         <h1 className="text-lg font-bold mb-4">Drawer Component</h1>
         <div className="flex space-x-3">
           {/* left drawer */}
@@ -1201,7 +1201,7 @@ const Home = () => {
             isOpen={isLeftDrawerOpen}
             placement="left"
             onClose={() => setIsLeftDrawerOpen(false)}
-            className="rounded-lg bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg w-[160px] -ml-2 bg-gray-800 border-r border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1226,7 +1226,7 @@ const Home = () => {
             isOpen={isRightDrawerOpen}
             placement="right"
             onClose={() => setIsRightDrawerOpen(false)}
-            className="rounded-lg bg-gray-800 border-l border-gray-400 p-5 flex flex-col space-y-5 "
+            className="rounded-lg -mr-1 w-[160px] bg-gray-800 border-l border-gray-400 p-5 flex flex-col space-y-5 "
           >
             <h2 className="text-xl font-semibold ">Drawer Content</h2>
             <p>This is a fully functional, customizable drawer component!</p>
@@ -1594,9 +1594,9 @@ const Home = () => {
       </div>
 
       {/* Popover */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
+      <div className=" p-2  sm:p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Popover</h1>
-        <div className="flex space-x-5 justify-between">
+        <div className="flex gap-3 justify-between">
           <Popover
             placement="top"
             content="Top popover"
@@ -2123,10 +2123,10 @@ const Home = () => {
       </div>
 
       {/* table */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5  sm:p-5">
         <h2 className="text-xl font-bold mb-5">table</h2>
         <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-          <div className="flex h-fit w-fit text-sm sm:text-base">
+          <div className="flex h-fit w-fit text-xs sm:text-base">
             <Table
               data={invoices}
               columns={columns}

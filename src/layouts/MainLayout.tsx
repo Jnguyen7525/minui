@@ -176,7 +176,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       >
         <SidebarMenu />
       </Drawer>
-      <div className="flex h-full">
+      <div className="flex h-full w-screen">
         <div className="hidden w-fit px-10 sm:flex flex-col space-y-1 items-start border-r overflow-y-auto pb-20">
           <SidebarMenu />
         </div>
