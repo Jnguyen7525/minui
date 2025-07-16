@@ -32,10 +32,10 @@ export default function Pagination({
 
   const getClass = (isActive: boolean, isDisabled: boolean) => {
     if (isDisabled)
-      return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none opacity-40 pointer-events-none ${className}`;
+      return `inline-grid place-items-center text-sm  rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none opacity-40 pointer-events-none ${className}`;
     if (isActive)
-      return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none hover:opacity-60 hover:cursor-pointer shadow ${className}`;
-    return `inline-grid place-items-center text-sm min-w-[38px] min-h-[38px] rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in select-none hover:border hover:cursor-pointer opacity-90 ${className}`;
+      return `inline-grid place-items-center text-sm  rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in border select-none hover:opacity-60 hover:cursor-pointer shadow ${className}`;
+    return `inline-grid place-items-center text-sm  rounded-md px-3 py-2 font-medium transition-all duration-150 ease-in select-none hover:border hover:cursor-pointer opacity-90 ${className}`;
   };
 
   const renderBtn = (page: number, isActive: boolean, isDisabled = false) => (

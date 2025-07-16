@@ -1,6 +1,6 @@
 import React, { useContext, useState, type ReactNode } from "react";
 import { ThemeContext, ThemeSwitcher } from "../components/theme";
-import { ChevronDown, ChevronUp, Coffee, Menu, Moon, Sun } from "lucide-react";
+import { ChevronDown, ChevronUp, Menu, Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import Drawer from "../components/drawer";
 
@@ -75,7 +75,7 @@ function SidebarMenu({
       <div className={"flex items-center justify-start w-full  "}>
         {showComponents ? (
           <button
-            className="flex items-center justify-center w-[130px] cursor-pointer   hover:text-stone-600 rounded-lg font-semibold  space-x-1 "
+            className="flex items-center justify-center w-[130px] cursor-pointer text-gray-400 hover:text-stone-600 rounded-lg font-semibold  space-x-1 "
             onClick={() => setShowComponents(false)}
           >
             <span>Components</span>
@@ -83,7 +83,7 @@ function SidebarMenu({
           </button>
         ) : (
           <button
-            className="flex items-center justify-center w-[130px] cursor-pointer    hover:text-stone-600 rounded-lg font-semibold   space-x-1"
+            className="flex items-center justify-center w-[130px] cursor-pointer text-gray-400 hover:text-stone-600 rounded-lg font-semibold   space-x-1"
             onClick={() => setShowComponents(true)}
           >
             <span>Components</span>
@@ -121,12 +121,12 @@ function Header({ onMobileMenuClick }: HeaderProps) {
 
   const triggerContent =
     theme === "light" ? (
-      <div className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+      <div className="flex items-center gap-1 rounded-lg  transition hover:cursor-pointer">
         <Sun size={18} />
         Light mode
       </div>
     ) : theme === "dark" ? (
-      <div className="flex items-center gap-2 rounded-lg  text-white  transition hover:cursor-pointer">
+      <div className="flex items-center gap-1 rounded-lg  transition hover:cursor-pointer">
         <Moon size={18} />
         Dark mode
       </div>
@@ -135,28 +135,25 @@ function Header({ onMobileMenuClick }: HeaderProps) {
     );
 
   return (
-    <header className="py-2 px-7 flex items-center justify-between shadow-md border-b border-gray-600  shadow-white">
+    <header className="py-1 px-10 flex items-center justify-between shadow-md border-b border-gray-600  shadow-white">
       <Link
         to={"/"}
         className="text-xl font-semibold flex items-center justify-center relative hover:opacity-80"
       >
-        <Coffee size={50} strokeWidth={1} color="gray" />{" "}
-        <span className="absolute bottom-1 text-sm font-semibold tracking-widest ">
-          coffeeui
-        </span>
+        <span className="font-semibold tracking-wide ">minui</span>
       </Link>
       <div className="flex items-center justify-center space-x-5 sm:items-end sm:justify-end sm:space-x-0">
         {/* 👇 Mobile menu button */}
         <button
           onClick={onMobileMenuClick}
-          className="sm:hidden p-2 text-white border rounded-md bg-gray-700 hover:bg-gray-600 hover:cursor-pointer"
+          className="sm:hidden hover:cursor-pointer hover:opacity-60"
         >
           <Menu size={20} />
         </button>
 
         <ThemeSwitcher
           triggerContent={triggerContent}
-          className="hover:cursor-pointer px-4 py-2 border rounded-md bg-gray-700 text-white hover:bg-gray-600"
+          className="hover:cursor-pointer px-2 py-2  border-b "
         />
       </div>
     </header>

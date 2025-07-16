@@ -126,7 +126,7 @@ export default function Sidebar({
       )}
       <div
         ref={sidebarRef}
-        className={` overflow-hidden ${
+        className={`overflow-hidden ${
           !isResizing.current
             ? " transition-all duration-300 ease-in-out"
             : "transition-transform duration-200 ease-in-out"
@@ -145,7 +145,7 @@ export default function Sidebar({
       {/* handle */}
       {isOpen && resizable && (
         <div
-          className={` cursor-ew-resize border-[1px] hover:opacity-50`}
+          className={`cursor-ew-resize border-[1px] hover:opacity-50`}
           onMouseDown={(e) => {
             e.preventDefault(); // <--- important! This prevents the browser from initiating unintended behaviors like drag selection or content highlighting, especially on overlapping elements.
             handleMouseDown();

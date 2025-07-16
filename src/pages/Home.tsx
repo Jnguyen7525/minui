@@ -210,7 +210,7 @@ const Home = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(7);
-  const totalPages = 12; // Set this based on your data
+  const totalPages = 7; // Set this based on your data
 
   const allItems = Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`);
   const ITEMS_PER_PAGE = 5;
@@ -611,7 +611,7 @@ const Home = () => {
       {/* card */}
       <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg">
         <h2 className="text-xl font-bold mb-5">Card</h2>
-        <div className="flex h-full w-full items-center justify-center space-x-4">
+        <div className="flex sm:flex-row flex-col h-full w-full items-center justify-center gap-4">
           {/* Login Card */}
           <Card
             shadow="lg"
@@ -1474,7 +1474,7 @@ const Home = () => {
       </div>
 
       {/* pagination */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+      <div className="rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Pagination</h2>
 
         {/* Mock Page Content Display */}
@@ -1486,31 +1486,31 @@ const Home = () => {
         </div>
 
         {/* basic demo with no links */}
-        <div className=" mx-auto py-10 px-4 border-b">
+        <div className="sm:mx-auto py-10 sm:px-4 border-b">
           <Pagination
             current={currentPage}
             total={totalPages}
             onPageChange={setCurrentPage}
-            className="bg-blue-500 !rounded-full"
+            className="bg-blue-500 !gap-0 w-8 h-8 !p-0 flex items-center justify-center text-xs !rounded-full"
             visiblePages={2} // show 2 page buttons on each side of current
             renderPrev={() => (
-              <span className="flex items-center gap-1">
-                <ChevronLeft /> <span>Prev</span>
+              <span className="flex items-center ">
+                <ChevronLeft />
               </span>
             )}
             renderNext={() => (
-              <span className="flex items-center gap-1">
-                <span>Next</span> <ChevronRight />
+              <span className="flex items-center">
+                <ChevronRight />
               </span>
             )}
             renderFirst={() => (
-              <div className="flex items-center justify-center -space-x-4">
+              <div className="flex items-center justify-center -space-x-5 ">
                 <ChevronLeft />
                 <ChevronLeft />
               </div>
             )}
             renderLast={() => (
-              <div className="flex items-center justify-center -space-x-4">
+              <div className="flex items-center justify-center -space-x-5">
                 <ChevronRight />
                 <ChevronRight />
               </div>
@@ -1821,11 +1821,11 @@ const Home = () => {
           <Sidebar
             isOpen={openSidebar}
             onOpenChange={setOpenSidebar}
-            minWidth={280}
+            minWidth={150}
             maxWidth={480}
-            defaultWidth={350}
+            defaultWidth={150}
             resizable={true}
-            className="w-full "
+            className="w-full"
             trigger={
               <div className="flex h-full items-center justify-center w-full">
                 {openSidebar ? (
@@ -1843,14 +1843,14 @@ const Home = () => {
               </div>
             }
           >
-            <div className="w-full h-full flex flex-col border-r  overflow-hidden">
-              <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max">
+            <div className="sm:w-full flex-1 grow   h-full flex flex-col border-r overflow-hidden">
+              <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max ">
                 <p className="font-sans antialiased text-base text-current font-semibold">
                   Sidebar
                 </p>
               </div>
 
-              <div className="w-full h-max rounded p-3">
+              <div className="w-full h-max rounded p-3 ">
                 <ul className="flex flex-col gap-0.5 min-w-60 ">
                   <li className="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in bg-transparent hover:text-stone-800 hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800">
                     <span className="grid place-items-center shrink-0 me-2.5">
@@ -1956,12 +1956,13 @@ const Home = () => {
       </div>
 
       {/* Social Icons */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-full border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Social Icons</h1>
-        <div className="bg-gray-800 p-5 rounded-md">
+        <div className="bg-gray-800 p-5 rounded-md flex w-full flex-wrap">
           <SocialIcons
-            className="hover:text-blue-700  transition duration-200 hover:cursor-pointer"
+            className="hover:text-blue-700 flex h-fit transition duration-200 hover:cursor-pointer"
             size={30}
+            spacing={6}
           />
         </div>
         <div className="bg-gray-800 p-5 rounded-md">
@@ -2124,8 +2125,8 @@ const Home = () => {
       {/* table */}
       <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">table</h2>
-        <div className="flex space-x-5">
-          <div className="flex h-fit w-fit">
+        <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
+          <div className="flex h-fit w-fit text-sm sm:text-base">
             <Table
               data={invoices}
               columns={columns}
@@ -2137,7 +2138,7 @@ const Home = () => {
             />
           </div>
 
-          <div className="flex flex-col h-fit w-fit">
+          <div className="flex flex-col h-fit w-fit text-sm sm:text-base">
             <Table
               data={members}
               columns={memberColumns}

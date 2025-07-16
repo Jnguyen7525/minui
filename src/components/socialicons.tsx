@@ -252,7 +252,10 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`flex gap-4`} style={{ gap: `${spacing}px` }}>
+    <div
+      className={`flex flex-wrap w-full h-full items-center justify-center`}
+      style={{ gap: `${spacing}px` }}
+    >
       {platforms.map((platform) => (
         <a
           key={platform}
