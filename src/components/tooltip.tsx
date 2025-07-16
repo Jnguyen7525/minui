@@ -40,7 +40,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   };
 
   return (
-    <div className={`relative flex w-full h-full `}>
+    <div className={`relative flex `}>
       {/* Tooltip Trigger */}
       <button
         ref={triggerRef}

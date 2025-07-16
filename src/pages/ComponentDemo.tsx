@@ -15,7 +15,7 @@ const ComponentDemo = () => {
     ?.default;
 
   return (
-    <div className="flex w-full p-10 items-center justify-center">
+    <div className="flex w-full p-5 sm:p-10 items-center justify-center">
       {DemoComponent ? (
         <DemoComponent />
       ) : (

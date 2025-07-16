@@ -69,7 +69,7 @@ function SidebarMenu({
   linkStyle = "p-2 text-gray-400 hover:opacity-80 hover:cursor-pointer w-full flex",
   containerStyle = "flex flex-col flex-1 h-full overflow-y-auto scrollbar-hide  space-y-1 mt-10",
 }: SidebarMenuProps) {
-  const [showComponents, setShowComponents] = useState(false);
+  const [showComponents, setShowComponents] = useState(true);
   return (
     <aside className={containerStyle}>
       <div className={"flex items-center justify-start w-full  "}>
@@ -135,7 +135,7 @@ function Header({ onMobileMenuClick }: HeaderProps) {
     );
 
   return (
-    <header className="py-1 px-10 flex items-center justify-between shadow-md border-b border-gray-600  shadow-white">
+    <header className="py-1 px-5 sm:px-10 flex items-center justify-between shadow-md border-b border-gray-600  shadow-white">
       <Link
         to={"/"}
         className="text-xl font-semibold flex items-center justify-center relative hover:opacity-80"
@@ -153,7 +153,7 @@ function Header({ onMobileMenuClick }: HeaderProps) {
 
         <ThemeSwitcher
           triggerContent={triggerContent}
-          className="hover:cursor-pointer px-2 py-2  border-b "
+          className="hover:cursor-pointer px-2 py-2 z-50 bg-stone-900 rounded-md text-white  "
         />
       </div>
     </header>

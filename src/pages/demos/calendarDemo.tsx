@@ -80,7 +80,7 @@ export default function CalendarDemo() {
       {/* Demo Area */}
       <div className="flex w-full min-h-[250px] items-center justify-center p-6 border border-stone-600 rounded-lg bg-black text-white">
         {activeView === "preview" ? (
-          <div className=" rounded-lg text-center h-fit w-full shadow-lg m-5 underline-offset-2">
+          <div className=" rounded-lg text-center h-fit w-[360px] shadow-lg m-5 underline-offset-2">
             <div className="flex flex-col h-full w-full space-y-5 items-center justify-center">
               <Calendar
                 selectedDates={selectedCalendarDate}

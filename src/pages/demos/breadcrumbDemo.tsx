@@ -141,10 +141,7 @@ export default function BreadcrumbsDemo() {
                     label: "Home",
                     onClick: () => setCurrentBreadcrumb("Home"),
                   },
-                  {
-                    label: "Products",
-                    onClick: () => setCurrentBreadcrumb("Products"),
-                  },
+
                   {
                     label: "Shoes",
                     onClick: () => setCurrentBreadcrumb("Shoes"),
@@ -156,10 +153,6 @@ export default function BreadcrumbsDemo() {
                   {
                     label: "Clothes",
                     onClick: () => setCurrentBreadcrumb("Clothes"),
-                  },
-                  {
-                    label: "Misc",
-                    onClick: () => setCurrentBreadcrumb("Misc"),
                   },
                 ]}
                 separator={<ChevronRight className="w-4 h-4 text-gray-400" />}

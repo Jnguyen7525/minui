@@ -245,7 +245,7 @@ const Home = () => {
 
   return (
     <div
-      className="flex flex-1 flex-wrap p-10 items-center justify-center overflow-hidden 
+      className="flex flex-1 flex-wrap sm:p-10 items-center justify-center overflow-hidden 
   "
     >
       {/* Accordion Component */}
@@ -411,7 +411,7 @@ const Home = () => {
       {/* back to top */}
 
       <div className="w-[300px] h-[400px] relative  border rounded-lg shadow-lg p-6 bg-stone-950 text-white">
-        <h2 className="text-2xl font-bold mb-4 text-center">
+        <h2 className="text-2xl font-bold mb-4 text-center z-10">
           Back To Top Demo
         </h2>
         <p className="text-sm text-gray-300 mb-8 text-center">
@@ -522,19 +522,9 @@ const Home = () => {
                 onClick: () => setCurrentBreadcrumb("Shoes"),
               },
               {
-                label: "Accessories",
-                href: "/products/shoes/accessories",
-                onClick: () => setCurrentBreadcrumb("Accessories"),
-              },
-              {
                 label: "Clothes",
                 href: "/products/clothes",
                 onClick: () => setCurrentBreadcrumb("Clothes"),
-              },
-              {
-                label: "Misc",
-                href: "/products/misc",
-                onClick: () => setCurrentBreadcrumb("Misc"),
               },
             ]}
             separator={<ChevronRight className="w-4 h-4 text-gray-400" />}
@@ -609,7 +599,7 @@ const Home = () => {
       </div>
 
       {/* card */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[360px] sm:w-fit border shadow-lg">
         <h2 className="text-xl font-bold mb-5">Card</h2>
         <div className="flex sm:flex-row flex-col h-full w-full items-center justify-center gap-4">
           {/* Login Card */}
@@ -711,7 +701,7 @@ const Home = () => {
       </div>
 
       {/* carousel */}
-      <div className="flex flex-col items-center  p-5 rounded-lg  w-[700px] h-[650px] m-5 border shadow-lg space-y-5">
+      <div className="flex flex-col items-center  p-5 rounded-lg w-[360px]  sm:w-[700px] h-[650px] m-5 border shadow-lg space-y-5">
         <h2 className="text-xl font-bold  mb-5">Carousel</h2>
         {/* sliding transition */}
         <Carousel
@@ -848,7 +838,7 @@ const Home = () => {
       </div>
 
       {/* Circular Progress */}
-      <div className="flex flex-col items-center  p-5 rounded-lg  h-fit w-fit border shadow-lg m-5">
+      <div className="flex flex-col items-center  p-5 rounded-lg  h-fit w-[360px] border shadow-lg m-5">
         <h2 className="text-xl font-bold mb-5">Circular Progress</h2>
 
         <div className="flex flex-col space-y-5 items-center justify-center">
@@ -1097,7 +1087,7 @@ const Home = () => {
       </div>
 
       {/* Date Range Picker */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[360px] border shadow-lg flex flex-col justify-start items-center m-5 pb-10">
         <h2 className="text-xl font-bold mb-5 ">Date Range Picker</h2>
         <div className="flex flex-col space-y-10 w-[300px] h-full justify-center items-center">
           {/* Uncontrolled Date Range Picker  */}
@@ -1194,7 +1184,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsLeftDrawerOpen(true)}
           >
-            Left Drawer
+            Left
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1219,7 +1209,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsRightDrawerOpen(true)}
           >
-            Right Drawer
+            Right
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1244,7 +1234,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsTopDrawerOpen(true)}
           >
-            Top Drawer
+            Top
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1269,7 +1259,7 @@ const Home = () => {
             className="bg-blue-500 text-white px-3 py-2 rounded hover:cursor-pointer"
             onClick={() => setIsBottomDrawerOpen(true)}
           >
-            Bottom Drawer
+            Bottom
           </button>
           {/* Drawer Component */}
           <Drawer
@@ -1354,7 +1344,7 @@ const Home = () => {
       </div>
 
       {/* Input Otp */}
-      <div className=" p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className=" p-5 rounded-lg  text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Input OTP</h2>
         <InputOTP
           className="flex gap-2 justify-center items-center h-14"
@@ -1388,7 +1378,7 @@ const Home = () => {
       </div>
 
       {/* lightbox */}
-      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[400px] border shadow-lg flex flex-col justify-start items-center ">
+      <div className=" p-5 m-5 pb-10 rounded-lg  text-center h-fit w-[360px] sm:w-[400px] border shadow-lg flex flex-col justify-start items-center ">
         <h2 className="text-xl font-bold mb-5 ">Lightbox</h2>
 
         <Lightbox
@@ -1398,13 +1388,13 @@ const Home = () => {
       </div>
 
       {/* Navbar */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Navbar</h2>
         <div className="flex flex-col space-y-5 w-fit">
           <Navbar
             items={navbarItems}
             logo={<Menu size={24} />}
-            className="bg-black text-white border p-4 gap-5  rounded-md"
+            className="bg-black text-white border p-4 gap-2  rounded-md"
           />
         </div>
       </div>
@@ -1594,9 +1584,9 @@ const Home = () => {
       </div>
 
       {/* Popover */}
-      <div className=" p-2  sm:p-5 rounded-lg  text-center h-fit w-fit border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
+      <div className=" p-2  sm:p-5 rounded-lg  text-center h-fit w-[360px] border shadow-lg flex flex-col space-y-10 justify-center items-center m-5">
         <h1 className="text-2xl font-bold">Popover</h1>
-        <div className="flex gap-1 justify-between">
+        <div className="flex gap-2 justify-between">
           <Popover
             placement="top"
             content="Top popover"
@@ -1604,7 +1594,7 @@ const Home = () => {
             onToggle={setIsTopPopoverOpen} // ✅ Parent controls state
             className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
-              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
+              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border p-2 rounded">
                 Top
               </button>
             }
@@ -1619,7 +1609,7 @@ const Home = () => {
             onToggle={setIsRightPopoverOpen}
             className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
-              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
+              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border p-2 rounded">
                 Right
               </button>
             }
@@ -1631,7 +1621,7 @@ const Home = () => {
             onToggle={setIsBottomPopoverOpen}
             className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
-              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
+              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border p-2 rounded">
                 Bottom
               </button>
             }
@@ -1643,7 +1633,7 @@ const Home = () => {
             onToggle={setIsLeftPopoverOpen}
             className="bg-gray-800 text-white p-3 rounded-lg shadow-lg"
             trigger={
-              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border px-6 py-2 rounded">
+              <button className="hover:cursor-pointer bg-gray-800 text-white font-semibold border-blue-500 border p-2 rounded">
                 Left
               </button>
             }
@@ -1821,18 +1811,21 @@ const Home = () => {
           <Sidebar
             isOpen={openSidebar}
             onOpenChange={setOpenSidebar}
-            minWidth={150}
+            minWidth={180}
             maxWidth={480}
-            defaultWidth={150}
+            defaultWidth={180}
             resizable={true}
-            className="w-full"
+            className="w-full relative"
             trigger={
               <div className="flex h-full items-center justify-center w-full">
                 {openSidebar ? (
                   <button>
                     <X
                       size={28}
-                      className="absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:cursor-pointer z-50 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
+                      className={`${
+                        openSidebar &&
+                        "absolute flex w-fit right-5 top-3 cursor-pointer shadow text-stone-800 bg-stone-200 hover:cursor-pointer z-50 hover:bg-stone-400 hover:text-stone-600 rounded-full border p-1"
+                      }`}
                     />
                   </button>
                 ) : (
@@ -1843,7 +1836,7 @@ const Home = () => {
               </div>
             }
           >
-            <div className="sm:w-full flex-1 grow   h-full flex flex-col border-r overflow-hidden">
+            <div className="sm:w-full flex-1 grow h-full flex flex-col border-r overflow-hidden">
               <div className="w-[calc(100%-16px)] rounded m-2 mx-4 mb-0 mt-3 h-max ">
                 <p className="font-sans antialiased text-base text-current font-semibold">
                   Sidebar
@@ -1975,7 +1968,7 @@ const Home = () => {
       </div>
 
       {/* Stepper*/}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Stepper</h2>
         <div className="flex flex-col  space-y-5 items-center justify-center relative w-full">
           {/* basic */}
@@ -1987,12 +1980,12 @@ const Home = () => {
               <span>Step 4</span>,
             ]}
             nextButton={
-              <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+              <span className="p-2 bg-gray-700 text-white rounded hover:bg-gray-600">
                 Next
               </span>
             } // ✅ Custom Next button
             prevButton={
-              <span className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
+              <span className="p-2 bg-gray-700 text-white rounded hover:bg-gray-600">
                 Previous
               </span>
             } // ✅ Custom Previous button
@@ -2093,9 +2086,9 @@ const Home = () => {
       </div>
 
       {/* Tab */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Tab</h2>
-        <div className="flex flex-col space-y-5 w-[350px]">
+        <div className="flex flex-col space-y-5 w-[320px]">
           <Tabs
             tabs={myTabs}
             variant="underlined"
@@ -2123,10 +2116,10 @@ const Home = () => {
       </div>
 
       {/* table */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5  sm:p-5">
+      <div className="rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5  sm:p-5">
         <h2 className="text-xl font-bold mb-5">table</h2>
         <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-          <div className="flex h-fit w-[410px] sm:w-[500px] text-xs sm:text-base">
+          <div className="flex h-fit w-[350px] text-xs ">
             <Table
               data={invoices}
               columns={columns}
@@ -2138,7 +2131,7 @@ const Home = () => {
             />
           </div>
 
-          <div className="flex flex-col h-fit w-[410px] sm:w-[420px] text-sm sm:text-base">
+          <div className="flex flex-col h-fit w-[350px] text-sm ">
             <Table
               data={members}
               columns={memberColumns}
@@ -2146,7 +2139,7 @@ const Home = () => {
               sortable
               striping="row"
               selectionMode="multiple"
-              className="bg-white text-black"
+              className="bg-white text-black flex flex-col"
               strippedColor="blue"
               rowId={(row) => row.id}
               selectedRowIds={selectedIds}
@@ -2181,7 +2174,7 @@ const Home = () => {
       </div>
 
       {/* Testimonial */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Testimonial</h2>
         <div className="grid gap-12 text-center md:grid-cols-2">
           <Testimonial
@@ -2203,9 +2196,9 @@ const Home = () => {
       </div>
 
       {/* Textarea */}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Textarea</h2>
-        <div className="flex flex-col space-y-5 w-[350px]">
+        <div className="flex flex-col space-y-5 w-[340px]">
           <Textarea
             value={text}
             onChange={setText}
@@ -2217,7 +2210,7 @@ const Home = () => {
       </div>
 
       {/* timeline */}
-      <div className="rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
+      <div className="rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5 p-5">
         <h2 className="text-xl font-bold mb-5">Timeline</h2>
 
         <div className=" flex items-center justify-between">
@@ -2343,19 +2336,19 @@ const Home = () => {
       </div>
 
       {/* Tooltip*/}
-      <div className="p-5 rounded-lg text-center h-fit w-fit border shadow-lg flex flex-col justify-start items-center m-5">
+      <div className="p-5 rounded-lg text-center h-fit w-[360px] sm:w-fit border shadow-lg flex flex-col justify-start items-center m-5">
         <h2 className="text-xl font-bold mb-5">Tooltip</h2>
-        <div className="flex  space-x-5 relative w-full">
+        <div className="flex gap-2 relative w-full items-center justify-center">
           <Tooltip
             content="Tooltip on top"
             placement="top"
             offset={15}
             triggerContent={
-              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+              <span className="p-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
                 Top
               </span>
             }
-            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            className="bg-gray-800 text-white p-2 rounded-md shadow-lg"
           />
 
           <Tooltip
@@ -2363,11 +2356,11 @@ const Home = () => {
             placement="bottom"
             offset={15}
             triggerContent={
-              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+              <span className="p-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
                 Bottom
               </span>
             }
-            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            className="bg-gray-800 text-white p-2 rounded-md shadow-lg"
           />
 
           <Tooltip
@@ -2375,11 +2368,11 @@ const Home = () => {
             placement="right"
             offset={15}
             triggerContent={
-              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+              <span className="p-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
                 Right
               </span>
             }
-            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            className="bg-gray-800 text-white p-2 rounded-md shadow-lg"
           />
 
           <Tooltip
@@ -2387,11 +2380,11 @@ const Home = () => {
             placement="left"
             offset={15}
             triggerContent={
-              <span className="px-4 py-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
+              <span className="p-2 border rounded bg-gray-700 text-white hover:bg-gray-600 hover:cursor-pointer">
                 Left
               </span>
             }
-            className="bg-gray-800 text-white px-3 py-2 rounded-md shadow-lg"
+            className="bg-gray-800 text-white p-2 rounded-md shadow-lg"
           />
         </div>
       </div>

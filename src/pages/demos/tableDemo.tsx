@@ -18,7 +18,6 @@ type Invoice = {
   paymentStatus: string;
   totalAmount: string;
   paymentMethod: string;
-  issuedOn: string;
 };
 
 export const invoices: Invoice[] = [
@@ -27,49 +26,42 @@ export const invoices: Invoice[] = [
     paymentStatus: "Paid",
     totalAmount: "$250.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2024-12-01",
   },
   {
     invoice: "INV002",
     paymentStatus: "Pending",
     totalAmount: "$150.00",
     paymentMethod: "PayPal",
-    issuedOn: "2025-01-15",
   },
   {
     invoice: "INV003",
     paymentStatus: "Unpaid",
     totalAmount: "$350.00",
     paymentMethod: "Bank Transfer",
-    issuedOn: "2024-11-08",
   },
   {
     invoice: "INV004",
     paymentStatus: "Paid",
     totalAmount: "$450.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2025-03-20",
   },
   {
     invoice: "INV005",
     paymentStatus: "Paid",
     totalAmount: "$550.00",
     paymentMethod: "PayPal",
-    issuedOn: "2025-04-02",
   },
   {
     invoice: "INV006",
     paymentStatus: "Pending",
     totalAmount: "$200.00",
     paymentMethod: "Bank Transfer",
-    issuedOn: "2025-01-01",
   },
   {
     invoice: "INV007",
     paymentStatus: "Unpaid",
     totalAmount: "$300.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2024-10-25",
   },
 ];
 
@@ -115,43 +107,31 @@ export const columns: TableColumn<(typeof invoices)[0]>[] = [
     label: "Amount",
     align: "right",
     sortable: true,
-  },
-  {
-    key: "issuedOn",
-    label: "Issued",
-    sortable: true,
-    render: (val) => new Date(val as string).toLocaleDateString(),
-  },
+  }
 ];
 
 type Member = {
   id: number;
   name: string;
   role: string;
-  startDate: string;
 };
 
 export const members: Member[] = [
-  { id: 1, name: "John Michael", role: "Manager", startDate: "2018-04-23" },
-  { id: 2, name: "Alexa Liras", role: "Developer", startDate: "2018-04-23" },
+  { id: 1, name: "John Michael", role: "Manager" },
+  { id: 2, name: "Alexa Liras", role: "Developer" },
   {
     id: 3,
     name: "Laurent Perrier",
     role: "Executive",
     startDate: "2017-09-19",
   },
-  { id: 4, name: "Michael Levi", role: "Developer", startDate: "2008-12-24" },
-  { id: 5, name: "Richard Gran", role: "Manager", startDate: "2021-10-04" },
+  { id: 4, name: "Michael Levi", role: "Developer" },
+  { id: 5, name: "Richard Gran", role: "Manager" },
 ];
 
 export const memberColumns: TableColumn<Member>[] = [
   { key: "name", label: "Name", sortable: true },
   { key: "role", label: "Role", sortable: true },
-  {
-    key: "startDate",
-    label: "Employed",
-    sortable: true,
-  },
   {
     key: "name",
     label: "",
@@ -261,7 +241,6 @@ type Invoice = {
   paymentStatus: string;
   totalAmount: string;
   paymentMethod: string;
-  issuedOn: string;
 };
 
 export const invoices: Invoice[] = [
@@ -270,49 +249,42 @@ export const invoices: Invoice[] = [
     paymentStatus: "Paid",
     totalAmount: "$250.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2024-12-01",
   },
   {
     invoice: "INV002",
     paymentStatus: "Pending",
     totalAmount: "$150.00",
     paymentMethod: "PayPal",
-    issuedOn: "2025-01-15",
   },
   {
     invoice: "INV003",
     paymentStatus: "Unpaid",
     totalAmount: "$350.00",
     paymentMethod: "Bank Transfer",
-    issuedOn: "2024-11-08",
   },
   {
     invoice: "INV004",
     paymentStatus: "Paid",
     totalAmount: "$450.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2025-03-20",
   },
   {
     invoice: "INV005",
     paymentStatus: "Paid",
     totalAmount: "$550.00",
     paymentMethod: "PayPal",
-    issuedOn: "2025-04-02",
   },
   {
     invoice: "INV006",
     paymentStatus: "Pending",
     totalAmount: "$200.00",
     paymentMethod: "Bank Transfer",
-    issuedOn: "2025-01-01",
   },
   {
     invoice: "INV007",
     paymentStatus: "Unpaid",
     totalAmount: "$300.00",
     paymentMethod: "Credit Card",
-    issuedOn: "2024-10-25",
   },
 ];
 
@@ -359,42 +331,31 @@ export const columns: TableColumn<(typeof invoices)[0]>[] = [
     align: "right",
     sortable: true,
   },
-  {
-    key: "issuedOn",
-    label: "Issued",
-    sortable: true,
-    render: (val) => new Date(val as string).toLocaleDateString(),
-  },
+
 ];
 
 type Member = {
   id: number;
   name: string;
   role: string;
-  startDate: string;
 };
 
 export const members: Member[] = [
-  { id: 1, name: "John Michael", role: "Manager", startDate: "2018-04-23" },
-  { id: 2, name: "Alexa Liras", role: "Developer", startDate: "2018-04-23" },
+  { id: 1, name: "John Michael", role: "Manager",  },
+  { id: 2, name: "Alexa Liras", role: "Developer", },
   {
     id: 3,
     name: "Laurent Perrier",
     role: "Executive",
-    startDate: "2017-09-19",
   },
-  { id: 4, name: "Michael Levi", role: "Developer", startDate: "2008-12-24" },
-  { id: 5, name: "Richard Gran", role: "Manager", startDate: "2021-10-04" },
+  { id: 4, name: "Michael Levi", role: "Developer",  },
+  { id: 5, name: "Richard Gran", role: "Manager", },
 ];
 
 export const memberColumns: TableColumn<Member>[] = [
   { key: "name", label: "Name", sortable: true },
   { key: "role", label: "Role", sortable: true },
-  {
-    key: "startDate",
-    label: "Employed",
-    sortable: true,
-  },
+
   {
     key: "name",
     label: "",

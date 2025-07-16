@@ -118,7 +118,7 @@ export default function ProgressBarDemo() {
       {/* Demo Area */}
       <div className="flex w-full justify-center items-center border-stone-600 rounded-lg bg-black text-white p-6">
         {activeView === "preview" ? (
-          <div className="flex flex-col space-y-5 items-center p-5 rounded-lg h-fit w-fit border shadow-lg m-5">
+          <div className="flex flex-col space-y-5 items-center p-5 rounded-lg h-fit w-fit shadow-lg m-5">
             <ProgressBar
               startLabel={`${progress}%`}
               endLabel="100%"
